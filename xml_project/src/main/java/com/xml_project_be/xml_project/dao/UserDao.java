@@ -5,7 +5,6 @@ import com.xml_project_be.xml_project.models.State;
 import com.xml_project_be.xml_project.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
 import java.util.List;
 import java.util.Optional;
 

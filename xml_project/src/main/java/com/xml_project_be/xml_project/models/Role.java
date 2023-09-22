@@ -13,24 +13,24 @@ import static com.xml_project_be.xml_project.models.Permission.*;
 public enum Role {
     USER(Collections.EMPTY_SET),
     ADMIN(
-            Set.of(
-                    ADMIN_READ,
-                    ADMIN_UPDATE,
-                    ADMIN_DELETE,
-                    ADMIN_CREATE,
-                    TECH_ADMIN_READ,
-                    TECH_ADMIN_UPDATE,
-                    TECH_ADMIN_DELETE,
-                    TECH_ADMIN_CREATE
-            )
+        Set.of(
+            ADMIN_READ,
+            ADMIN_UPDATE,
+            ADMIN_DELETE,
+            ADMIN_CREATE,
+            TECH_ADMIN_READ,
+            TECH_ADMIN_UPDATE,
+            TECH_ADMIN_DELETE,
+            TECH_ADMIN_CREATE
+        )
     ),
     TECH_ADMIN(
-            Set.of(
-                    TECH_ADMIN_READ,
-                    TECH_ADMIN_UPDATE,
-                    TECH_ADMIN_DELETE,
-                    TECH_ADMIN_CREATE
-            )
+        Set.of(
+            TECH_ADMIN_READ,
+            TECH_ADMIN_UPDATE,
+            TECH_ADMIN_DELETE,
+            TECH_ADMIN_CREATE
+        )
     );
 
     @Getter
