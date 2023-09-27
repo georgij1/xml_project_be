@@ -23,19 +23,40 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'net.eusashead.hateoas:spring-halbuilder-page:1.0.0.RELEASE'
+	implementation 'net.eusashead.hateoas:spring-responseentitybuilder:1.1.0.RELEASE'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation "org.json:json:20171018"
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	runtimeOnly 'org.postgresql:postgresql'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-mysql'
+	implementation 'org.jetbrains:annotations:23.0.0'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	runtimeOnly 'mysql:mysql-connector-java'
+	implementation 'com.auth0:java-jwt:4.2.2'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
-	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
-	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	implementation 'org.json:json:20220320'
+	implementation 'commons-io:commons-io:2.6'
+	developmentOnly "org.springframework.boot:spring-boot-devtools"
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
 }
