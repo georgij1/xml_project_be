@@ -40,7 +40,10 @@ public class RegistrationController {
 
         else if ((registrationForm.getLogin().length() > 0 && registrationForm.getPassword().length() >= 8 && registrationForm.getRepeatPassword().length() >= 8)) {
             if ((Objects.equals(registrationForm.getPassword(), registrationForm.getRepeatPassword()))) {
-                userRepo.create(registrationForm);
+                userRepo.create (
+                    registrationForm,
+                    jdbcTemplate
+                );
                 response.setStatus(HttpServletResponse.SC_SEE_OTHER);
                 return "redirect on login";
             }

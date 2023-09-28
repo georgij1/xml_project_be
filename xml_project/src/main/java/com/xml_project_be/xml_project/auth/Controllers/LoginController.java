@@ -7,6 +7,7 @@ import com.xml_project_be.xml_project.auth.check_valid_fields.login.null_fields;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/api/user/auth")
 @AllArgsConstructor
 public class LoginController {
+    public JdbcTemplate jdbcTemplate;
+
     @PostMapping("/login")
     @ResponseBody
     public String login (
@@ -38,7 +41,8 @@ public class LoginController {
                     loginForm.getPassword(),
                     response,
                     request,
-                    userRepo
+                    userRepo,
+                    jdbcTemplate
             );
         }
     }
