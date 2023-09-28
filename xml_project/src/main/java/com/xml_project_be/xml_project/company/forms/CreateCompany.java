@@ -11,4 +11,6 @@ public class CreateCompany {
     public String password_company;
     @JsonProperty("desc_company")
     public String desc_company;
+    @JsonProperty("owner_company")
+    public String owner_company;
 }
