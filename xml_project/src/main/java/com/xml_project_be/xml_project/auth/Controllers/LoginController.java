@@ -9,12 +9,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@CrossOrigin("*")
 @RequestMapping("/api/user/auth")
 @AllArgsConstructor
 public class LoginController {
@@ -29,8 +27,8 @@ public class LoginController {
             UserRepo userRepo
     ) {
         if (
-                loginForm.getLogin() == null
-                && loginForm.getPassword() == null
+            loginForm.getLogin() == null
+            && loginForm.getPassword() == null
         ) {
             return null_fields.null_login_fields();
         }

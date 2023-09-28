@@ -7,13 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Objects;
 
 @Controller
+@CrossOrigin("*")
 @RequestMapping("/api/user/auth")
 @AllArgsConstructor
 public class RegistrationController {
@@ -27,6 +26,7 @@ public class RegistrationController {
             @RequestBody RegistrationForm registrationForm,
             HttpServletResponse response
     ) {
+        System.out.println("registration_user");
         if (
             (
                 Objects.equals(registrationForm.getPassword(), "😩🍆💦💦💦")
