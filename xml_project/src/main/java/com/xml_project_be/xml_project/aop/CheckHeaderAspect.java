@@ -1,19 +1,19 @@
 package com.xml_project_be.xml_project.aop;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import java.util.logging.Logger;
 
 @Aspect
 @Component
-@AllArgsConstructor
 public class CheckHeaderAspect {
+    @Autowired
     HttpServletRequest request;
-    HttpServletResponse response;
+    Logger logger = Logger.getLogger("");
+
 
     @Around("@within(CheckHeader) || @annotation(CheckHeader)")
     public Object check_header(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -21,12 +21,13 @@ public class CheckHeaderAspect {
                 &&
                 request.getHeader("Authorization").startsWith("Bearer ")
         ) {
+            logger.info("you have jwt token");
             return joinPoint.proceed();
         }
 
         else {
-            System.out.println("you have not got jwt token");
-            return "you have not got jwt token";
+            logger.info("you haven't got jwt token");
+            return "you haven't got jwt token";
         }
     }
 }
