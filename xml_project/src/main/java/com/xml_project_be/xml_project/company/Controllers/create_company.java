@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
+import java.io.File;
 import java.io.IOException;
 
 @Controller
@@ -20,6 +20,13 @@ public class create_company {
     HttpServletRequest request;
     HttpServletResponse response;
     JdbcTemplate jdbcTemplate;
+
+    public static void create_dir_company(String company) {
+        File file = new File(System.getProperty("user.home")+"/Downloads/uploads/"+company);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+    }
 
     @PostMapping("/auth")
     @ResponseBody
@@ -52,6 +59,7 @@ public class create_company {
     @ResponseBody
     @CheckHeader
     public String all_company(@RequestBody CreateCompany createCompany) {
+        create_dir_company(createCompany.getName_company());
         System.out.println(createCompany.getName_company());
         System.out.println(createCompany.getPassword_company());
         System.out.println(createCompany.getDesc_company());
