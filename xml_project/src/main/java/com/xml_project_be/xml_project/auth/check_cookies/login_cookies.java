@@ -67,6 +67,6 @@ public class login_cookies {
 
         System.out.println("/auth/login");
 
-        return token;
+        return null;
     }
 }

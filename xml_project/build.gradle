@@ -29,6 +29,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'net.eusashead.hateoas:spring-halbuilder-page:1.0.0.RELEASE'
 	implementation 'net.eusashead.hateoas:spring-responseentitybuilder:1.1.0.RELEASE'
+    implementation 'top.jfunc.json:Json-Gson:1.0'
+	implementation 'top.jfunc.json:Json-Gson:1.0'
+	implementation 'com.luhuiguo:aspose-words:23.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation "org.json:json:20171018"
@@ -51,6 +54,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'org.springframework.boot:spring-boot-starter-parent:1.5.2.RELEASE'
 //	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 }
 
 configurations {

@@ -7,9 +7,12 @@ import com.xml_project_be.xml_project.auth.check_valid_fields.login.null_fields;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.logging.Logger;
 
 @Controller
 @CrossOrigin("*")
