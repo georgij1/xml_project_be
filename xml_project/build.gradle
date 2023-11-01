@@ -32,6 +32,12 @@ dependencies {
     implementation 'top.jfunc.json:Json-Gson:1.0'
 	implementation 'top.jfunc.json:Json-Gson:1.0'
 	implementation 'com.luhuiguo:aspose-words:23.1'
+	implementation 'com.ironsoftware:ironpdf:2023.7.2'
+	implementation 'pdfbox:pdfbox:0.7.3'
+	implementation 'org.beigesoft:beige-pdfwriter:1.0.3'
+	implementation 'com.luhuiguo:aspose-pdf:23.1'
+	implementation 'org.wso2.orbit.org.apache.poi:poi-ooxml:3.17.0.wso2v1'
+	implementation 'com.groupdocs:groupdocs-viewer:17.5.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation "org.json:json:20171018"
@@ -53,8 +59,21 @@ dependencies {
 	developmentOnly "org.springframework.boot:spring-boot-devtools"
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'org.springframework.boot:spring-boot-starter-parent:1.5.2.RELEASE'
-//	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'com.groupdocs:groupdocs-parser:21.2'
+	implementation 'e-iceblue:spire.doc.free:5.2.0'
+}
+
+repositories {
+	mavenCentral()
+	maven {
+		name "GroupDocs Java API"
+		url "https://repository.groupdocs.com/repo/"
+	}
+	maven {
+		name "e-iceblue"
+		url "https://repo.e-iceblue.com/nexus/content/groups/public"
+	}
 }
 
 configurations {
