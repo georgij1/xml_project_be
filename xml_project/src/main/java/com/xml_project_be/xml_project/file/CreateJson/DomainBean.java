@@ -1,4 +1,4 @@
-package com.xml_project_be.xml_project.xml_file;
+package com.xml_project_be.xml_project.file.CreateJson;
 
 import lombok.Data;
 
