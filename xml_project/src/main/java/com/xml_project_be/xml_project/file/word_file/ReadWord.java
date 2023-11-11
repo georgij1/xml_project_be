@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ReadWord {
     @SneakyThrows
     public static ResponseEntity<?> readWord(String NameCompany, JdbcTemplate jdbcTemplate, Integer FileName) {
-        Document doc = new Document(System.getProperty("user.home") + "\\Downloads\\uploads\\" + NameCompany + "\\" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name"));
+        Document doc = new Document("/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name"));
         ArrayList<String> arrayListContentFile = new ArrayList<>();
         DomainBeanFile domainBeanNameFile = new DomainBeanFile();
         domainBeanNameFile.setNameFile(jdbcTemplate.queryForList("select image_name from files").get(0).get("image_name").toString());
