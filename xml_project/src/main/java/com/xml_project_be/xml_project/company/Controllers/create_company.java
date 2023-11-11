@@ -24,7 +24,7 @@ public class create_company {
     public static void create_dir_company(String company) {
         File file = new File("/home/georgii/Загрузки/uploads/"+company);
         if (!file.exists()) {
-            file.mkdir();
+            file.mkdirs();
         }
     }
 
