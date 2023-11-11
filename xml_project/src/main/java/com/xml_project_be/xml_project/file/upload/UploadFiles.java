@@ -31,7 +31,7 @@ public class UploadFiles {
             String filename = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
             if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select image_name from files where image_name=? and author=?)", Boolean.class, filename, Author))) {
                 if (file.getOriginalFilename().contains("doc")) {
-                    Path fileStorage = get(DIRECTORY + NameCompany, filename).toAbsolutePath().normalize();
+                    Path fileStorage = get("/home/georgii/Загрузки/uploads/" + NameCompany, filename).toAbsolutePath().normalize();
                     copy(file.getInputStream(), fileStorage, REPLACE_EXISTING);
                     filenames.add(filename);
                     jdbcTemplate.update(
