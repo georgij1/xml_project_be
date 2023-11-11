@@ -22,7 +22,7 @@ public class create_company {
     JdbcTemplate jdbcTemplate;
 
     public static void create_dir_company(String company) {
-        File file = new File(System.getProperty("user.home")+"/uploads/"+company);
+        File file = new File("/Downloads/uploads/"+company);
         if (!file.exists()) {
             file.mkdir();
         }
