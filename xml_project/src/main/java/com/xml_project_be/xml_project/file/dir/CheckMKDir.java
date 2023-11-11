@@ -4,6 +4,6 @@ import java.io.File;
 
 public class CheckMKDir {
     public static void check_dir_exist(File file) {
-        if (!file.exists()) file.mkdir();
+        if (!file.exists()) file.mkdirs();
     }
 }

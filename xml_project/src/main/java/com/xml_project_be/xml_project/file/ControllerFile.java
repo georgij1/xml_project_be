@@ -21,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ControllerFile {
     JdbcTemplate jdbcTemplate;
-    public static final String DIRECTORY = System.getProperty("user.home") + "/Downloads/uploads/";
+    public static final String DIRECTORY = "/home/georgii/Загрузки/uploads/";
 
     @PostMapping("/upload")
     @SneakyThrows

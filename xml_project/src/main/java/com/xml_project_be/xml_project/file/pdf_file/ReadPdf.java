@@ -17,7 +17,7 @@ import static java.nio.file.Paths.get;
 
 public class ReadPdf {
     public static ResponseEntity<?> readPdf(Integer IdFile, String NameCompany, JdbcTemplate jdbcTemplate) {
-        File file = new File(System.getProperty("user.home") + "/Downloads/uploads/" + NameCompany + "/pdf");
+        File file = new File("/home/georgii/Загрузки/uploads/" + NameCompany + "/pdf");
         CheckMKDir.check_dir_exist(file);
         String DEST = String.valueOf(get(System.getProperty("user.home") + "/Downloads/uploads" + "/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", IdFile).get(0).get("image_name")));
         String DEST_PDF = String.valueOf(get(System.getProperty("user.home") + "/Downloads/uploads" + "/" + NameCompany + "/pdf/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", IdFile).get(0).get("image_name")));
