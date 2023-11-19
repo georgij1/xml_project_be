@@ -8,7 +8,6 @@ import com.xml_project_be.xml_project.file.CreateJson.DomainBeanFile;
 import lombok.SneakyThrows;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import java.util.ArrayList;
 
 public class ReadWord {
