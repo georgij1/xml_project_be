@@ -8,6 +8,7 @@ import com.xml_project_be.xml_project.file.CreateJson.DomainBeanFile;
 import lombok.SneakyThrows;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -27,10 +28,12 @@ public class ReadWord {
 
         String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name");
         try (FileInputStream fis = new FileInputStream(filePath);
-             XWPFDocument document = new XWPFDocument(fis);
-             XWPFWordExtractor extractor = new XWPFWordExtractor(document)) {
-            String content = extractor.getText();
-            arrayListContentFile.add(content);
+             XWPFDocument doc = new XWPFDocument(fis)) {
+
+            for (XWPFParagraph paragraph : doc.getParagraphs()) {
+                String text = paragraph.getText();
+                System.out.println(text);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
