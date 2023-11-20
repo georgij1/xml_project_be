@@ -47,7 +47,7 @@ public class login_cookies {
                                 .withClaim("userId", "1234")
                                 .withSubject(loginFormLogin)
                                 .withIssuedAt(new Date())
-                                .withExpiresAt(new Date(System.currentTimeMillis() + 50000L))
+                                .withExpiresAt(new Date(System.currentTimeMillis() + 43200L))
                                 .sign(algorithm);
                         JWTVerifier verifier = JWT.require(Algorithm.HMAC512(secret))
                                 .build();
