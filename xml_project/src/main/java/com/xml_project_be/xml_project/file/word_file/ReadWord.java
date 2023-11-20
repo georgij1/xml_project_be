@@ -26,7 +26,7 @@ public class ReadWord {
         arrayListContentFile.add(String.valueOf((domainBeanNameFile.getNameFile())));
 
         String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name");
-        try (FileInputStream fis = new FileInputStream(filePath+".docx");
+        try (FileInputStream fis = new FileInputStream(filePath);
              XWPFDocument document = new XWPFDocument(fis);
              XWPFWordExtractor extractor = new XWPFWordExtractor(document)) {
             String content = extractor.getText();
