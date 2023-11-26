@@ -63,6 +63,8 @@ dependencies {
 	implementation 'com.groupdocs:groupdocs-parser:21.2'
 	implementation 'e-iceblue:spire.doc.free:5.2.0'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+	implementation 'org.apache.poi:poi-scratchpad:3.17'
+	implementation 'org.apache.poi:poi:4.1.2'
 }
 
 repositories {
