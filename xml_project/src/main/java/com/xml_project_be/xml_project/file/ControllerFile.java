@@ -6,8 +6,10 @@ import com.xml_project_be.xml_project.file.form.Form;
 import com.xml_project_be.xml_project.file.list.ListFiles;
 import com.xml_project_be.xml_project.file.pdf_file.ReadPdf;
 import com.xml_project_be.xml_project.file.upload.UploadFiles;
-import com.xml_project_be.xml_project.file.word_file.ReadWord;
+import com.xml_project_be.xml_project.file.word_file.TypeFile;
 import com.xml_project_be.xml_project.file.xml_file.GenerateDocument;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.http.ResponseEntity;
@@ -21,17 +23,20 @@ import java.util.List;
 @AllArgsConstructor
 public class ControllerFile {
     JdbcTemplate jdbcTemplate;
+    HttpServletResponse response;
+    HttpServletRequest request;
     public static final String DIRECTORY = "/home/georgii/Загрузки/uploads/";
 
-    @PostMapping("/upload")
+    @PatchMapping("/upload")
     @SneakyThrows
     public ResponseEntity<List<String>> uploadFiles(
             @RequestParam("files") List<MultipartFile> multipartFiles,
             @RequestParam("NameCompany") String NameCompany,
             @RequestParam("Author") String Author,
-            @RequestParam("TimeStamp") String TimeStamp
+            @RequestParam("TimeStamp") String TimeStamp,
+            @RequestParam("TypeFile") String TypeFile
     ) {
-        return UploadFiles.uploadFilesDoc(multipartFiles, NameCompany, Author, TimeStamp, jdbcTemplate);
+        return UploadFiles.uploadFilesDoc(response, multipartFiles, NameCompany, Author, TimeStamp, TypeFile, jdbcTemplate);
     }
 
     @PostMapping("/list")
@@ -47,10 +52,11 @@ public class ControllerFile {
     @ResponseBody
     @SneakyThrows
     public ResponseEntity<?> readFile(
-            @PathVariable("FileName") Integer FileName,
+            @PathVariable("FileName") Integer FileID,
             @PathVariable("NameCompany") String NameCompany
     ) {
-        return ReadWord.readWord(NameCompany, jdbcTemplate, FileName);
+        return TypeFile.choose_type(FileID, jdbcTemplate);
+//        return ReadWordDoc.readWordDoc(NameCompany, jdbcTemplate, FileName);
     }
 
     @GetMapping("/read/XML/{NameCompany}/{FileName}")

@@ -2,9 +2,7 @@ package com.xml_project_be.xml_project.file.word_file;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import com.xml_project_be.xml_project.file.CreateJson.DomainBeanFile;
 import lombok.SneakyThrows;
@@ -13,9 +11,9 @@ import org.apache.poi.hwpf.usermodel.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.http.ResponseEntity;
 
-public class ReadWord {
+public class ReadWordDoc {
     @SneakyThrows
-    public static ResponseEntity<?> readWord(String NameCompany, JdbcTemplate jdbcTemplate, Integer FileName) {
+    public static ResponseEntity<?> readWordDoc(String NameCompany, JdbcTemplate jdbcTemplate, Integer FileName) {
         // Document doc = new Document("/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name"));
         ArrayList<String> arrayListContentFile = new ArrayList<>();
         DomainBeanFile domainBeanNameFile = new DomainBeanFile();
