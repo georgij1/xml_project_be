@@ -1,47 +1,40 @@
 package com.xml_project_be.xml_project.file.word_file;
 
-import com.aspose.words.Document;
-import com.aspose.words.NodeType;
-import com.aspose.words.Paragraph;
-import com.aspose.words.SaveFormat;
-import com.xml_project_be.xml_project.file.CreateJson.DomainBeanFile;
-import lombok.SneakyThrows;
-import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import com.xml_project_be.xml_project.file.CreateJson.DomainBeanFile;
+import lombok.SneakyThrows;
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.usermodel.*;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.http.ResponseEntity;
 
 public class ReadWord {
     @SneakyThrows
     public static ResponseEntity<?> readWord(String NameCompany, JdbcTemplate jdbcTemplate, Integer FileName) {
-//        Document doc = new Document("/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name"));
+        // Document doc = new Document("/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name"));
         ArrayList<String> arrayListContentFile = new ArrayList<>();
         DomainBeanFile domainBeanNameFile = new DomainBeanFile();
         domainBeanNameFile.setNameFile(jdbcTemplate.queryForList("select image_name from files").get(0).get("image_name").toString());
 
         arrayListContentFile.add(String.valueOf((domainBeanNameFile.getNameFile())));
 
-        String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name");
-        try (FileInputStream fis = new FileInputStream(filePath);
-             XWPFDocument doc = new XWPFDocument(fis)) {
-
-            for (XWPFParagraph paragraph : doc.getParagraphs()) {
-                String text = paragraph.getText();
-                System.out.println(text);
-            }
+        // for linux String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name");
+        // for windows String filePath = "C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name");
+        try {
+            String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name");
+            FileInputStream fis = new FileInputStream(filePath);
+            HWPFDocument document = new HWPFDocument(fis);
+            Range range = document.getRange();
+            arrayListContentFile.add(range.text());
+            fis.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        for (Object obj : doc.getChildNodes(NodeType.PARAGRAPH, true)) {
-//            Paragraph para = (Paragraph) obj;
-//            arrayListContentFile.add(para.toString(SaveFormat.TEXT));
-//        }
 
         return ResponseEntity.ok().body(arrayListContentFile);
     }
