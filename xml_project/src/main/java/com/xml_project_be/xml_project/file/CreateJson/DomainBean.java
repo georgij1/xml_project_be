@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class DomainBean {
-    String id_image;
-    String image_name;
+    String id_file;
+    String file_name;
     String time_stamp;
     String author;
     String company;
