@@ -15,8 +15,8 @@ public class ListFiles {
         } else {
             ArrayList<DomainBean> arr = new ArrayList<>();
             DomainBean domainBean = new DomainBean();
-            domainBean.setId_image("1");
-            domainBean.setImage_name("Not found file");
+            domainBean.setId_file("1");
+            domainBean.setFile_name("Not found file");
             domainBean.setTime_stamp("Not found file");
             domainBean.setAuthor("Not found file");
             domainBean.setCompany("Not found file");
