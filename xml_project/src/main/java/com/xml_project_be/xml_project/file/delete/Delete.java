@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 public class Delete {
     @SneakyThrows
     public static ResponseEntity<?> delete(String NameCompany, JdbcTemplate jdbcTemplate, Integer IdFile) {
-        Files.delete(Paths.get("/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("image_name")));
+        Files.delete(Paths.get("/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")));
         jdbcTemplate.update("delete from files where id_file=?", IdFile);
         return ResponseEntity.ok().body("Success delete file");
     }
