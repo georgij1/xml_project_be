@@ -27,7 +27,7 @@ public class ControllerFile {
     HttpServletRequest request;
     public static final String DIRECTORY = "/home/georgii/Загрузки/uploads/";
 
-    @PatchMapping("/upload")
+    @PutMapping("/upload")
     @SneakyThrows
     public ResponseEntity<List<String>> uploadFiles(
             @RequestParam("files") List<MultipartFile> multipartFiles,
