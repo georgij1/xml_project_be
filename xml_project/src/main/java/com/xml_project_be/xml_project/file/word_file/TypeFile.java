@@ -6,9 +6,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class TypeFile {
     public static ResponseEntity<?> choose_type(
             Integer IDFile,
+            String NameCompany,
             JdbcTemplate jdbcTemplate
     ) {
-        jdbcTemplate.queryForList("select * from files where id_file=?", IDFile).get(0).get("");
-        return null;
+        if (jdbcTemplate.queryForList("select * from files where id_file=?", IDFile).get(0).get("TypeFile").equals("application/msword")) {
+            ReadWordDocx.readWordDocx(NameCompany, jdbcTemplate, IDFile);
+        }
+
+        else if (jdbcTemplate.queryForList("select * from files where id_file=?", IDFile).get(0).get("TypeFile").equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
+            ReadWordDoc.readWordDoc(NameCompany, jdbcTemplate, IDFile);
+        }
+
+        return ResponseEntity.ok().body("Такой тип не возможно отобразить");
     }
 }
