@@ -4,6 +4,7 @@ import com.xml_project_be.xml_project.file.CreateJson.DomainBeanFile;
 import lombok.SneakyThrows;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.Range;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -14,17 +15,18 @@ import java.util.ArrayList;
 public class ReadWordDocx {
     @SneakyThrows
     public static ResponseEntity<?> readWordDocx(String NameCompany, JdbcTemplate jdbcTemplate, Integer FileName) {
-        // Document doc = new Document("/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name"));
+        return getResponseEntity(NameCompany, jdbcTemplate, FileName);
+    }
+
+    @NotNull
+    static ResponseEntity<?> getResponseEntity(String NameCompany, JdbcTemplate jdbcTemplate, Integer FileName) {
         ArrayList<String> arrayListContentFile = new ArrayList<>();
         DomainBeanFile domainBeanNameFile = new DomainBeanFile();
-        domainBeanNameFile.setNameFile(jdbcTemplate.queryForList("select image_name from files").get(0).get("image_name").toString());
-
+        domainBeanNameFile.setNameFile(jdbcTemplate.queryForList("select file_name from files").get(0).get("file_name").toString());
         arrayListContentFile.add(String.valueOf((domainBeanNameFile.getNameFile())));
 
-        // for linux String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name");
-        // for windows String filePath = "C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name");
         try {
-            String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", FileName).get(0).get("image_name");
+            String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", FileName).get(0).get("file_name");
             FileInputStream fis = new FileInputStream(filePath);
             HWPFDocument document = new HWPFDocument(fis);
             Range range = document.getRange();

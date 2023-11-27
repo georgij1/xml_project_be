@@ -55,8 +55,7 @@ public class ControllerFile {
             @PathVariable("FileName") Integer FileID,
             @PathVariable("NameCompany") String NameCompany
     ) {
-        return TypeFile.choose_type(FileID, jdbcTemplate);
-//        return ReadWordDoc.readWordDoc(NameCompany, jdbcTemplate, FileName);
+        return TypeFile.choose_type(FileID, NameCompany, jdbcTemplate);
     }
 
     @GetMapping("/read/XML/{NameCompany}/{FileName}")
