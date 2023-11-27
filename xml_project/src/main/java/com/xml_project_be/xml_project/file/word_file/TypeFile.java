@@ -10,11 +10,11 @@ public class TypeFile {
             JdbcTemplate jdbcTemplate
     ) {
         if (jdbcTemplate.queryForList("select * from files where id_file=?", IDFile).get(0).get("type_file").equals("application/msword")) {
-            ReadWordDocx.readWordDocx(NameCompany, jdbcTemplate, IDFile);
+            return ReadWordDocx.readWordDocx(NameCompany, jdbcTemplate, IDFile);
         }
 
         else if (jdbcTemplate.queryForList("select * from files where id_file=?", IDFile).get(0).get("type_file").equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
-            ReadWordDoc.readWordDoc(NameCompany, jdbcTemplate, IDFile);
+            return ReadWordDoc.readWordDoc(NameCompany, jdbcTemplate, IDFile);
         }
 
         return ResponseEntity.ok().body("Такой тип не возможно отобразить");
