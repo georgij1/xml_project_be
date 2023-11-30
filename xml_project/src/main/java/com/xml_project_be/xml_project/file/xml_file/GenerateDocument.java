@@ -40,8 +40,10 @@ public class GenerateDocument {
 
     @SneakyThrows
     public static ResponseEntity<?> generateDocument(Integer IdFile, String NameCompany, JdbcTemplate jdbcTemplate) {
-        File file_dir = new File("/home/georgii/Загрузки/uploads/" + NameCompany + "/xml");
-        String DEST_XML = get("/home/georgii/Загрузки/uploads/" + NameCompany + "/xml/" + jdbcTemplate.queryForList("select image_name from files where id_image=?", IdFile).get(0).get("image_name")) + ".xml";
+//        File file_dir = new File("/home/georgii/Загрузки/uploads/" + NameCompany + "/xml");
+        File file_dir = new File("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "/xml");
+//        String DEST_XML = get("/home/georgii/Загрузки/uploads/" + NameCompany + "/xml/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")) + ".xml";
+        String DEST_XML = get("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "/xml/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")) + ".xml";
         CheckMKDir.check_dir_exist(file_dir);
         builder = factory.newDocumentBuilder();
         org.w3c.dom.Document doc = builder.newDocument();
