@@ -29,7 +29,7 @@ public class ReadPdf {
         if (!file1.exists()) {
             document.save(DEST_PDF + ".pdf");
         }
-        domainBeanPdf.setName_file(Collections.singletonList(jdbcTemplate.queryForList("select file_name from files").get(0).get("file_name").toString()));
+        domainBeanPdf.setName_file(Collections.singletonList(jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name").toString()));
         domainBeanPdf.setContent_file(Collections.singletonList(content));
         arrayList.add(domainBeanPdf);
         return ResponseEntity.ok().body(arrayList);
