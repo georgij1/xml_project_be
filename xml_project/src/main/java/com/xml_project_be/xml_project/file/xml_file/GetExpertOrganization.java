@@ -5,9 +5,11 @@ import com.spire.doc.collections.ParagraphCollection;
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import static com.xml_project_be.xml_project.file.xml_file.GetOrgElementsValueFunc.getOrgElementsValueFunc;
 import static com.xml_project_be.xml_project.file.xml_file.GetOrgElementsValueTXT.getOrgElementsValueTXT;
 
@@ -22,19 +24,10 @@ public class GetExpertOrganization {
         if (!file.exists()) {
             System.out.println("File not found: " + DEST_WORD);
             return getNode(doc, txt_not_found_structure);
-        }
-
-        else {
+        } else {
             System.out.println(DEST_WORD);
 
             try {
-                // ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Region", "66"));
-                // ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "City", "ГОРОД ЕКАТЕРИНБУРГ"));
-                // ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Street", "УЛИЦА НИКОЛАЯ НИКОНОВА"));
-                // ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Building", "ДОМ 18"));
-                // ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Room", "ПОМЕЩЕИЕ 73"));
-                // ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Room", "ПОМЕЩЕИЕ 73"));
-
                 Document document = new Document();
                 document.loadFromFile(DEST_WORD);
                 Element ExpertOrganization = doc.createElement("ExpertOrganization");
@@ -44,6 +37,7 @@ public class GetExpertOrganization {
                     // Get the first paragraph
                     ParagraphCollection firstParagraph = document.getSections().get(0).getParagraphs();
                     String OrgFullName = firstParagraph.get(45).getText();
+
                     int commaIndex = OrgFullName.indexOf(',');
                     if (commaIndex != -1) {
                         // FullName
@@ -55,7 +49,7 @@ public class GetExpertOrganization {
 
                             if (endIndex != -1) {
                                 String substring = OrgFullName.substring(0, endIndex);
-                                System.out.println("FullName - "+(substring.trim()));
+                                System.out.println("FullName - " + (substring.trim()));
                                 ExpertOrganization.appendChild(getOrgElementsValueTXT(doc, ExpertOrganization, "OrgFullName", substring.trim()));
                             } else {
                                 System.out.println(OrgFullName.substring(0).trim());
@@ -75,11 +69,16 @@ public class GetExpertOrganization {
 
                             if (endIndex != -1) {
                                 String substring = OrgFullName.substring(startIndex + startWordINN.length(), endIndex);
-                                System.out.println("INN - "+(substring.trim()));
-                                ExpertOrganization.appendChild(getOrgElementsValueTXT(doc, ExpertOrganization, "OrgINN",substring.trim()));
-                                int getRegion = Integer.parseInt(substring) / 100000000;
-                                System.out.println("Region - "+getRegion);
-                                ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Region", "66"));
+                                System.out.println("INN - " + (substring.trim()));
+                                ExpertOrganization.appendChild(getOrgElementsValueTXT(doc, ExpertOrganization, "OrgINN", substring.trim()));
+                                // Region
+                                if (substring.length() >= 2) {
+                                    System.out.println("Region - " + (substring.trim()).substring(0, 2));
+                                    ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Region", (substring.trim()).substring(0, 2)));
+                                } else {
+                                    System.out.println("Region - ИНН меньше 2");
+                                    ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Region", "Длина ИНН не соответствует действительности"));
+                                }
                             } else {
                                 System.out.println(OrgFullName.substring(startIndex + startWordINN.length()).trim());
                                 ExpertOrganization.appendChild(getOrgElementsValueTXT(doc, ExpertOrganization, "OrgINN", "слово ОГРН не существует"));
@@ -98,8 +97,8 @@ public class GetExpertOrganization {
 
                             if (endIndexOGRN != -1) {
                                 String substring = OrgFullName.substring(startIndexOGRN + startWordOGRN.length(), endIndexOGRN);
-                                System.out.println("OGRN - "+substring);
-                                ExpertOrganization.appendChild(getOrgElementsValueTXT(doc, ExpertOrganization, "OrgOGRN" , substring.trim()));
+                                System.out.println("OGRN - " + substring);
+                                ExpertOrganization.appendChild(getOrgElementsValueTXT(doc, ExpertOrganization, "OrgOGRN", substring.trim()));
                             } else {
                                 ExpertOrganization.appendChild(getOrgElementsValueTXT(doc, ExpertOrganization, "OrgOGRN", "слово ОГРН не существует"));
                             }
@@ -118,7 +117,7 @@ public class GetExpertOrganization {
 
                             if (endIndexKPP != -1) {
                                 String substring = OrgFullName.substring(startIndexKPP + startWordKPP.length(), endIndexKPP);
-                                System.out.println("OrgKPP - "+substring);
+                                System.out.println("OrgKPP - " + substring);
                                 ExpertOrganization.appendChild(getOrgElementsValueTXT(doc, ExpertOrganization, "OrgKPP", substring.trim()));
                             } else {
                                 ExpertOrganization.appendChild(getOrgElementsValueTXT(doc, ExpertOrganization, "OrgKPP", "символа : не существует"));
@@ -126,14 +125,67 @@ public class GetExpertOrganization {
                         } else {
                             ExpertOrganization.appendChild(getOrgElementsValueTXT(doc, ExpertOrganization, "OrgKPP", "КПП и символ : не найдены"));
                         }
-                    }
-                    else {
+                    } else {
                         System.out.println(OrgFullName);
                     }
-                    String Region = firstParagraph.get(46).getText();
-                    System.out.println(Region);
+
+                    // city
+                    String City = firstParagraph.get(46).getText();
+                    String startWordCity = "г. ";
+                    String endWordOrgCity = ", ул.";
+                    int startIndexCity = City.indexOf(startWordCity);
+
+                    if (startIndexCity != -1) {
+                        int endIndexCity = City.indexOf(endWordOrgCity, startIndexCity);
+
+                        if (endIndexCity != -1) {
+                            String substring = City.substring(startIndexCity + startWordCity.length(), endIndexCity);
+                            System.out.println("City - " + (substring.trim()));
+                            ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "City", "г. " + substring.trim()));
+
+                            // Street
+                            String startWordStreet = "ул. ";
+                            String endWordStreet = ", д. ";
+                            int startIndexStreet = City.indexOf(startWordStreet);
+                            int endIndexStreet = City.indexOf(endWordStreet, startIndexStreet);
+                            if (endIndexStreet != -1) {
+                                String substring_1 = City.substring(startIndexStreet + startWordStreet.length(), endIndexStreet);
+                                System.out.println("Street - " + (substring_1.trim()));
+                                ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Street", substring_1.trim()));
+                                String startWordBuilding = ", д. ";
+                                String endWordBuilding = ", пом. ";
+                                int startIndexBuilding = City.indexOf(startWordBuilding);
+                                int endIndexBuilding = City.indexOf(endWordBuilding, startIndexBuilding);
+                                if (endIndexBuilding != -1) {
+                                    String substring_2 = City.substring(startIndexBuilding + startWordBuilding.length(), endIndexBuilding);
+                                    System.out.println("Building - " + (substring_2.trim()));
+                                    ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Building", substring_2.trim()));
+                                    String startWordRoom = ", пом. ";
+                                    String endWordRoom = ";";
+                                    int startIndexRoom = City.indexOf(startWordRoom);
+                                    int endIndexRoom = City.indexOf(endWordRoom, startIndexRoom);
+                                    if (endIndexRoom != -1) {
+                                        String substring_3 = City.substring(startIndexRoom + startWordRoom.length(), endIndexRoom);
+                                        System.out.println("Room - " + (substring_3.trim()));
+                                        ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Room", (substring_3.trim())));
+                                    }
+                                    else {
+                                        System.out.println("Room - not defined");
+                                    }
+                                }
+                            } else {
+                                ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Street", "Символ , д. - не найден"));
+                            }
+                        } else {
+                            System.out.println(OrgFullName.substring(startIndexCity + startWordCity.length()).trim());
+                            ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "City", "слово ул. не найдено"));
+                        }
+                    } else {
+                        ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "City", "г. и ул. не найдены"));
+                    }
                 } else {
                     System.out.println("Document does not contain paragraphs.");
+                    ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "City", "Документ пустой"));
                 }
 
                 return ExpertOrganization;
