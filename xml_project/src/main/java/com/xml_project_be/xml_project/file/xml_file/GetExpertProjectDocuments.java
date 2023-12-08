@@ -1,10 +1,11 @@
 package com.xml_project_be.xml_project.file.xml_file;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class GetExpertProjectDocuments {
-    public static Node getExpertProjectDocuments(org.w3c.dom.Document doc) {
+    public static Node getExpertProjectDocuments(Document doc, String DEST_WORD) {
         Element node = doc.createElement("ExpertProjectDocuments");
         node.setAttribute("ExpertType", "5.");
         node.appendChild(doc.createElement("ProjectDocumentsReview")).appendChild(doc.createTextNode("""

@@ -7,16 +7,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
-import static com.xml_project_be.xml_project.file.xml_file.GetOrgElementsValueFunc.getOrgElementsValueFunc;
-import static com.xml_project_be.xml_project.file.xml_file.GetOrgElementsValueTXT.getOrgElementsValueTXT;
+import static com.xml_project_be.xml_project.file.xml_file.put_data.GetOrgElementsValueFunc.getOrgElementsValueFunc;
+import static com.xml_project_be.xml_project.file.xml_file.put_data.GetOrgElementsValueTXT.getOrgElementsValueTXT;
 
 public class GetExpertOrganization {
     public static Node getExpertOrganization(org.w3c.dom.Document doc, String DEST_WORD) {
         File file = new File(DEST_WORD);
-        List<String> paragraphTexts = new ArrayList<>();
 
         String txt_not_valid_structure = "Возможно структура файла не валидна";
         String txt_not_found_structure = "Такой файл не найден";
@@ -168,8 +165,7 @@ public class GetExpertOrganization {
                                         String substring_3 = City.substring(startIndexRoom + startWordRoom.length(), endIndexRoom);
                                         System.out.println("Room - " + (substring_3.trim()));
                                         ExpertOrganization.appendChild(getOrgElementsValueFunc(doc, ExpertOrganization, "Room", (substring_3.trim())));
-                                    }
-                                    else {
+                                    } else {
                                         System.out.println("Room - not defined");
                                     }
                                 }

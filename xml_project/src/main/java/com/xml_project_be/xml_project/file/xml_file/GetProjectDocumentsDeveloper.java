@@ -1,10 +1,11 @@
 package com.xml_project_be.xml_project.file.xml_file;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class GetProjectDocumentsDeveloper {
-    public static Node getProjectDocumentsDeveloper(org.w3c.dom.Document doc) {
+    public static Node getProjectDocumentsDeveloper(Document doc, String DEST_WORD) {
         Element node = doc.createElement("ProjectDocumentsDeveloper");
         node.appendChild(doc.createElement("Organization")).appendChild(doc.createElement("OrgFullName")).appendChild(doc.createTextNode("ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ СПЕЦИАЛИЗИРОВАННЫЙ ЗАСТРОЙЩИК ЛИДЕР КОНСТРАКШН"));
         node.getElementsByTagName("Organization").item(0).appendChild(doc.createElement("OrgOGRN")).appendChild(doc.createTextNode("1076671026728"));

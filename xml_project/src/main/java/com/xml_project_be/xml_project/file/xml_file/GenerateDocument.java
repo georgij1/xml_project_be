@@ -14,7 +14,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.nio.file.*;
-import java.util.Collections;
 import java.util.List;
 import static com.xml_project_be.xml_project.file.xml_file.GetApprover.getApprover;
 import static com.xml_project_be.xml_project.file.xml_file.GetCadastralNumber.getCadastralNumber;
@@ -64,22 +63,22 @@ public class GenerateDocument {
         rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
         rootElement.setAttribute("xsi:noNamespaceSchemaLocation", "conclusion.xsd");
         rootElement.appendChild(getExpertOrganization(doc, DEST_WORD));
-        rootElement.appendChild(getApprover(doc));
-        rootElement.appendChild(getExaminationObject(doc));
+        rootElement.appendChild(getApprover(doc, DEST_WORD));
+        rootElement.appendChild(getExaminationObject(doc, DEST_WORD)); /*TODO: Переделать с Моковых данных на нормальные данные*/
         rootElement.appendChild(getDocuments(doc));
         rootElement.appendChild(getPreviousConclusions(doc));
-        rootElement.appendChild(getPreviousSimpleConclusions(doc));
-        rootElement.appendChild(getObject(doc));
-        rootElement.appendChild(getCadastralNumber(doc));
-        rootElement.appendChild(getDeclarant(doc));
-        rootElement.appendChild(getProjectDocumentsDeveloper(doc));
-        rootElement.appendChild(getFinance(doc));
-        rootElement.appendChild(getClimateConditions(doc));
-        rootElement.appendChild(getClimateConditionsNote(doc));
-        rootElement.appendChild(getDesigner(doc));
-        rootElement.appendChild(getExpertProjectDocuments(doc));
-        rootElement.appendChild(getSummary(doc));
-        rootElement.appendChild(getExperts(doc));
+        rootElement.appendChild(getPreviousSimpleConclusions(doc, DEST_WORD));  /*TODO: Переделать с Моковых данных на нормальные данные*/
+        rootElement.appendChild(getCadastralNumber(doc, DEST_WORD));
+        rootElement.appendChild(getObject(doc, DEST_WORD)); /*TODO: Переделать с Моковых данных на нормальные данные*/
+        rootElement.appendChild(getDeclarant(doc, DEST_WORD));
+        rootElement.appendChild(getProjectDocumentsDeveloper(doc, DEST_WORD));
+        rootElement.appendChild(getFinance(doc, DEST_WORD));
+        rootElement.appendChild(getClimateConditions(doc, DEST_WORD));
+        rootElement.appendChild(getClimateConditionsNote(doc, DEST_WORD));
+        rootElement.appendChild(getDesigner(doc, DEST_WORD));
+        rootElement.appendChild(getExpertProjectDocuments(doc, DEST_WORD));
+        rootElement.appendChild(getSummary(doc, DEST_WORD));
+        rootElement.appendChild(getExperts(doc, DEST_WORD));
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");

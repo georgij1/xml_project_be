@@ -1,10 +1,11 @@
 package com.xml_project_be.xml_project.file.xml_file;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class GetExpress {
-    public static Node getExperts(org.w3c.dom.Document doc) {
+    public static Node getExperts(Document doc, String DEST_WORD) {
         Element node = doc.createElement("Experts");
         node.appendChild(doc.createElement("Expert")).appendChild(doc.createElement("FamilyName")).appendChild(doc.createTextNode("Матвеев"));
         node.getElementsByTagName("Expert").item(0).appendChild(doc.createElement("FirstName")).appendChild(doc.createTextNode("Алексей"));

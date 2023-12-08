@@ -1,10 +1,14 @@
 package com.xml_project_be.xml_project.file.xml_file;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class GetObject {
-    public static Node getObject(org.w3c.dom.Document doc) {
+    public static Node getObject(
+            Document doc,
+            String DEST_WORD
+    ) {
         Element node = doc.createElement("Object");
         node.appendChild(doc.createElement("Name")).appendChild(doc.createTextNode("Жилая многоэтажная застройка квартала 4.15.1 в границах улиц Краснолесья – Рябинина – Очеретина в Академическом районе г. Екатеринбурга"));
         node.appendChild(doc.createElement("Type")).appendChild(doc.createTextNode("2"));

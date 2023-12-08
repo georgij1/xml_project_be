@@ -1,10 +1,11 @@
 package com.xml_project_be.xml_project.file.xml_file;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class GetClimateConditionsNote {
-    public static Node getClimateConditionsNote(org.w3c.dom.Document doc) {
+    public static Node getClimateConditionsNote(Document doc, String DEST_WORD) {
         Element node = doc.createElement("ClimateConditionsNote");
         node.appendChild(doc.createTextNode("Инженерно-геодезические условия\n" +
                 "        Рельеф участка ровный. Абсолютные отметки поверхности изменяются в пределах: северный участок съемки - от 272,74\n" +
