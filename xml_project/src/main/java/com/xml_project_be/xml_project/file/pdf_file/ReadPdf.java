@@ -13,10 +13,10 @@ import static java.nio.file.Paths.get;
 
 public class ReadPdf {
     public static ResponseEntity<?> readPdf(Integer IdFile, String NameCompany, JdbcTemplate jdbcTemplate) {
-        File file = new File("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "/pdf");
+        File file = new File("/home/georgii/Загрузки/uploads/" + NameCompany + "/pdf");
         CheckMKDir.check_dir_exist(file);
-        String DEST = String.valueOf(get("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")));
-        String DEST_PDF = String.valueOf(get("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "/pdf/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")));
+        String DEST = String.valueOf(get("/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")));
+        String DEST_PDF = String.valueOf(get("/home/georgii/Загрузки/uploads/" + NameCompany + "/pdf/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")));
         com.aspose.pdf.Document document = new com.aspose.pdf.Document();
         Page page = document.getPages().add();
         DomainBeanPdf domainBeanPdf = new DomainBeanPdf();
