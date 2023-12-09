@@ -19,19 +19,17 @@ public class GetExaminationObject {
             System.out.println("File not found: " + DEST_WORD);
         } else {
             try {
-                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ExaminationForm", "2"));
-                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ExaminationResult", "1"));
-                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ExaminationObjectType", "2"));
-                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ExaminationType", "2"));
-                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ConstructionType", "1"));
-                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ExaminationStage", "3"));
-                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "Name", "Жилая многоэтажная застройка квартала 4.15.1 в границах улиц Краснолесья – Рябинина – Очеретина в\n" +
-                        "            Академическом районе г. Екатеринбурга"));
+                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ExaminationForm", "Данные не указаны"));
+                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ExaminationResult", "Данные не указаны"));
+                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ExaminationObjectType", "Данные не указаны"));
+                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ExaminationType", "Данные не указаны"));
+                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ConstructionType", "Данные не указаны"));
+                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "ExaminationStage", "Данные не указаны"));
+                ExaminationObject.appendChild(getOrgElementsValueTXT(doc, ExaminationObject, "Name", "Данные не указаны"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
         return ExaminationObject;
     }
 }

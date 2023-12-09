@@ -15,6 +15,7 @@ public class ReadWordDocx {
         JdbcTemplate jdbcTemplate,
         Integer IDFile
     ) {
+        // TODO: Решить проблему с parse'ingom (он парсит только половину файла)
         ArrayList<String> arrayListContentFile = new ArrayList<>();
         DomainBeanFile domainBeanNameFile = new DomainBeanFile();
         domainBeanNameFile.setNameFile(jdbcTemplate.queryForList("select file_name from files").get(0).get("file_name").toString());

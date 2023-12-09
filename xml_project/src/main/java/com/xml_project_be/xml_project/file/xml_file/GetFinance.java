@@ -5,10 +5,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class GetFinance {
-    public static Node getFinance(Document doc, String DEST_WORD) {
+    public static Node getFinance(Document doc) {
         Element node = doc.createElement("Finance");
-        node.appendChild(doc.createElement("FinanceType")).appendChild(doc.createTextNode("3"));
-        node.appendChild(doc.createElement("FinanceSize")).appendChild(doc.createTextNode("100.0"));
+        node.appendChild(doc.createElement("FinanceType")).appendChild(doc.createTextNode("Данных нет"));
+        node.appendChild(doc.createElement("FinanceSize")).appendChild(doc.createTextNode("Данных нет"));
         return node;
     }
 }

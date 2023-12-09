@@ -18,6 +18,10 @@ public class GetExpertOrganization {
         String txt_not_valid_structure = "Возможно структура файла не валидна";
         String txt_not_found_structure = "Такой файл не найден";
 
+        Document document = new Document();
+        document.loadFromFile(DEST_WORD);
+        Element ExpertOrganization = doc.createElement("ExpertOrganization");
+
         if (!file.exists()) {
             System.out.println("File not found: " + DEST_WORD);
             return getNode(doc, txt_not_found_structure);
@@ -25,10 +29,6 @@ public class GetExpertOrganization {
             System.out.println(DEST_WORD);
 
             try {
-                Document document = new Document();
-                document.loadFromFile(DEST_WORD);
-                Element ExpertOrganization = doc.createElement("ExpertOrganization");
-
                 // Check if the document has sections and paragraphs
                 if (document.getSections().getCount() > 0 && document.getSections().get(0).getParagraphs().getCount() > 0) {
                     // Get the first paragraph

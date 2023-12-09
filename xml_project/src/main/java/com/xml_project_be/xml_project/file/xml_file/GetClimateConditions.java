@@ -5,13 +5,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class GetClimateConditions {
-    public static Node getClimateConditions(Document doc, String DEST_WORD) {
+    public static Node getClimateConditions(Document doc) {
         Element node = doc.createElement("ClimateConditions");
-        node.appendChild(doc.createElement("ClimateDistrict")).appendChild(doc.createTextNode("IВ"));
-        node.appendChild(doc.createElement("GeologicalConditions")).appendChild(doc.createTextNode("II"));
-        node.appendChild(doc.createElement("WindDistrict")).appendChild(doc.createTextNode("I"));
-        node.appendChild(doc.createElement("SnowDistrict")).appendChild(doc.createTextNode("III"));
-        node.appendChild(doc.createElement("SeismicActivity")).appendChild(doc.createTextNode("7"));
+        node.appendChild(doc.createElement("ClimateDistrict")).appendChild(doc.createTextNode("Данных нет"));
+        node.appendChild(doc.createElement("GeologicalConditions")).appendChild(doc.createTextNode("Данных нет"));
+        node.appendChild(doc.createElement("WindDistrict")).appendChild(doc.createTextNode("Данных нет"));
+        node.appendChild(doc.createElement("SnowDistrict")).appendChild(doc.createTextNode("Данных нет"));
+        node.appendChild(doc.createElement("SeismicActivity")).appendChild(doc.createTextNode("Данных нет"));
         return node;
     }
 }

@@ -45,7 +45,6 @@ public class GenerateDocument {
         /* File file_dir = new File("/home/georgii/Загрузки/uploads/" + NameCompany + "/xml");*/
         // String DEST_XML = get("/home/georgii/Загрузки/uploads/" + NameCompany + "/xml/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")) + ".xml";
 
-        
         /*
         * Bellow this code for windows
         * */
@@ -64,20 +63,20 @@ public class GenerateDocument {
         rootElement.setAttribute("xsi:noNamespaceSchemaLocation", "conclusion.xsd");
         rootElement.appendChild(getExpertOrganization(doc, DEST_WORD));
         rootElement.appendChild(getApprover(doc, DEST_WORD));
-        rootElement.appendChild(getExaminationObject(doc, DEST_WORD)); /*TODO: Переделать с Моковых данных на нормальные данные*/
+        rootElement.appendChild(getExaminationObject(doc, DEST_WORD));
         rootElement.appendChild(getDocuments(doc));
         rootElement.appendChild(getPreviousConclusions(doc));
-        rootElement.appendChild(getPreviousSimpleConclusions(doc, DEST_WORD));  /*TODO: Переделать с Моковых данных на нормальные данные*/
+        rootElement.appendChild(getPreviousSimpleConclusions(doc));
         rootElement.appendChild(getCadastralNumber(doc, DEST_WORD));
-        rootElement.appendChild(getObject(doc, DEST_WORD)); /*TODO: Переделать с Моковых данных на нормальные данные*/
-        rootElement.appendChild(getDeclarant(doc, DEST_WORD));
-        rootElement.appendChild(getProjectDocumentsDeveloper(doc, DEST_WORD));
-        rootElement.appendChild(getFinance(doc, DEST_WORD));
-        rootElement.appendChild(getClimateConditions(doc, DEST_WORD));
-        rootElement.appendChild(getClimateConditionsNote(doc, DEST_WORD));
-        rootElement.appendChild(getDesigner(doc, DEST_WORD));
-        rootElement.appendChild(getExpertProjectDocuments(doc, DEST_WORD));
-        rootElement.appendChild(getSummary(doc, DEST_WORD));
+        rootElement.appendChild(getObject(doc));
+        rootElement.appendChild(getDeclarant(doc));
+        rootElement.appendChild(getProjectDocumentsDeveloper(doc));
+        rootElement.appendChild(getFinance(doc));
+        rootElement.appendChild(getClimateConditions(doc));
+        rootElement.appendChild(getClimateConditionsNote(doc));
+        rootElement.appendChild(getDesigner(doc));
+        rootElement.appendChild(getExpertProjectDocuments(doc));
+        rootElement.appendChild(getSummary(doc));
         rootElement.appendChild(getExperts(doc, DEST_WORD));
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
