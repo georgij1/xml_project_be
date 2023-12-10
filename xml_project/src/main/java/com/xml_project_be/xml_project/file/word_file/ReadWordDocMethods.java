@@ -23,7 +23,7 @@ public class ReadWordDocMethods {
         try {
             String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", FileName).get(0).get("file_name");
             File file = new File(filePath);
-            FileInputStream fis = new FileInputStream(file);
+            FileInputStream fis = new FileInputStream(file.getPath());
             HWPFDocument document = new HWPFDocument(fis);
             Range range = document.getRange();
             arrayListContentFile.add(range.text());
