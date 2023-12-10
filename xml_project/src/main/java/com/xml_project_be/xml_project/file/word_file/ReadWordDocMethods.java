@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReadWordDocMethods {
     @NotNull
@@ -24,14 +25,15 @@ public class ReadWordDocMethods {
 
         try {
             String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", FileName).get(0).get("file_name");
-            FileInputStream fis = new FileInputStream(filePath);
+            File file = new File(filePath);
+            FileInputStream fis = new FileInputStream(file);
             XWPFDocument document = new XWPFDocument(fis);
-
-            // Чтение содержимого по строчно
-            for (XWPFParagraph paragraph : document.getParagraphs()) {
-                arrayListContentFile.add(paragraph.getText());
+            List<XWPFParagraph> paragraphs = document.getParagraphs();
+            for (XWPFParagraph paragraph : paragraphs) {
+                System.out.println(paragraph.getText());
             }
             fis.close();
+            document.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
