@@ -17,6 +17,8 @@ public class TypeFile {
             return ReadWordDocx.readWordDocx(NameCompany, jdbcTemplate, IDFile);
         }
 
-        return ResponseEntity.ok().body("Такой тип не возможно отобразить");
+        else {
+            return ResponseEntity.ok().body("Такой тип не возможно отобразить");
+        }
     }
 }
