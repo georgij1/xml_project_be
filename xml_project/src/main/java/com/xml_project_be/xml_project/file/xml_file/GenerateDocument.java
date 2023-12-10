@@ -75,7 +75,7 @@ public class GenerateDocument {
         Transformer transformer = transformerFactory.newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         DOMSource source = new DOMSource(doc);
-        StreamResult file = new StreamResult(new File((file_dir).toURI())+"\\" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name") + ".xml");
+        StreamResult file = new StreamResult(new File((file_dir).toURI())+"/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name") + ".xml");
         transformer.transform(source, file);
         Path path = Paths.get(DEST_XML);
         List<String> allLines = Files.readAllLines(path);
