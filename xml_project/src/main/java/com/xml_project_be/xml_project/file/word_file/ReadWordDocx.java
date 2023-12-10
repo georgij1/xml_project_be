@@ -15,12 +15,10 @@ public class ReadWordDocx {
         JdbcTemplate jdbcTemplate,
         Integer IDFile
     ) {
-        // TODO: Решить проблему с parse'ingom (он парсит только половину файла)
         ArrayList<String> arrayListContentFile = new ArrayList<>();
         DomainBeanFile domainBeanNameFile = new DomainBeanFile();
         domainBeanNameFile.setNameFile(jdbcTemplate.queryForList("select file_name from files").get(0).get("file_name").toString());
         arrayListContentFile.add(String.valueOf((domainBeanNameFile.getNameFile())));
-
         String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IDFile).get(0).get("file_name");
         try (FileInputStream fis = new FileInputStream(filePath)) {
             XWPFDocument document = new XWPFDocument(fis);
