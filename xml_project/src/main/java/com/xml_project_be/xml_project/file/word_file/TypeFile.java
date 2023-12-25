@@ -9,11 +9,7 @@ public class TypeFile {
             String NameCompany,
             JdbcTemplate jdbcTemplate
     ) {
-        if (jdbcTemplate.queryForList("select * from files where id_file=?", IDFile).get(0).get("type_file").equals("application/msword")) {
-            return ReadWordDoc.readWordDoc(NameCompany, jdbcTemplate, IDFile);
-        }
-
-        else if (jdbcTemplate.queryForList("select * from files where id_file=?", IDFile).get(0).get("type_file").equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
+        if (jdbcTemplate.queryForList("select * from files where id_file=?", IDFile).get(0).get("type_file").equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
             return ReadWordDocx.readWordDocx(NameCompany, jdbcTemplate, IDFile);
         }
 

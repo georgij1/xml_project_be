@@ -3,19 +3,26 @@ package com.xml_project_be.xml_project.file.word_file;
 import com.spire.doc.Document;
 import com.spire.doc.collections.ParagraphCollection;
 import com.xml_project_be.xml_project.file.CreateJson.DomainBeanFile;
+import lombok.SneakyThrows;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.Paragraph;
 import org.apache.poi.hwpf.usermodel.Range;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ReadWordDocx {
+    @SneakyThrows
     public static ResponseEntity<?> readWordDocx(
         String NameCompany,
         JdbcTemplate jdbcTemplate,
@@ -36,16 +43,14 @@ public class ReadWordDocx {
         } else {
             System.out.println(filePath);
 
-            try {
-                // Check if the document has sections and paragraphs
-                if (document.getSections().getCount() > 0 && document.getSections().get(0).getParagraphs().getCount() > 0) {
-                    // Get the first paragraph
-                    ParagraphCollection firstParagraph = document.getSections().get(0).getParagraphs();
-                    String OrgFullName = firstParagraph.getDocument().getText();
-                    arrayListContentFile.add(Arrays.toString(OrgFullName.split(" ")));
+            try (XWPFDocument doc = new XWPFDocument(
+                Files.newInputStream(Paths.get(filePath)))
+            ) {
+                List<XWPFParagraph> list = doc.getParagraphs();
+                for (XWPFParagraph paragraph : list) {
+                    System.out.println(paragraph.getText());
+                    arrayListContentFile.add(paragraph.getText());
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
         return ResponseEntity.ok().body(arrayListContentFile);
