@@ -1,0 +1,21 @@
+{
+  "TableName": "Summary",
+  "columns": {
+    "column_1": {
+      "name": "EngineeringSurveyType",
+      "value": "Данных нет"
+    },
+    "column_2": {
+      "name": "ProjectDocumentsSummary",
+      "value": "Данных нет"
+    },
+    "column_3": {
+      "name": "ProjectDocumentsSummaryDate",
+      "value": "Данных нет"
+    },
+    "column_4": {
+      "name": "ExaminationSummary",
+      "value": "Данных нет"
+    }
+  }
+}

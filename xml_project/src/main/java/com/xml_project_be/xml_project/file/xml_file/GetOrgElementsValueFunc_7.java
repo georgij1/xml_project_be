@@ -9,7 +9,7 @@ public class GetOrgElementsValueFunc_7 {
     ) {
         Element node = doc.createElement("Document");
         node.appendChild(doc.createElement("DocType")).appendChild(doc.createTextNode("01.01"));
-        node.appendChild(doc.createElement("DocName")).appendChild(doc.createTextNode("Заявление на заключение договора на экспертное сопровождение в отношении проектной документации\n                объекта капитального строительства"));
+        node.appendChild(doc.createElement("DocName")).appendChild(doc.createTextNode("Заявление на заключение договора на экспертное сопровождение в отношении проектной документации объекта капитального строительства"));
         node.appendChild(doc.createElement("DocNumber")).appendChild(doc.createTextNode("43/261"));
         node.appendChild(doc.createElement("DocDate")).appendChild(doc.createTextNode("2022-04-01"));
         node.appendChild(doc.createElement("DocIssueAuthor")).appendChild(doc.createTextNode("ООО «Специализированный застройщик «Лидер констракшн»"));

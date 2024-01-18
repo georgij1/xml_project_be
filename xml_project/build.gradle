@@ -35,7 +35,7 @@ dependencies {
 	implementation 'org.apache.pdfbox:pdfbox:3.0.0-alpha2'
 	implementation 'net.eusashead.hateoas:spring-halbuilder-page:1.0.0.RELEASE'
 	implementation 'net.eusashead.hateoas:spring-responseentitybuilder:1.1.0.RELEASE'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

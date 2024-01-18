@@ -1,0 +1,23 @@
+{
+  "TableName": "PreviousSimpleConclusions",
+  "columns": {
+    "column": {
+      "name": "PreviousSimpleConclusion",
+      "value": "Данных нет"
+    },
+    "columns_placeholder": {
+      "column_1": {
+        "name": "Date",
+        "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "Number",
+        "value": "Данных нет"
+      },
+      "column_3": {
+        "name": "Result",
+        "value": "Данных нет"
+      }
+    }
+  }
+}

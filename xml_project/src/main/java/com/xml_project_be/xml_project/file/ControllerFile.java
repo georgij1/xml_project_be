@@ -6,7 +6,7 @@ import com.xml_project_be.xml_project.file.form.Form;
 import com.xml_project_be.xml_project.file.list.ListFiles;
 import com.xml_project_be.xml_project.file.pdf_file.ReadPdf;
 import com.xml_project_be.xml_project.file.upload.UploadFiles;
-import com.xml_project_be.xml_project.file.word_file.TypeFile;
+import com.xml_project_be.xml_project.file.word_file.ReadWordDocx;
 import com.xml_project_be.xml_project.file.xml_file.GenerateDocument;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -55,7 +55,7 @@ public class ControllerFile {
             @PathVariable("FileName") Integer FileID,
             @PathVariable("NameCompany") String NameCompany
     ) {
-        return TypeFile.choose_type(FileID, NameCompany, jdbcTemplate);
+        return ReadWordDocx.readWordDocx(NameCompany, jdbcTemplate, FileID);
     }
 
     @GetMapping("/read/XML/{NameCompany}/{FileName}")
@@ -98,5 +98,87 @@ public class ControllerFile {
             @PathVariable("NameFile") Integer IdFile
     ) {
         return Delete.delete(NameCompany, jdbcTemplate, IdFile);
+    }
+
+    @GetMapping("/xml/tables/{NameTable}/{NameCompany}/{NameFile}")
+    @ResponseBody
+    @CrossOrigin("*")
+    @SneakyThrows
+    public ResponseEntity<?> getExpertOrganizationObject(
+            @PathVariable("NameTable") String nameObjectXML,
+            @PathVariable("NameCompany") String NameCompany,
+            @PathVariable("NameFile") Integer IdFile
+    ) {
+        if (nameObjectXML.equals("ExpertOrganization")) {
+            return GenerateDocument.getExpertOrganization_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("Approver")) {
+            return GenerateDocument.getApprover_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("ExaminationObject")) {
+            return GenerateDocument.getExpertOrganization_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("Documents")) {
+            return GenerateDocument.getDocuments_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("PreviousConclusions")) {
+            return GenerateDocument.getPreviousConclusions_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("PreviousSimpleConclusions")) {
+            return GenerateDocument.getPreviousSimpleConclusions_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("Object")) {
+            return GenerateDocument.getPreviousSimpleConclusions_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("Declarant")) {
+            return GenerateDocument.getDeclarant_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("ProjectDocumentsDeveloper")) {
+            return GenerateDocument.getProjectDocumentsDeveloper_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("Finance")) {
+            return GenerateDocument.getFinance_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("ClimateConditions")) {
+            return GenerateDocument.getClimateConditions_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("ClimateConditionsNote")) {
+            return GenerateDocument.getClimateConditionsNote_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("ExpertProjectDocuments")) {
+            return GenerateDocument.getExpertProjectDocuments_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("CadastralNumber")) {
+            return GenerateDocument.getCadastralNumber_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("Experts")) {
+            return GenerateDocument.getExperts_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("Designer")) {
+            return GenerateDocument.getDesigner_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else if (nameObjectXML.equals("Summary")) {
+            return GenerateDocument.getSummary_object(IdFile, NameCompany, jdbcTemplate);
+        }
+
+        else {
+            return GenerateDocument.getNotFoundObject();
+        }
     }
 }

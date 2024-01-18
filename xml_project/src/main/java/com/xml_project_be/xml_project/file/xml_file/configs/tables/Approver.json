@@ -1,0 +1,23 @@
+{
+  "table": {
+    "TableName": "Approver",
+    "columns": {
+      "column_1": {
+        "name": "FamilyName",
+        "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "FirstName",
+        "value": "Данных нет"
+      },
+      "column_3": {
+        "name": "SecondName",
+        "value": "Данных нет"
+      },
+      "column_4": {
+        "name": "Position",
+        "value": "Данных нет"
+      }
+    }
+  }
+}

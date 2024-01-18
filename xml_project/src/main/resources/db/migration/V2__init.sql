@@ -1,4 +1,4 @@
-create table company
+create table if not exists company
 (
     id serial primary key,
     name_company text unique,

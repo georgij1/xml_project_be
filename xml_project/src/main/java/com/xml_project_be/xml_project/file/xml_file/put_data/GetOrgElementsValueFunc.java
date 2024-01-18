@@ -6,7 +6,6 @@ import org.w3c.dom.Node;
 public class GetOrgElementsValueFunc {
     public static Node getOrgElementsValueFunc(
             org.w3c.dom.Document doc,
-            Element element,
             String value,
             String content
     ) {

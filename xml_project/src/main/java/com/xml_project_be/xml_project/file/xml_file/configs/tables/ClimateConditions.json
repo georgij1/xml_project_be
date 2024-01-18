@@ -1,0 +1,25 @@
+{
+  "TableName": "ClimateConditions",
+  "columns": {
+    "column_1": {
+      "name": "ClimateDistrict",
+      "value": "Данных нет"
+    },
+    "column_2": {
+      "name": "GeologicalConditions",
+      "value": "Данных нет"
+    },
+    "column_3": {
+      "name": "WindDistrict",
+      "value": "Данных нет"
+    },
+    "column_4": {
+      "name": "SnowDistrict",
+      "value": "Данных нет"
+    },
+    "column_5": {
+      "name": "SeismicActivity",
+      "value": "Данных нет"
+    }
+  }
+}

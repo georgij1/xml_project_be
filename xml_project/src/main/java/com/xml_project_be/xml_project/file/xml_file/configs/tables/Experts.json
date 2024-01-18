@@ -1,0 +1,37 @@
+{
+  "TableName": "Experts",
+  "columns": {
+    "column": {
+      "name": "Expert",
+      "value": "Данных нет"
+    },
+    "column_placeholder_1": {
+      "name": "FamilyName",
+      "value": "Данных нет"
+    },
+    "column_placeholder_2": {
+      "name": "FirstName",
+      "value": "Данных нет"
+    },
+    "column_placeholder_3": {
+      "name": "SecondName",
+      "value": "Данных нет"
+    },
+    "column_placeholder_4": {
+      "name": "ExpertType",
+      "value": "Данных нет"
+    },
+    "column_placeholder_5": {
+      "name": "ExpertCertificate",
+      "value": "Данных нет"
+    },
+    "column_placeholder_6": {
+      "name": "ExpertCertificateBeginDate",
+      "value": "Данных нет"
+    },
+    "column_placeholder_7": {
+      "name": "ExpertCertificateEndDate",
+      "value": "Данных нет"
+    }
+  }
+}

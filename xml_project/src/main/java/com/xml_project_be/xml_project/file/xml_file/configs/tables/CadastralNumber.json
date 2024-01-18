@@ -1,0 +1,9 @@
+{
+  "TableName": "CadastralNumber",
+  "columns": {
+    "column": {
+      "name": "CadastralNumber",
+      "value": "Данных нет"
+    }
+  }
+}

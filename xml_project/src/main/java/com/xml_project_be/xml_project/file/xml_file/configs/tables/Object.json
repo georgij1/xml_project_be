@@ -1,0 +1,55 @@
+{
+  "TableName": "Object",
+  "columns": {
+    "Object": {
+      "column_1": {
+        "name": "Name",
+        "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "Type",
+        "value": "Данных нет"
+      },
+      "column_3": {
+        "name": "Functions",
+        "value": "Данных нет"
+      },
+      "column_4": {
+        "name": "Address",
+        "value": "Данных нет"
+      },
+      "column_4_placeholder": {
+        "column_1": {
+          "name": "Country",
+          "value": "Данных нет"
+        },
+        "column_2": {
+          "name": "Region",
+          "value": "Данных нет"
+        },
+        "column_3": {
+          "name": "City",
+          "value": "Данных нет"
+        },
+        "column_4": {
+          "name": "Note",
+          "value": "Данных нет"
+        }
+      },
+      "TEI": {
+        "column_1": {
+          "name": "Name",
+          "value": "Данных нет"
+        },
+        "column_2": {
+          "name": "Measure",
+          "value": "Данных нет"
+        },
+        "column_3": {
+          "name": "Value",
+          "value": "Данных нет"
+        }
+      }
+    }
+  }
+}
