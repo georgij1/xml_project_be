@@ -19,8 +19,8 @@ public class GetPreviousSimpleConclusion {
         HashMap<String, Object> arrayList1 = new HashMap<>();
         int object_item_1 = jdbcTemplate.queryForList("select previous_simple_conclusion_value from xml_project.public.previous_simple_conclusions_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).size();
         for (int i = 1; i < object_item_1; i++) {
-            // previous_conclusion_value
-            arrayList1.put("name_"+i+"_previous_conclusion_value", jdbcTemplate.queryForList("select * from xml_project.public.previous_simple_conclusions_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("previous_conclusion_value").toString());
+            // previous_simple_conclusion_value
+            arrayList1.put("name_"+i+"_previous_simple_conclusion_value", jdbcTemplate.queryForList("select * from xml_project.public.previous_simple_conclusions_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("previous_simple_conclusion_value").toString());
             // date_value
             arrayList1.put("name_"+i+"_date_value", jdbcTemplate.queryForList("select * from xml_project.public.previous_simple_conclusions_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("date_value").toString());
             // number_value
@@ -52,7 +52,7 @@ public class GetPreviousSimpleConclusion {
                 "xml_project.public.previous_simple_conclusions_object_xml(" +
                 "previous_simple_conclusion_value, date_value, number_value, " +
                 "result_value, name_company, name_file) " +
-                "VALUES (?, ?, ?, ?, ?, ?)", "", "Данных нет", "Данных нет", "Данных нет", NameCompany, IdFile);
+                "VALUES (?, ?, ?, ?, ?, ?)", "Данных нет", "Данных нет", "Данных нет", "Данных нет", NameCompany, IdFile);
         return node;
     }
 }

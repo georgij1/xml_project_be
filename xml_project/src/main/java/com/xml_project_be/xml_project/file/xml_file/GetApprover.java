@@ -29,13 +29,13 @@ public class GetApprover {
         System.out.println(object_item_1);
         for (int i = 1; i < object_item_1; i++) {
             // family_name_value
-            arrayList1.put("name_"+i+"_family_name_value", jdbcTemplate.queryForList("select * from xml_project.public.expert_organization_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("family_name_value").toString());
+            arrayList1.put("name_"+i+"_family_name_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("family_name_value").toString());
             // first_name_value
-            arrayList1.put("name_"+i+"_first_name_value", jdbcTemplate.queryForList("select * from xml_project.public.expert_organization_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("first_name_value").toString());
+            arrayList1.put("name_"+i+"_first_name_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("first_name_value").toString());
             // second_name_value
-            arrayList1.put("name_"+i+"_second_name_value", jdbcTemplate.queryForList("select * from xml_project.public.expert_organization_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("second_name_value").toString());
+            arrayList1.put("name_"+i+"_second_name_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("second_name_value").toString());
             // position_value
-            arrayList1.put("name_"+i+"_position_value", jdbcTemplate.queryForList("select * from xml_project.public.expert_organization_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("position_value").toString());
+            arrayList1.put("name_"+i+"_position_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("position_value").toString());
         }
         objectHashMap.put("object_item_1", arrayList1);
         hashMap.put("item_1", objectHashMap.get("object_item"));

@@ -26,7 +26,7 @@ public class GetOrgElementsValueFunc_PreviousConsultation {
             // number_value
             arrayList1.put("name_"+i+"_number_value", jdbcTemplate.queryForList("select * from xml_project.public.previous_conclusions where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("number_value").toString());
             // egrz_value
-            arrayList1.put("name_"+i+"_egrz_value", jdbcTemplate.queryForList("select * from xml_project.public.previous_conclusions where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("doc_number_value").toString());
+            arrayList1.put("name_"+i+"_egrz_value", jdbcTemplate.queryForList("select * from xml_project.public.previous_conclusions where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("egrz_value").toString());
             // examination_object_type_value
             arrayList1.put("name_"+i+"_examination_object_type_value", jdbcTemplate.queryForList("select * from xml_project.public.previous_conclusions where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("examination_object_type_value").toString());
             // name_value

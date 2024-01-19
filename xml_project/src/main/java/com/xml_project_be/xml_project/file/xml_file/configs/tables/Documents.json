@@ -1,58 +1,60 @@
 {
-  "TableName": "Documents",
-  "columns": {
-    "column_1": {
-      "column_1_1": {
-        "name": "Document",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_1": {
-        "name": "DocType",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_2": {
-        "name": "DocName",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_3": {
-        "name": "DocNumber",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_4": {
-        "name": "DocDate",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_5": {
-        "name": "DocIssueAuthor",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_6": {
-        "name": "File",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_6_link_1": {
-        "name": "FileName",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_6_link_2": {
-        "name": "FileFormat",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_6_link_3": {
-        "name": "FileChecksum",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_6_link_4_1": {
-        "name": "FileName",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_6_link_4_2": {
-        "name": "FileFormat",
-        "value": "Данных нет"
-      },
-      "column_1_1_placeholder_6_link_4_3": {
-        "name": "FileChecksum",
-        "value": "Данных нет"
+  "table": {
+    "TableName": "Documents",
+    "columns": {
+      "column_1": {
+        "column_1_1": {
+          "name": "Document",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_1": {
+          "name": "DocType",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_2": {
+          "name": "DocName",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_3": {
+          "name": "DocNumber",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_4": {
+          "name": "DocDate",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_5": {
+          "name": "DocIssueAuthor",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_6": {
+          "name": "File",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_6_link_1": {
+          "name": "FileName",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_6_link_2": {
+          "name": "FileFormat",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_6_link_3": {
+          "name": "FileChecksum",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_6_link_4_1": {
+          "name": "FileName",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_6_link_4_2": {
+          "name": "FileFormat",
+          "value": "Данных нет"
+        },
+        "column_1_1_placeholder_6_link_4_3": {
+          "name": "FileChecksum",
+          "value": "Данных нет"
+        }
       }
     }
   }

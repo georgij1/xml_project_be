@@ -1,9 +1,11 @@
 {
-  "TableName": "CadastralNumber",
-  "columns": {
-    "column": {
-      "name": "CadastralNumber",
-      "value": "Данных нет"
+  "table": {
+    "TableName": "CadastralNumber",
+    "columns": {
+      "column": {
+        "name": "CadastralNumber",
+        "value": "Данных нет"
+      }
     }
   }
 }

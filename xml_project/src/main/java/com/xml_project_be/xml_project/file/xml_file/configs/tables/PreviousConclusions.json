@@ -1,6 +1,7 @@
 {
-  "TableName": "PreviousConclusions",
-  "columns": {
+  "table": {
+    "TableName": "PreviousConclusions",
+    "columns": {
     "column_1": {
       "name": "PreviousConclusion",
       "value": "Данных нет"
@@ -29,5 +30,6 @@
       "name": "Result",
       "value": "Данных нет"
     }
+  }
   }
 }

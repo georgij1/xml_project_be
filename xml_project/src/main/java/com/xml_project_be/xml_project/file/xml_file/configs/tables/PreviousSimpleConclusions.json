@@ -1,6 +1,7 @@
 {
-  "TableName": "PreviousSimpleConclusions",
-  "columns": {
+  "table": {
+    "TableName": "PreviousSimpleConclusions",
+    "columns": {
     "column": {
       "name": "PreviousSimpleConclusion",
       "value": "Данных нет"
@@ -19,5 +20,6 @@
         "value": "Данных нет"
       }
     }
+  }
   }
 }

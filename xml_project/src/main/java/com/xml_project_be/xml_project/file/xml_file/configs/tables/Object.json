@@ -1,6 +1,7 @@
 {
-  "TableName": "Object",
-  "columns": {
+  "table": {
+    "TableName": "Object",
+    "columns": {
     "Object": {
       "column_1": {
         "name": "Name",
@@ -51,5 +52,6 @@
         }
       }
     }
+  }
   }
 }

@@ -1,6 +1,7 @@
 {
-  "TableName": "ExaminationObject",
-  "columns": {
+  "table": {
+    "TableName": "ExaminationObject",
+    "columns": {
     "column_1": {
       "name": "ExaminationForm",
       "value": "Данных нет"
@@ -29,5 +30,6 @@
       "name": "Name",
       "value": "Данных нет"
     }
+  }
   }
 }

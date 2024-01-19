@@ -1,6 +1,7 @@
 {
-  "TableName": "ClimateConditions",
-  "columns": {
+  "table": {
+    "TableName": "ClimateConditions",
+    "columns": {
     "column_1": {
       "name": "ClimateDistrict",
       "value": "Данных нет"
@@ -21,5 +22,6 @@
       "name": "SeismicActivity",
       "value": "Данных нет"
     }
+  }
   }
 }

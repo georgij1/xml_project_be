@@ -1,11 +1,13 @@
 {
-  "TableName": "ExpertProjectDocuments",
-  "tag": "ExpertType",
-  "tag_value": "5.",
-  "columns": {
-    "column": {
-      "name": "ProjectDocumentsReview",
-      "value": "Данных нет"
+  "table": {
+    "TableName": "ExpertProjectDocuments",
+    "tag": "ExpertType",
+    "tag_value": "5.",
+    "columns": {
+      "column": {
+        "name": "ProjectDocumentsReview",
+        "value": "Данных нет"
+      }
     }
   }
 }

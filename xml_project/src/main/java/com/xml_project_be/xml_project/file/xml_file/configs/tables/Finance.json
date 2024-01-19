@@ -1,13 +1,15 @@
 {
-  "TableName": "Finance",
-  "columns": {
-    "column_1": {
-      "name": "FinanceType",
-      "value": "Данных нет"
-    },
-    "column_2": {
-      "name": "FinanceSize",
-      "value": "Данных нет"
+  "table": {
+    "TableName": "Finance",
+    "columns": {
+      "column_1": {
+        "name": "FinanceType",
+        "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "FinanceSize",
+        "value": "Данных нет"
+      }
     }
   }
 }

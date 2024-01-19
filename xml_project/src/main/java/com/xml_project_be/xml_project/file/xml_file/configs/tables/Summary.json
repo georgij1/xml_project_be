@@ -1,6 +1,7 @@
 {
-  "TableName": "Summary",
-  "columns": {
+  "table": {
+    "TableName": "Summary",
+    "columns": {
     "column_1": {
       "name": "EngineeringSurveyType",
       "value": "Данных нет"
@@ -17,5 +18,6 @@
       "name": "ExaminationSummary",
       "value": "Данных нет"
     }
+  }
   }
 }

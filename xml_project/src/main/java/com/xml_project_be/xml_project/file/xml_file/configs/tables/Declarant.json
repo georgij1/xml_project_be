@@ -1,6 +1,7 @@
 {
-  "TableName": "Declarant",
-  "columns": {
+  "table": {
+    "TableName": "Declarant",
+    "columns": {
     "column_1": {
       "name": "Organization",
       "value": "Данных нет"
@@ -47,5 +48,6 @@
         "value": "Данных нет"
       }
     }
+  }
   }
 }

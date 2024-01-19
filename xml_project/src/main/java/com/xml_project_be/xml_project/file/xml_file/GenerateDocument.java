@@ -53,6 +53,11 @@ import static com.xml_project_be.xml_project.file.xml_file.GetSummary.getSummary
 import static com.xml_project_be.xml_project.file.xml_file.NotFound.getNotFoundFE;
 import static java.nio.file.Paths.get;
 
+/* TODO:
+* 1) Проблемы с такими таблицами как:
+*   1. Documents и дальше него контракты для фронта все null
+* */
+
 @AllArgsConstructor
 @Data
 public class GenerateDocument {

@@ -1,6 +1,7 @@
 {
-  "TableName": "Experts",
-  "columns": {
+  "table": {
+    "TableName": "Experts",
+    "columns": {
     "column": {
       "name": "Expert",
       "value": "Данных нет"
@@ -33,5 +34,6 @@
       "name": "ExpertCertificateEndDate",
       "value": "Данных нет"
     }
+  }
   }
 }
