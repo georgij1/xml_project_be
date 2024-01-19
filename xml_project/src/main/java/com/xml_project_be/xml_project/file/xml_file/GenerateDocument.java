@@ -23,21 +23,34 @@ import static com.xml_project_be.xml_project.file.xml_file.GetApprover.getApprov
 import static com.xml_project_be.xml_project.file.xml_file.GetCadastralNumber.getCadastralNumber;
 import static com.xml_project_be.xml_project.file.xml_file.GetCadastralNumber.getCadastralNumberFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetClimateConditions.getClimateConditions;
+import static com.xml_project_be.xml_project.file.xml_file.GetClimateConditions.getClimateConditionsFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetClimateConditionsNote.getClimateConditionsNote;
+import static com.xml_project_be.xml_project.file.xml_file.GetClimateConditionsNote.getClimateConditionsNoteFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetDeclarant.getDeclarant;
+import static com.xml_project_be.xml_project.file.xml_file.GetDeclarant.getDeclarantFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetDesigner.getDesigner;
+import static com.xml_project_be.xml_project.file.xml_file.GetDesigner.getDesignerFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetDocuments.getDocuments;
+import static com.xml_project_be.xml_project.file.xml_file.GetDocuments.getDocumentsFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetExaminationObject.getExaminationObject;
 import static com.xml_project_be.xml_project.file.xml_file.GetExpertOrganization.getExpertOrganization;
 import static com.xml_project_be.xml_project.file.xml_file.GetExpertOrganization.getExpertOrganizationFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetExpertProjectDocuments.getExpertProjectDocuments;
+import static com.xml_project_be.xml_project.file.xml_file.GetExpertProjectDocuments.getExpertProjectDocumentsFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetExperts.getExperts;
+import static com.xml_project_be.xml_project.file.xml_file.GetExperts.getExpertsFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetFinance.getFinance;
+import static com.xml_project_be.xml_project.file.xml_file.GetFinance.getFinanceFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetObject.getObject;
+import static com.xml_project_be.xml_project.file.xml_file.GetOrgElementsValueFunc_PreviousConsultation.getPreviousConclusionsFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetPreviousConclusions.getPreviousConclusions;
+import static com.xml_project_be.xml_project.file.xml_file.GetPreviousSimpleConclusion.getPreviousSimpleConclusionsFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetPreviousSimpleConclusions.getPreviousSimpleConclusions;
 import static com.xml_project_be.xml_project.file.xml_file.GetProjectDocumentsDeveloper.getProjectDocumentsDeveloper;
+import static com.xml_project_be.xml_project.file.xml_file.GetProjectDocumentsDeveloper.getProjectDocumentsDeveloperFE;
 import static com.xml_project_be.xml_project.file.xml_file.GetSummary.getSummary;
+import static com.xml_project_be.xml_project.file.xml_file.GetSummary.getSummaryFE;
+import static com.xml_project_be.xml_project.file.xml_file.NotFound.getNotFoundFE;
 import static java.nio.file.Paths.get;
 
 @AllArgsConstructor
@@ -124,18 +137,17 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getDocuments_HashMap = new HashMap<>();
+        ArrayList<Object> getDocuments_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Documents.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getDocuments_HashMap.put("table", myJsonObject_1.getTable());
+        getDocuments_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getDocuments_HashMap.put("value_columns", getDocumentsFE(IdFile, NameCompany, jdbcTemplate));
+        getDocuments_arrayList.add(getDocuments_HashMap);
+        return ResponseEntity.ok().body(getDocuments_arrayList);
     }
 
     @SneakyThrows
@@ -147,18 +159,18 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getPreviousConclusions_HashMap = new HashMap<>();
+        ArrayList<Object> getPreviousConclusions_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\PreviousConclusions.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getPreviousConclusions_HashMap.put("table", myJsonObject_1.getTable());
+        getPreviousConclusions_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getPreviousConclusions_HashMap.put("value_columns", getPreviousConclusionsFE(IdFile, NameCompany, jdbcTemplate));
+        getPreviousConclusions_arrayList.add(getPreviousConclusions_HashMap);
+        return ResponseEntity.ok().body(getPreviousConclusions_arrayList);
     }
 
     @SneakyThrows
@@ -170,18 +182,18 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getPreviousSimpleConclusions_HashMap = new HashMap<>();
+        ArrayList<Object> getPreviousSimpleConclusions_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\PreviousSimpleConclusions.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getPreviousSimpleConclusions_HashMap.put("table", myJsonObject_1.getTable());
+        getPreviousSimpleConclusions_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getPreviousSimpleConclusions_HashMap.put("value_columns", getPreviousSimpleConclusionsFE(IdFile, NameCompany, jdbcTemplate));
+        getPreviousSimpleConclusions_arrayList.add(getPreviousSimpleConclusions_HashMap);
+        return ResponseEntity.ok().body(getPreviousSimpleConclusions_arrayList);
     }
 
     @SneakyThrows
@@ -193,18 +205,18 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getDeclarant_HashMap = new HashMap<>();
+        ArrayList<Object> getDeclarant_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Declarant.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getDeclarant_HashMap.put("table", myJsonObject_1.getTable());
+        getDeclarant_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getDeclarant_HashMap.put("value_columns", getDeclarantFE(IdFile, NameCompany, jdbcTemplate));
+        getDeclarant_arrayList.add(getDeclarant_HashMap);
+        return ResponseEntity.ok().body(getDeclarant_arrayList);
     }
 
     @SneakyThrows
@@ -216,18 +228,18 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getProjectDocumentsDeveloper_HashMap = new HashMap<>();
+        ArrayList<Object> getProjectDocumentsDeveloper_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\ProjectDocumentsDeveloper.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getProjectDocumentsDeveloper_HashMap.put("table", myJsonObject_1.getTable());
+        getProjectDocumentsDeveloper_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getProjectDocumentsDeveloper_HashMap.put("value_columns", getProjectDocumentsDeveloperFE(IdFile, NameCompany, jdbcTemplate));
+        getProjectDocumentsDeveloper_arrayList.add(getProjectDocumentsDeveloper_HashMap);
+        return ResponseEntity.ok().body(getProjectDocumentsDeveloper_arrayList);
     }
 
     @SneakyThrows
@@ -239,18 +251,18 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getFinance_HashMap = new HashMap<>();
+        ArrayList<Object> getFinance_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Finance.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getFinance_HashMap.put("table", myJsonObject_1.getTable());
+        getFinance_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getFinance_HashMap.put("value_columns", getFinanceFE(IdFile, NameCompany, jdbcTemplate));
+        getFinance_arrayList.add(getFinance_HashMap);
+        return ResponseEntity.ok().body(getFinance_arrayList);
     }
 
     @SneakyThrows
@@ -262,18 +274,17 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getClimateConditions_HashMap = new HashMap<>();
+        ArrayList<Object> getClimateConditions_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\ClimateConditions.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getClimateConditions_HashMap.put("table", myJsonObject_1.getTable());
+        getClimateConditions_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getClimateConditions_HashMap.put("value_columns", getClimateConditionsFE(IdFile, NameCompany, jdbcTemplate));
+        getClimateConditions_arrayList.add(getClimateConditions_HashMap);
+        return ResponseEntity.ok().body(getClimateConditions_arrayList);
     }
 
     @SneakyThrows
@@ -285,18 +296,18 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getClimateConditions_HashMap = new HashMap<>();
+        ArrayList<Object> getClimateConditions_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\ClimateConditions.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getClimateConditions_HashMap.put("table", myJsonObject_1.getTable());
+        getClimateConditions_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getClimateConditions_HashMap.put("value_columns", getClimateConditionsNoteFE(IdFile, NameCompany, jdbcTemplate));
+        getClimateConditions_arrayList.add(getClimateConditions_HashMap);
+        return ResponseEntity.ok().body(getClimateConditions_arrayList);
     }
 
     @SneakyThrows
@@ -308,18 +319,18 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getExpertProjectDocuments_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertProjectDocuments_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\ExpertProjectDocuments.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getExpertProjectDocuments_HashMap.put("table", myJsonObject_1.getTable());
+        getExpertProjectDocuments_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getExpertProjectDocuments_HashMap.put("value_columns", getExpertProjectDocumentsFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertProjectDocuments_arrayList.add(getExpertProjectDocuments_HashMap);
+        return ResponseEntity.ok().body(getExpertProjectDocuments_arrayList);
     }
 
     @SneakyThrows
@@ -331,18 +342,18 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getExperts_HashMap = new HashMap<>();
+        ArrayList<Object> getExperts_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Experts.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getExperts_HashMap.put("table", myJsonObject_1.getTable());
+        getExperts_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getExperts_HashMap.put("value_columns", getExpertsFE(IdFile, NameCompany, jdbcTemplate));
+        getExperts_arrayList.add(getExperts_HashMap);
+        return ResponseEntity.ok().body(getExperts_arrayList);
     }
 
     @SneakyThrows
@@ -354,18 +365,18 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getDesigner_HashMap = new HashMap<>();
+        ArrayList<Object> getDesigner_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Designer.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getDesigner_HashMap.put("table", myJsonObject_1.getTable());
+        getDesigner_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getDesigner_HashMap.put("value_columns", getDesignerFE(IdFile, NameCompany, jdbcTemplate));
+        getDesigner_arrayList.add(getDesigner_HashMap);
+        return ResponseEntity.ok().body(getDesigner_arrayList);
     }
 
     @SneakyThrows
@@ -377,25 +388,34 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        HashMap<Object, Object> getSummary_HashMap = new HashMap<>();
+        ArrayList<Object> getSummary_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Summary.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
         MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", myJsonObject_1.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        getSummary_HashMap.put("table", myJsonObject_1.getTable());
+        getSummary_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getSummary_HashMap.put("value_columns", getSummaryFE(IdFile, NameCompany, jdbcTemplate));
+        getSummary_arrayList.add(getSummary_HashMap);
+        return ResponseEntity.ok().body(getSummary_arrayList);
     }
 
     @SneakyThrows
     public static ResponseEntity<?> getNotFoundObject() {
-        ArrayList<?> getNotFound = new ArrayList<>();
-        getNotFound.add(null);
-        return ResponseEntity.ok().body(getNotFound);
+        HashMap<Object, Object> getNotFound_HashMap = new HashMap<>();
+        ArrayList<Object> getNotFound_arrayList = new ArrayList<>();
+        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\NotFound.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("table").get("columns").size());
+        MyJsonObject_1 myJsonObject_1 = objectMapper.readValue(file_1, new TypeReference<>() {});
+        getNotFound_HashMap.put("table", myJsonObject_1.getTable());
+        getNotFound_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getNotFound_HashMap.put("value_columns", getNotFoundFE());
+        getNotFound_arrayList.add(getNotFound_HashMap);
+        return ResponseEntity.ok().body(getNotFound_arrayList);
     }
 
     @SneakyThrows

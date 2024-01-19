@@ -46,6 +46,8 @@ public class GetCadastralNumber {
         File file = new File(DEST_WORD);
         if (!file.exists()) {
             System.out.println("File not found: " + DEST_WORD);
+            jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+                    "cadastral_number_value, name_company, name_file) VALUES (?, ?, ?)", "Файл не найден", NameCompany, IdFile);
         } else {
             com.spire.doc.Document document = new com.spire.doc.Document();
             document.loadFromFile(DEST_WORD);
@@ -82,6 +84,9 @@ public class GetCadastralNumber {
                                 "cadastral_number_value, name_company, name_file) VALUES (?, ?, ?)", "Кадастровый номер земельного участка: - мы не нашли данные в этой строке", NameCompany, IdFile);
                     }
                 }
+            } else {
+                jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+                    "cadastral_number_value, name_company, name_file) VALUES (?, ?, ?)", "абзацы не найдены в файле", NameCompany, IdFile);
             }
         }
         return node;

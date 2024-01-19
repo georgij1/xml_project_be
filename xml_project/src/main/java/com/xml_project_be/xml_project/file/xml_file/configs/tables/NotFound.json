@@ -1,0 +1,23 @@
+{
+  "table": {
+    "TableName": "NotFound",
+    "columns": {
+      "column_1": {
+        "name": "NotFound",
+        "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "NotFound",
+        "value": "Данных нет"
+      },
+      "column_3": {
+        "name": "NotFound",
+        "value": "Данных нет"
+      },
+      "column_4": {
+        "name": "NotFound",
+        "value": "Данных нет"
+      }
+    }
+  }
+}
