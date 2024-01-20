@@ -2,34 +2,34 @@
   "table": {
     "TableName": "PreviousConclusions",
     "columns": {
-    "column_1": {
-      "name": "PreviousConclusion",
-      "value": "Данных нет"
-    },
-    "column_1_1": {
-      "name": "Date",
-      "value": "Данных нет"
-    },
-    "column_1_2": {
-      "name": "Number",
-      "value": "Данных нет"
-    },
-    "column_1_2_placeholder": {
-      "name": "EGRZ",
-      "value": "Данных нет"
-    },
-    "column_1_3": {
-      "name": "ExaminationObjectType",
-      "value": "Данных нет"
-    },
-    "column_1_4": {
-      "name": "Name",
-      "value": "Данных нет"
-    },
-    "column_1_5": {
-      "name": "Result",
-      "value": "Данных нет"
+      "column_1": {
+        "name": "PreviousConclusion",
+        "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "Date",
+        "value": "Данных нет"
+      },
+      "column_3": {
+        "name": "Number",
+        "value": "Данных нет"
+      },
+      "column_4": {
+        "name": "EGRZ",
+        "value": "Данных нет"
+      },
+      "column_5": {
+        "name": "ExaminationObjectType",
+        "value": "Данных нет"
+      },
+      "column_6": {
+        "name": "Name",
+        "value": "Данных нет"
+      },
+      "column_7": {
+        "name": "Result",
+        "value": "Данных нет"
+      }
     }
-  }
   }
 }

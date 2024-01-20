@@ -2,7 +2,7 @@
   "table": {
     "TableName": "CadastralNumber",
     "columns": {
-      "column": {
+      "column_1": {
         "name": "CadastralNumber",
         "value": "Данных нет"
       }

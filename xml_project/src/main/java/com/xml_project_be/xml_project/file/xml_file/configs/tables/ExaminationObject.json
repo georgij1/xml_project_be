@@ -2,34 +2,34 @@
   "table": {
     "TableName": "ExaminationObject",
     "columns": {
-    "column_1": {
-      "name": "ExaminationForm",
-      "value": "Данных нет"
-    },
-    "column_2": {
-      "name": "ExaminationResult",
-      "value": "Данных нет"
-    },
-    "column_3": {
-      "name": "ExaminationObjectType",
-      "value": "Данных нет"
-    },
-    "column_4": {
-      "name": "ExaminationType",
-      "value": "Данных нет"
-    },
-    "column_5": {
-      "name": "ConstructionType",
-      "value": "Данных нет"
-    },
-    "column_6": {
-      "name": "ExaminationStage",
-      "value": "Данных нет"
-    },
-    "column_7": {
-      "name": "Name",
-      "value": "Данных нет"
+      "column_1": {
+        "name": "ExaminationForm",
+        "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "ExaminationResult",
+        "value": "Данных нет"
+      },
+      "column_3": {
+        "name": "ExaminationObjectType",
+        "value": "Данных нет"
+      },
+      "column_4": {
+        "name": "ExaminationType",
+        "value": "Данных нет"
+      },
+      "column_5": {
+        "name": "ConstructionType",
+        "value": "Данных нет"
+      },
+      "column_6": {
+        "name": "ExaminationStage",
+        "value": "Данных нет"
+      },
+      "column_7": {
+        "name": "Name",
+        "value": "Данных нет"
+      }
     }
-  }
   }
 }

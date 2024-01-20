@@ -2,38 +2,38 @@
   "table": {
     "TableName": "Experts",
     "columns": {
-    "column": {
-      "name": "Expert",
-      "value": "Данных нет"
-    },
-    "column_placeholder_1": {
-      "name": "FamilyName",
-      "value": "Данных нет"
-    },
-    "column_placeholder_2": {
-      "name": "FirstName",
-      "value": "Данных нет"
-    },
-    "column_placeholder_3": {
-      "name": "SecondName",
-      "value": "Данных нет"
-    },
-    "column_placeholder_4": {
-      "name": "ExpertType",
-      "value": "Данных нет"
-    },
-    "column_placeholder_5": {
-      "name": "ExpertCertificate",
-      "value": "Данных нет"
-    },
-    "column_placeholder_6": {
-      "name": "ExpertCertificateBeginDate",
-      "value": "Данных нет"
-    },
-    "column_placeholder_7": {
-      "name": "ExpertCertificateEndDate",
-      "value": "Данных нет"
+      "column_1": {
+        "name": "Expert",
+        "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "FamilyName",
+        "value": "Данных нет"
+      },
+      "column_3": {
+        "name": "FirstName",
+        "value": "Данных нет"
+      },
+      "column_4": {
+        "name": "SecondName",
+        "value": "Данных нет"
+      },
+      "column_5": {
+        "name": "ExpertType",
+        "value": "Данных нет"
+      },
+      "column_6": {
+        "name": "ExpertCertificate",
+        "value": "Данных нет"
+      },
+      "column_7": {
+        "name": "ExpertCertificateBeginDate",
+        "value": "Данных нет"
+      },
+      "column_8": {
+        "name": "ExpertCertificateEndDate",
+        "value": "Данных нет"
+      }
     }
-  }
   }
 }
