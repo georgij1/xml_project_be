@@ -2,7 +2,6 @@ create table if not exists object_object_xml(
     name_value text,
     type_value text,
     functions_value text,
-    address_value text,
     country_value text,
     region_value text,
     city_value text,
@@ -11,5 +10,6 @@ create table if not exists object_object_xml(
     tei_Measure_value text,
     tei_value_value text,
     name_company text,
-    name_file text
+    id_file int,
+    id_transaction uuid
 )

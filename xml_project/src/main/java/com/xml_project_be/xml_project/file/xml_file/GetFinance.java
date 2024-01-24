@@ -7,6 +7,7 @@ import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class GetFinance {
     public static ArrayList<Object> getFinanceFE (
@@ -18,16 +19,18 @@ public class GetFinance {
         ArrayList<Object> arrayList = new ArrayList<>();
         HashMap<String, Object> objectHashMap = new HashMap<>();
         HashMap<String, Object> arrayList1 = new HashMap<>();
-        int object_item_1 = jdbcTemplate.queryForList("select finance_type from xml_project.public.finance_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).size();
+        int object_item_1 = jdbcTemplate.queryForList("select finance_type from xml_project.public.finance_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).size();
         for (int i = 1; i < object_item_1; i++) {
             // finance_type
-            arrayList1.put("name_"+i+"_finance_type", jdbcTemplate.queryForList("select * from xml_project.public.finance_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("finance_type").toString());
+            arrayList1.put("name_"+i+"_finance_type", jdbcTemplate.queryForList("select * from xml_project.public.finance_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("finance_type").toString());
             // finance_size
-            arrayList1.put("name_"+i+"_finance_size", jdbcTemplate.queryForList("select * from xml_project.public.finance_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("finance_size").toString());
+            arrayList1.put("name_"+i+"_finance_size", jdbcTemplate.queryForList("select * from xml_project.public.finance_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("finance_size").toString());
+            // id_transaction
+            arrayList1.put("name_"+i+"_id_transaction", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("id_transaction").toString());
         }
         objectHashMap.put("object_item_1", arrayList1);
         hashMap.put("item_1", objectHashMap.get("object_item"));
-        objectHashMap.put("count_object_items", jdbcTemplate.queryForList("select finance_type from xml_project.public.finance_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).size());
+        objectHashMap.put("count_object_items", jdbcTemplate.queryForList("select finance_type from xml_project.public.finance_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).size());
         hashMap.put("count_value", String.valueOf(hashMap.size()));
         hashMap.put("count_value_items", objectHashMap.get("count_object_items"));
         arrayList.add(objectHashMap.get("object_item_1"));
@@ -46,8 +49,8 @@ public class GetFinance {
         node.appendChild(doc.createElement("FinanceSize")).appendChild(doc.createTextNode("Данных нет"));
         jdbcTemplate.update("insert into " +
                 "xml_project.public.finance_object_xml(finance_type, " +
-                "finance_size, name_company, name_file) " +
-                "VALUES (?, ?, ?, ?)", "Данных нет", "Данных нет", NameCompany, IdFile);
+                "finance_size, name_company, id_file, id_transaction) " +
+                "VALUES (?, ?, ?, ?, ?)", "Данных нет", "Данных нет", NameCompany, IdFile, UUID.randomUUID());
         return node;
     }
 }

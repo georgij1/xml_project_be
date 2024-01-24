@@ -7,6 +7,9 @@
       "column_1": {
         "name": "ProjectDocumentsReview",
         "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "IdTransaction"
       }
     }
   }

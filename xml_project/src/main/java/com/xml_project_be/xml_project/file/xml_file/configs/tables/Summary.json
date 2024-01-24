@@ -17,6 +17,9 @@
       "column_4": {
         "name": "ExaminationSummary",
         "value": "Данных нет"
+      },
+      "column_12": {
+        "name": "IdTransaction"
       }
     }
   }

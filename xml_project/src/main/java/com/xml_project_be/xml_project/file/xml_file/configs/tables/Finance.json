@@ -9,6 +9,9 @@
       "column_2": {
         "name": "FinanceSize",
         "value": "Данных нет"
+      },
+      "column_3": {
+        "name": "IdTransaction"
       }
     }
   }

@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+
 import static com.xml_project_be.xml_project.file.xml_file.GetPreviousSimpleConclusion.getPreviousSimpleConclusion;
 
 public class GetPreviousSimpleConclusions {

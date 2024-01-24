@@ -29,33 +29,34 @@
         "value": "Данных нет"
       },
       "column_7": {
-        "column_1": {
-          "name": "Country"
-        },
-        "column_8": {
-          "name": "Region",
-          "value": "Данных нет"
-        },
-        "column_9": {
-          "name": "PostIndex",
-          "value": "Данных нет"
-        },
-        "column_10": {
-          "name": "City",
-          "value": "Данных нет"
-        },
-        "column_11": {
-          "name": "Street",
-          "value": "Данных нет"
-        },
-        "column_12": {
-          "name": "Building",
-          "value": "Данных нет"
-        },
-        "column_13": {
-          "name": "Room",
-          "value": "Данных нет"
-        }
+        "name": "Country"
+      },
+      "column_8": {
+        "name": "Region",
+        "value": "Данных нет"
+      },
+      "column_9": {
+        "name": "PostIndex",
+        "value": "Данных нет"
+      },
+      "column_10": {
+        "name": "City",
+        "value": "Данных нет"
+      },
+      "column_11": {
+        "name": "Street",
+        "value": "Данных нет"
+      },
+      "column_12": {
+        "name": "Building",
+        "value": "Данных нет"
+      },
+      "column_13": {
+        "name": "Room",
+        "value": "Данных нет"
+      },
+      "column_14": {
+        "name": "IdTransaction"
       }
     }
   }

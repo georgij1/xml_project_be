@@ -5,5 +5,6 @@ create table if not exists climate_conditions_object_xml(
     snow_district_value text,
     seismic_activity_value text,
     name_company text,
-    name_file text
+    id_file int,
+    id_transaction uuid
 )

@@ -21,6 +21,9 @@
       "column_5": {
         "name": "SeismicActivity",
         "value": "Данных нет"
+      },
+      "column_6": {
+        "name": "IdTransaction"
       }
     }
   }

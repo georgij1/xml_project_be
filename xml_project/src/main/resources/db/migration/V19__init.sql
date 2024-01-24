@@ -4,12 +4,12 @@ create table if not exists project_documents_developer_object_xml(
     org_ogrn_value text,
     org_inn_value text,
     org_kpp_value text,
-    address_value text,
     region_value text,
     city_value text,
     street_value text,
     building_value text,
     room_value text,
     name_company text,
-    name_file text
+    id_file int,
+    id_transaction uuid
 )

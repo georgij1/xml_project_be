@@ -13,5 +13,6 @@ create table if not exists designer_object_xml(
     building_value text,
     room_value text,
     name_company text,
-    name_file text
+    id_file int,
+    id_transaction uuid
 )

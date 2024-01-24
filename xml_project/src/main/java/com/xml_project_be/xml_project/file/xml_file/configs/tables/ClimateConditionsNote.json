@@ -5,6 +5,9 @@
       "column_1": {
         "name": "ClimateConditionsNote",
         "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "IdTransaction"
       }
     }
   }

@@ -12,6 +12,7 @@ create table if not exists documents_object_xml(
     file_name_1_value text,
     file_format_1_value text,
     file_checksum_1_value text,
-    name_company_value text,
-    name_file_value text
+    name_company text,
+    id_file int,
+    id_transaction uuid
 )

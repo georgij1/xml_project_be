@@ -1,12 +1,10 @@
 package com.xml_project_be.xml_project.file.xml_file;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class NotFound {
-    public static ArrayList<Object> getNotFoundFE () {
+    public static ArrayList<Object> getNotFoundFE() {
         HashMap<String, Object> hashMap = new HashMap<>();
         ArrayList<Object> arrayList = new ArrayList<>();
         HashMap<String, Object> objectHashMap = new HashMap<>();

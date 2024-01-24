@@ -15,36 +15,35 @@
         "value": "Данных нет"
       },
       "column_4": {
-        "name": "Address",
-        "value": "Данных нет"
-      },
-      "column_5": {
         "name": "Country",
         "value": "Данных нет"
       },
-      "column_6": {
+      "column_5": {
         "name": "Region",
         "value": "Данных нет"
       },
-      "column_7": {
+      "column_6": {
         "name": "City",
         "value": "Данных нет"
       },
-      "column_8": {
+      "column_7": {
         "name": "Note",
         "value": "Данных нет"
       },
-      "column_9": {
+      "column_8": {
         "name": "Name",
         "value": "Данных нет"
       },
-      "column_10": {
+      "column_9": {
         "name": "Measure",
         "value": "Данных нет"
       },
-      "column_11": {
+      "column_10": {
         "name": "Value",
         "value": "Данных нет"
+      },
+      "column_11": {
+        "name": "IdTransaction"
       }
     }
   }

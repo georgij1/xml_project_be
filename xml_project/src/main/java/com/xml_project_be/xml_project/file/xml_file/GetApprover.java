@@ -10,11 +10,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.UUID;
 
 import static com.xml_project_be.xml_project.file.xml_file.put_data.GetOrgElementsValueTXT.getOrgElementsValueTXT;
 
 public class GetApprover {
-    public static ArrayList<Object> getApproverFE (
+    public static ArrayList<Object> getApproverFE(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
@@ -25,25 +26,28 @@ public class GetApprover {
         HashMap<String, Object> arrayList1 = new HashMap<>();
 
         // org_full_name_value
-        int object_item_1 = jdbcTemplate.queryForList("select family_name_value from xml_project.public.approver_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).size();
+        int object_item_1 = jdbcTemplate.queryForList("select family_name_value from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile, NameCompany).size();
         System.out.println(object_item_1);
-        for (int i = 1; i < object_item_1; i++) {
+        for (int i = 0; i < object_item_1; i++) {
             // family_name_value
-            arrayList1.put("name_"+i+"_family_name_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("family_name_value").toString());
+            arrayList1.put("name_" + i + "_family_name_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("family_name_value").toString());
             // first_name_value
-            arrayList1.put("name_"+i+"_first_name_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("first_name_value").toString());
+            arrayList1.put("name_" + i + "_first_name_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("first_name_value").toString());
             // second_name_value
-            arrayList1.put("name_"+i+"_second_name_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("second_name_value").toString());
+            arrayList1.put("name_" + i + "_second_name_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("second_name_value").toString());
             // position_value
-            arrayList1.put("name_"+i+"_position_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("position_value").toString());
+            arrayList1.put("name_" + i + "_position_value", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("position_value").toString());
+            // id_transaction
+            arrayList1.put("name_" + i + "_id_transaction", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("id_transaction").toString());
         }
         objectHashMap.put("object_item_1", arrayList1);
         hashMap.put("item_1", objectHashMap.get("object_item"));
-        objectHashMap.put("count_object_items", jdbcTemplate.queryForList("select family_name_value from xml_project.public.approver_object_xml where name_file=? and name_company=?", IdFile.toString(), NameCompany).size());
+        objectHashMap.put("count_object_items", jdbcTemplate.queryForList("select family_name_value from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile, NameCompany).size());
         hashMap.put("count_value", String.valueOf(hashMap.size()));
         hashMap.put("count_value_items", objectHashMap.get("count_object_items"));
         arrayList.add(objectHashMap.get("object_item_1"));
         arrayList.add(objectHashMap.get("count_object_items"));
+        System.out.println(arrayList);
         return arrayList;
     }
 
@@ -62,11 +66,13 @@ public class GetApprover {
             Approver.appendChild(getOrgElementsValueTXT(doc, "FirstName", "Файл не найден"));
             Approver.appendChild(getOrgElementsValueTXT(doc, "SecondName", "Файл не найден"));
             Approver.appendChild(getOrgElementsValueTXT(doc, "Position", "Файл не найден"));
-            jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
-                    "first_name_value, second_name_value, position_value, name_company, name_file) " +
-                            "values (?, ?, ?, ?, ?, ?)",
-                    "Файл не найден", "Файл не найден", "Файл не найден", "Файл не найден",
-                    "Файл не найден", "Файл не найден");
+            if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select * from xml_project.public.approver_object_xml where family_name_value=? and second_name_value=? and position_value=? and id_file=? and name_company=?)", Boolean.class, "Файл не найден", "Файл не найден", "Файл не найден", IDFile, NameCompany))) {
+                jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
+                                "first_name_value, second_name_value, position_value, name_company, id_file, id_transaction) " +
+                                "values (?, ?, ?, ?, ?, ?, ?)",
+                        "Файл не найден", "Файл не найден", "Файл не найден", "Файл не найден",
+                        IDFile, NameCompany, UUID.randomUUID());
+            }
         } else {
             Document document = new Document();
             document.loadFromFile(DEST_WORD);
@@ -83,19 +89,25 @@ public class GetApprover {
                 Approver.appendChild(getOrgElementsValueTXT(doc, "FirstName", Arrays.stream(infoPersonsArr).toList().get(0)));
                 Approver.appendChild(getOrgElementsValueTXT(doc, "SecondName", Arrays.stream(infoPersonsArr).toList().get(0)));
                 Approver.appendChild(getOrgElementsValueTXT(doc, "Position", position));
-                jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
-                                "first_name_value, second_name_value, position_value, name_company, name_file) values (?, ?, ?, ?, ?, ?)",
-                        Arrays.stream(infoPersonsArr).toList().get(0),
-                        Arrays.stream(infoPersonsArr).toList().get(0), Arrays.stream(infoPersonsArr).toList().get(0), position, NameCompany, IDFile);
+                if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select * from xml_project.public.approver_object_xml where family_name_value=? and first_name_value=? and second_name_value=? and position_value=? and id_file=? and name_company=?)", Boolean.class, Arrays.stream(infoPersonsArr).toList().get(0),
+                        Arrays.stream(infoPersonsArr).toList().get(0), Arrays.stream(infoPersonsArr).toList().get(0), position, IDFile, NameCompany))) {
+                    jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
+                                    "first_name_value, second_name_value, position_value, name_company, id_file, id_transaction) values (?, ?, ?, ?, ?, ?, ?)",
+                            Arrays.stream(infoPersonsArr).toList().get(0),
+                            Arrays.stream(infoPersonsArr).toList().get(0), Arrays.stream(infoPersonsArr).toList().get(0), position, NameCompany, IDFile, UUID.randomUUID());
+                }
             } else {
                 Approver.appendChild(getOrgElementsValueTXT(doc, "FamilyName", "Документ word является пустым"));
                 Approver.appendChild(getOrgElementsValueTXT(doc, "FirstName", "Документ word является пустым"));
                 Approver.appendChild(getOrgElementsValueTXT(doc, "SecondName", "Документ word является пустым"));
                 Approver.appendChild(getOrgElementsValueTXT(doc, "Position", "Документ word является пустым"));
-                jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
-                                "first_name_value, second_name_value, position_value, name_company, name_file) values (?, ?, ?, ?, ?, ?)",
-                        "Документ word является пустым",
-                        "Документ word является пустым", "Документ word является пустым", "Документ word является пустым", NameCompany, IDFile);
+                if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select * from xml_project.public.approver_object_xml where family_name_value=? and second_name_value=? and position_value=? and id_file=? and name_company=?)", Boolean.class, "Документ word является пустым",
+                        "Документ word является пустым", "Документ word является пустым", "Документ word является пустым", IDFile, NameCompany))) {
+                    jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
+                                    "first_name_value, second_name_value, position_value, name_company, id_file, id_transaction) values (?, ?, ?, ?, ?, ?, ?)",
+                            "Документ word является пустым",
+                            "Документ word является пустым", "Документ word является пустым", "Документ word является пустым", NameCompany, IDFile, UUID.randomUUID());
+                }
             }
         }
         return Approver;

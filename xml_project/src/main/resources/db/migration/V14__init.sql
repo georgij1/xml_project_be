@@ -8,5 +8,6 @@ create table if not exists experts_object_xml(
     expert_certificate_beginDate_value text,
     expert_certificate_end_date_value text,
     name_company text,
-    name_file text
+    id_file int,
+    id_transaction uuid
 )

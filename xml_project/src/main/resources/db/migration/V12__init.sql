@@ -7,5 +7,6 @@ create table if not exists examination_object_object_xml(
     examination_stage_value text,
     name_value text,
     name_company text,
-    name_file text
+    id_file int,
+    id_transaction uuid
 )

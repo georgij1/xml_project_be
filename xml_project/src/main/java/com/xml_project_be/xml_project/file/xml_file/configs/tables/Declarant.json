@@ -23,28 +23,27 @@
         "value": "Данных нет"
       },
       "column_6": {
-        "name": "Address",
-        "value": "Данных нет"
-      },
-      "column_7": {
         "name": "Region",
         "value": "Данных нет"
       },
-      "column_8": {
+      "column_7": {
         "name": "City",
         "value": "Данных нет"
       },
-      "column_9": {
+      "column_8": {
         "name": "Street",
         "value": "Данных нет"
       },
-      "column_10": {
+      "column_9": {
         "name": "Building",
         "value": "Данных нет"
       },
-      "column_11": {
+      "column_10": {
         "name": "Room",
         "value": "Данных нет"
+      },
+      "column_11": {
+        "name": "IdTransaction"
       }
     }
   }

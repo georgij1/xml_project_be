@@ -29,6 +29,9 @@
       "column_7": {
         "name": "Name",
         "value": "Данных нет"
+      },
+      "column_8": {
+        "name": "IdTransaction"
       }
     }
   }

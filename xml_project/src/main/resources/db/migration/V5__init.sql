@@ -4,5 +4,6 @@ create table if not exists approver_object_xml (
     second_name_value text,
     position_value text,
     name_company text,
-    name_file text
+    id_file int,
+    id_transaction uuid
 )

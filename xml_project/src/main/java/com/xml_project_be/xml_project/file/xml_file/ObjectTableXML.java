@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class DomainBeanXML {
+public class ObjectTableXML {
     public List<?> name_file;
     public List<?> content_file;
     public Object tables;

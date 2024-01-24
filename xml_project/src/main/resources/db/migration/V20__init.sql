@@ -4,5 +4,6 @@ create table if not exists summary_object_xml(
     project_documents_summary_date_value text,
     examination_summary_value text,
     name_company text,
-    name_file text
+    id_file int,
+    id_transaction uuid
 )

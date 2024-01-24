@@ -37,6 +37,9 @@
       "column_9": {
         "name": "Room",
         "value": "Данных нет"
+      },
+      "column_10": {
+        "name": "IdTransaction"
       }
     }
   }

@@ -43,16 +43,19 @@
         "value": "Данных нет"
       },
       "column_11": {
-        "name": "FileName",
+        "name": "FileName (1)",
         "value": "Данных нет"
       },
       "column_12": {
-        "name": "FileFormat",
+        "name": "FileFormat (1)",
         "value": "Данных нет"
       },
       "column_13": {
-        "name": "FileChecksum",
+        "name": "FileChecksum (1)",
         "value": "Данных нет"
+      },
+      "column_14": {
+        "name": "IdTransaction"
       }
     }
   }

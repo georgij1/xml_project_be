@@ -7,5 +7,6 @@ create table if not exists previous_conclusions(
     name_value text,
     result_value text,
     name_company text,
-    name_file text
+    id_file int,
+    id_transaction uuid
 )
