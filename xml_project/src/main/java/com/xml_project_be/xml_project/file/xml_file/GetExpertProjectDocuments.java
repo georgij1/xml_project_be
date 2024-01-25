@@ -19,16 +19,16 @@ public class GetExpertProjectDocuments {
         ArrayList<Object> arrayList = new ArrayList<>();
         HashMap<String, Object> objectHashMap = new HashMap<>();
         HashMap<String, Object> arrayList1 = new HashMap<>();
-        int object_item_1 = jdbcTemplate.queryForList("select project_documents_review from xml_project.public.expert_project_documents_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).size();
-        for (int i = 1; i < object_item_1; i++) {
+        int object_item_1 = jdbcTemplate.queryForList("select project_documents_review from xml_project.public.expert_project_documents_object_xml where id_file=? and name_company=?", IdFile, NameCompany).size();
+        for (int i = 0; i < object_item_1; i++) {
             // project_documents_review
-            arrayList1.put("name_"+i+"_project_documents_review", jdbcTemplate.queryForList("select * from xml_project.public.expert_project_documents_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("project_documents_review").toString());
+            arrayList1.put("name_"+i+"_project_documents_review", jdbcTemplate.queryForList("select * from xml_project.public.expert_project_documents_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("project_documents_review").toString());
             // id_transaction
-            arrayList1.put("name_"+i+"_id_transaction", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("id_transaction").toString());
+            arrayList1.put("name_"+i+"_id_transaction", jdbcTemplate.queryForList("select * from xml_project.public.expert_project_documents_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("id_transaction").toString());
         }
         objectHashMap.put("object_item_1", arrayList1);
         hashMap.put("item_1", objectHashMap.get("object_item"));
-        objectHashMap.put("count_object_items", jdbcTemplate.queryForList("select project_documents_review from xml_project.public.expert_project_documents_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).size());
+        objectHashMap.put("count_object_items", jdbcTemplate.queryForList("select project_documents_review from xml_project.public.expert_project_documents_object_xml where id_file=? and name_company=?", IdFile, NameCompany).size());
         hashMap.put("count_value", String.valueOf(hashMap.size()));
         hashMap.put("count_value_items", objectHashMap.get("count_object_items"));
         arrayList.add(objectHashMap.get("object_item_1"));
@@ -45,11 +45,19 @@ public class GetExpertProjectDocuments {
         Element node = doc.createElement("ExpertProjectDocuments");
         node.setAttribute("ExpertType", "Данных нет");
         node.appendChild(doc.createElement("ProjectDocumentsReview")).appendChild(doc.createTextNode("Данных нет"));
-        jdbcTemplate.update("insert into " +
-                "xml_project.public.expert_project_documents_object_xml(" +
-                "project_documents_review, name_company, " +
-                "id_file, id_transaction) VALUES (?, ?, ?, ?)", "Данных нет",
-                NameCompany, IdFile, UUID.randomUUID());
+        if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+            "select * from xml_project.public.expert_project_documents_object_xml " +
+            "where project_documents_review=? and " +
+            "name_company=? and " +
+            "id_file=?)", Boolean.class,
+                "Данных нет", NameCompany, IdFile))
+        ) {
+            jdbcTemplate.update("insert into " +
+                            "xml_project.public.expert_project_documents_object_xml(" +
+                            "project_documents_review, name_company, " +
+                            "id_file, id_transaction) VALUES (?, ?, ?, ?)", "Данных нет",
+                    NameCompany, IdFile, UUID.randomUUID());
+        }
         return node;
     }
 }

@@ -49,7 +49,7 @@ public class GetExpertOrganization {
             // room_value
             arrayList1.put("name_" + i + "_room_value", jdbcTemplate.queryForList("select * from xml_project.public.expert_organization_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("room_value").toString());
             // id_transaction
-            arrayList1.put("name_" + i + "_id_transaction", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("id_transaction").toString());
+            arrayList1.put("name_" + i + "_id_transaction", jdbcTemplate.queryForList("select * from xml_project.public.expert_organization_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("id_transaction").toString());
         }
         objectHashMap.put("object_item_1", arrayList1);
         hashMap.put("item_1", objectHashMap.get("object_item"));

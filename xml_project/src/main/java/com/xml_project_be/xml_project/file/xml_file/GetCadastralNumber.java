@@ -20,17 +20,17 @@ public class GetCadastralNumber {
         ArrayList<Object> arrayList = new ArrayList<>();
         HashMap<String, Object> objectHashMap = new HashMap<>();
         HashMap<String, Object> arrayList1 = new HashMap<>();
-        int object_item_1 = jdbcTemplate.queryForList("select cadastral_number_value from xml_project.public.cadastral_number_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).size();
+        int object_item_1 = jdbcTemplate.queryForList("select cadastral_number_value from xml_project.public.cadastral_number_object_xml where id_file=? and name_company=?", IdFile, NameCompany).size();
         System.out.println(object_item_1);
-        for (int i = 1; i < object_item_1; i++) {
+        for (int i = 0; i < object_item_1; i++) {
             // cadastral_number_value
-            arrayList1.put("name_"+i+"_cadastral_number_value", jdbcTemplate.queryForList("select * from xml_project.public.cadastral_number_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("cadastral_number_value").toString());
+            arrayList1.put("name_"+i+"_cadastral_number_value", jdbcTemplate.queryForList("select * from xml_project.public.cadastral_number_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("cadastral_number_value").toString());
             // id_transaction
-            arrayList1.put("name_"+i+"_id_transaction", jdbcTemplate.queryForList("select * from xml_project.public.approver_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).get(i).get("id_transaction").toString());
+            arrayList1.put("name_"+i+"_id_transaction", jdbcTemplate.queryForList("select * from xml_project.public.cadastral_number_object_xml where id_file=? and name_company=?", IdFile, NameCompany).get(i).get("id_transaction").toString());
         }
         objectHashMap.put("object_item_1", arrayList1);
         hashMap.put("item_1", objectHashMap.get("object_item"));
-        objectHashMap.put("count_object_items", jdbcTemplate.queryForList("select cadastral_number_value from xml_project.public.cadastral_number_object_xml where id_file=? and name_company=?", IdFile.toString(), NameCompany).size());
+        objectHashMap.put("count_object_items", jdbcTemplate.queryForList("select cadastral_number_value from xml_project.public.cadastral_number_object_xml where id_file=? and name_company=?", IdFile, NameCompany).size());
         hashMap.put("count_value", String.valueOf(hashMap.size()));
         hashMap.put("count_value_items", objectHashMap.get("count_object_items"));
         arrayList.add(objectHashMap.get("object_item_1"));
@@ -48,9 +48,17 @@ public class GetCadastralNumber {
         Element node = doc.createElement("CadastralNumber");
         File file = new File(DEST_WORD);
         if (!file.exists()) {
-            jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                    "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                    "Файл не найден", NameCompany, IdFile, UUID.randomUUID());
+            if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+                            "select * from xml_project.public.cadastral_number_object_xml " +
+                            "where cadastral_number_value=? and " +
+                            "name_company=? and " +
+                            "id_file=?)", Boolean.class,
+                    "Файл не найден", NameCompany, IdFile))
+            ) {
+                jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+                                "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+                        "Файл не найден", NameCompany, IdFile, UUID.randomUUID());
+            }
         } else {
             com.spire.doc.Document document = new com.spire.doc.Document();
             document.loadFromFile(DEST_WORD);
@@ -67,34 +75,74 @@ public class GetCadastralNumber {
                         if (endIndex != -1) {
                             String substring = CadastralNumber.substring(startIndex + startWordCadastralNumber.length(), endIndex);
                             node.appendChild(doc.createTextNode(substring.trim()));
-                            jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                                "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                                    substring.trim(), NameCompany, IdFile, UUID.randomUUID());
+                            if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+                                            "select * from xml_project.public.cadastral_number_object_xml " +
+                                            "where cadastral_number_value=? and " +
+                                            "name_company=? and " +
+                                            "id_file=?)", Boolean.class,
+                                    substring.trim(), NameCompany, IdFile))
+                            ) {
+                                jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+                                                "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+                                        substring.trim(), NameCompany, IdFile, UUID.randomUUID());
+                            }
                         }
                         else {
                             node.appendChild(doc.createTextNode("Мы не нашли точку в этой строке"));
-                            jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                                "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                                    "Мы не нашли точку в этой строке", NameCompany, IdFile, UUID.randomUUID());
+                            if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+                                            "select * from xml_project.public.cadastral_number_object_xml " +
+                                            "where cadastral_number_value=? and " +
+                                            "name_company=? and " +
+                                            "id_file=?)", Boolean.class,
+                                    "Мы не нашли точку в этой строке", NameCompany, IdFile))
+                            ) {
+                                jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+                                                "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+                                        "Мы не нашли точку в этой строке", NameCompany, IdFile, UUID.randomUUID());
+                            }
                         }
                     }
                     else {
                         node.appendChild(doc.createTextNode("Кадастровый номер земельного участка: - мы не нашли данные в этой строке"));
-                        jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                                "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                                "Кадастровый номер земельного участка: - мы не нашли данные в этой строке",
-                                NameCompany, IdFile, UUID.randomUUID());
+                        if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+                                        "select * from xml_project.public.cadastral_number_object_xml " +
+                                        "where cadastral_number_value=? and " +
+                                        "name_company=? and " +
+                                        "id_file=?)", Boolean.class,
+                                "Кадастровый номер земельного участка: - мы не нашли данные в этой строке", NameCompany, IdFile))
+                        ) {
+                            jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+                                            "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+                                    "Кадастровый номер земельного участка: - мы не нашли данные в этой строке",
+                                    NameCompany, IdFile, UUID.randomUUID());
+                        }
                     }
                 }
                 else {
-                    jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                            "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                            "Мы не нашли запятую в строке", NameCompany, IdFile, UUID.randomUUID());
+                    if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+                                    "select * from xml_project.public.cadastral_number_object_xml " +
+                                    "where cadastral_number_value=? and " +
+                                    "name_company=? and " +
+                                    "id_file=?)", Boolean.class,
+                            "Мы не нашли запятую в строке", NameCompany, IdFile))
+                    ) {
+                        jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+                                        "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+                                "Мы не нашли запятую в строке", NameCompany, IdFile, UUID.randomUUID());
+                    }
                 }
             } else {
-                jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                    "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                        "абзацы не найдены в файле", NameCompany, IdFile, UUID.randomUUID());
+                if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+                                "select * from xml_project.public.cadastral_number_object_xml " +
+                                "where cadastral_number_value=? and " +
+                                "name_company=? and " +
+                                "id_file=?)", Boolean.class,
+                        "абзацы не найдены в файле", NameCompany, IdFile))
+                ) {
+                    jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+                                    "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+                            "абзацы не найдены в файле", NameCompany, IdFile, UUID.randomUUID());
+                }
             }
         }
         return node;

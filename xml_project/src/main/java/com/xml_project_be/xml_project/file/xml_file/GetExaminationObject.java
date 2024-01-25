@@ -21,17 +21,32 @@ public class GetExaminationObject {
         File file = new File(DEST_WORD);
 
         if (!file.exists()) {
-            System.out.println("File not found: " + DEST_WORD);
-            jdbcTemplate.update("insert into xml_project.public.documents_object_xml(document_value, " +
-                            "doc_type_value, doc_name_value, doc_number_value, doc_date_value, doc_issue_author_value, " +
-                            "file_value, file_name_value, file_format_value, file_checksum_value, file_name_1_value, " +
-                            "file_format_1_value, file_checksum_1_value, name_company, " +
-                            "id_file, id_transaction) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select " +
+                            "exists(select * from " +
+                            "xml_project.public.examination_object_object_xml " +
+                            "where examination_form_value=? and " +
+                            "examination_result_value=? and examination_object_type_value=?" +
+                            "and examination_type_value=? and construction_type_value=?" +
+                            "and examination_stage_value=? and " +
+                            "name_value=? and name_company=? and " +
+                            "id_file=?)",
+                    Boolean.class,
                     "Файл не найден",
-                    "Файл не найден", "Файл не найден", "Файл не найден", "Файл не найден",
-                    "Файл не найден", "Файл не найден", "Файл не найден", "Файл не найден",
-                    "Файл не найден", "Файл не найден", "Файл не найден", "Файл не найден", NameCompany,
-                    IdFile, UUID.randomUUID());
+                    "Файл не найден", "Файл не найден",
+                    "Файл не найден", "Файл не найден",
+                    "Файл не найден", "Файл не найден",
+                    NameCompany,
+                    IdFile))) {
+                jdbcTemplate.update("insert into xml_project.public.examination_object_object_xml(examination_form_value, " +
+                                "examination_result_value, examination_object_type_value, examination_type_value, construction_type_value, examination_stage_value, " +
+                                "name_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        "Файл не найден",
+                        "Файл не найден", "Файл не найден",
+                        "Файл не найден", "Файл не найден",
+                        "Файл не найден", "Файл не найден",
+                        NameCompany,
+                        IdFile, UUID.randomUUID());
+            }
         } else {
             ExaminationObject.appendChild(getOrgElementsValueTXT(doc, "ExaminationForm", "Данные не указаны"));
             ExaminationObject.appendChild(getOrgElementsValueTXT(doc, "ExaminationResult", "Данные не указаны"));
@@ -40,15 +55,32 @@ public class GetExaminationObject {
             ExaminationObject.appendChild(getOrgElementsValueTXT(doc, "ConstructionType", "Данные не указаны"));
             ExaminationObject.appendChild(getOrgElementsValueTXT(doc, "ExaminationStage", "Данные не указаны"));
             ExaminationObject.appendChild(getOrgElementsValueTXT(doc, "Name", "Данные не указаны"));
-            jdbcTemplate.update("insert into xml_project.public.documents_object_xml(document_value, " +
-                            "doc_type_value, doc_name_value, doc_number_value, doc_date_value, doc_issue_author_value, " +
-                            "file_value, file_name_value, file_format_value, file_checksum_value, file_name_1_value, " +
-                            "file_format_1_value, file_checksum_1_value, name_company, " +
-                            "id_file, id_transaction) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", "Данные не указаны",
-                    "Данные не указаны", "Данные не указаны", "Данные не указаны", "Данные не указаны",
-                    "Данные не указаны", "Данные не указаны", "Данные не указаны", "Данные не указаны",
-                    "Данные не указаны", "Данные не указаны", "Данные не указаны", "Данные не указаны", NameCompany,
-                    IdFile, UUID.randomUUID());
+            if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select " +
+                            "exists(select * from " +
+                            "xml_project.public.examination_object_object_xml " +
+                            "where examination_form_value=? and " +
+                            "examination_result_value=? and examination_object_type_value=?" +
+                            "and examination_type_value=? and construction_type_value=?" +
+                            "and examination_stage_value=? and " +
+                            "name_value=? and name_company=? and " +
+                            "id_file=?)",
+                    Boolean.class,
+                    "Данные не указаны",
+                    "Данные не указаны", "Данные не указаны",
+                    "Данные не указаны", "Данные не указаны",
+                    "Данные не указаны", "Данные не указаны",
+                    NameCompany,
+                    IdFile))) {
+                jdbcTemplate.update("insert into xml_project.public.examination_object_object_xml(examination_form_value, " +
+                                "examination_result_value, examination_object_type_value, examination_type_value, construction_type_value, examination_stage_value, " +
+                                "name_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        "Данные не указаны",
+                        "Данные не указаны", "Данные не указаны",
+                        "Данные не указаны", "Данные не указаны",
+                        "Данные не указаны", "Данные не указаны",
+                        NameCompany,
+                        IdFile, UUID.randomUUID());
+            }
         }
         return ExaminationObject;
     }
