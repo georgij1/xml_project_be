@@ -1,4 +1,4 @@
-package com.xml_project_be.xml_project.file.xml_file;
+package com.xml_project_be.xml_project.file.xml_file.reader;
 
 import com.spire.doc.Document;
 import com.spire.doc.collections.ParagraphCollection;
@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-import static com.xml_project_be.xml_project.file.xml_file.put_data.GetOrgElementsValueFunc.getOrgElementsValueFunc;
-import static com.xml_project_be.xml_project.file.xml_file.put_data.GetOrgElementsValueTXT.getOrgElementsValueTXT;
+import static com.xml_project_be.xml_project.file.xml_file.reader.put_data.GetOrgElementsValueFunc.getOrgElementsValueFunc;
+import static com.xml_project_be.xml_project.file.xml_file.reader.put_data.GetOrgElementsValueTXT.getOrgElementsValueTXT;
 
 @AllArgsConstructor
 public class GetExpertOrganization {

@@ -1,4 +1,4 @@
-package com.xml_project_be.xml_project.file.xml_file;
+package com.xml_project_be.xml_project.file.xml_file.reader;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.w3c.dom.Document;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-import static com.xml_project_be.xml_project.file.xml_file.GetOrgElementsValueFunc_7.getOrgElementsValueFunc_7;
+import static com.xml_project_be.xml_project.file.xml_file.reader.GetOrgElementsValueFunc_7.getOrgElementsValueFunc_7;
 
 public class GetDocuments {
     public static ArrayList<Object> getDocumentsFE (

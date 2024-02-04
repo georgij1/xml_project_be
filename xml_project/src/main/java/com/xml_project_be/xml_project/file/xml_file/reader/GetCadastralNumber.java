@@ -1,4 +1,4 @@
-package com.xml_project_be.xml_project.file.xml_file;
+package com.xml_project_be.xml_project.file.xml_file.reader;
 
 import com.spire.doc.collections.ParagraphCollection;
 import org.springframework.jdbc.core.JdbcTemplate;

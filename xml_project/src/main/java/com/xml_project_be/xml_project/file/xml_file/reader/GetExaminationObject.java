@@ -1,4 +1,4 @@
-package com.xml_project_be.xml_project.file.xml_file;
+package com.xml_project_be.xml_project.file.xml_file.reader;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.w3c.dom.Element;
@@ -7,7 +7,7 @@ import org.w3c.dom.Node;
 import java.io.File;
 import java.util.UUID;
 
-import static com.xml_project_be.xml_project.file.xml_file.put_data.GetOrgElementsValueTXT.getOrgElementsValueTXT;
+import static com.xml_project_be.xml_project.file.xml_file.reader.put_data.GetOrgElementsValueTXT.getOrgElementsValueTXT;
 
 public class GetExaminationObject {
     public static Node getExaminationObject(
