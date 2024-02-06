@@ -7,6 +7,7 @@ import com.xml_project_be.xml_project.file.list.ListFiles;
 import com.xml_project_be.xml_project.file.pdf_file.ReadPdf;
 import com.xml_project_be.xml_project.file.upload.UploadFiles;
 import com.xml_project_be.xml_project.file.word_file.ReadWordDocx;
+import com.xml_project_be.xml_project.file.xml_file.editor.BodyGetEditedFields;
 import com.xml_project_be.xml_project.file.xml_file.editor.EditDocument;
 import com.xml_project_be.xml_project.file.xml_file.reader.GenerateDocument;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/file")
@@ -116,7 +118,7 @@ public class ControllerFile {
         } else if (nameObjectXML.equals("Approver")) {
             return GenerateDocument.getApprover_object(IdFile, NameCompany, jdbcTemplate);
         } else if (nameObjectXML.equals("ExaminationObject")) {
-            return GenerateDocument.getExpertOrganization_object(IdFile, NameCompany, jdbcTemplate);
+            return GenerateDocument.getExaminationObject_object(IdFile, NameCompany, jdbcTemplate);
         } else if (nameObjectXML.equals("Documents")) {
             return GenerateDocument.getDocuments_object(IdFile, NameCompany, jdbcTemplate);
         } else if (nameObjectXML.equals("PreviousConclusions")) {
@@ -150,51 +152,155 @@ public class ControllerFile {
         }
     }
 
-    @GetMapping("/xml/tables/edit/{NameTable}/{NameCompany}/{NameFile}")
+    @PostMapping("/xml/tables/edit")
     @ResponseBody
     @CrossOrigin("*")
     @SneakyThrows
-    public ResponseEntity<?> editTable(
-            @PathVariable("NameTable") String nameObjectXML,
-            @PathVariable("NameCompany") String NameCompany,
-            @PathVariable("NameFile") Integer IdFile
-    ) {
-        if (nameObjectXML.equals("ExpertOrganization")) {
-            return EditDocument.getExpertOrganization_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("Approver")) {
-            return EditDocument.getApprover_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("ExaminationObject")) {
-            return EditDocument.getExpertOrganization_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("Documents")) {
-            return EditDocument.getDocuments_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("PreviousConclusions")) {
-            return EditDocument.getPreviousConclusions_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("PreviousSimpleConclusions")) {
-            return EditDocument.getPreviousSimpleConclusions_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("Object")) {
-            return EditDocument.getObject_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("Declarant")) {
-            return EditDocument.getDeclarant_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("ProjectDocumentsDeveloper")) {
-            return EditDocument.getProjectDocumentsDeveloper_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("Finance")) {
-            return EditDocument.getFinance_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("ClimateConditions")) {
-            return EditDocument.getClimateConditions_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("ClimateConditionsNote")) {
-            return EditDocument.getClimateConditionsNote_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("ExpertProjectDocuments")) {
-            return EditDocument.getExpertProjectDocuments_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("CadastralNumber")) {
-            return EditDocument.getCadastralNumber_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("Experts")) {
-            return EditDocument.getExperts_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("Designer")) {
-            return EditDocument.getDesigner_object(IdFile, NameCompany, jdbcTemplate);
-        } else if (nameObjectXML.equals("Summary")) {
-            return EditDocument.getSummary_object(IdFile, NameCompany, jdbcTemplate);
+    public ResponseEntity<?> editTable(@RequestBody BodyGetEditedFields bodyGetEditedFields) {
+        if (bodyGetEditedFields.getTable_name().equals("ExpertOrganization")) {
+            return EditDocument.setExpertOrganization_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("Approver")) {
+            return EditDocument.getApprover_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("ExaminationObject")) {
+            return EditDocument.getExaminationObject_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("Documents")) {
+            return EditDocument.getDocuments_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("PreviousConclusions")) {
+            return EditDocument.getPreviousConclusions_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("PreviousSimpleConclusions")) {
+            return EditDocument.getPreviousSimpleConclusions_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("Object")) {
+            return EditDocument.getObject_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("Declarant")) {
+            return EditDocument.getDeclarant_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("ProjectDocumentsDeveloper")) {
+            return EditDocument.getProjectDocumentsDeveloper_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("Finance")) {
+            return EditDocument.getFinance_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("ClimateConditions")) {
+            return EditDocument.getClimateConditions_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("ClimateConditionsNote")) {
+            return EditDocument.getClimateConditionsNote_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("ExpertProjectDocuments")) {
+            return EditDocument.getExpertProjectDocuments_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("CadastralNumber")) {
+            return EditDocument.getCadastralNumber_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("Experts")) {
+            return EditDocument.getExperts_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("Designer")) {
+            return EditDocument.getDesigner_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
+        } else if (bodyGetEditedFields.getTable_name().equals("Summary")) {
+            return EditDocument.getSummary_object(
+                    jdbcTemplate,
+                    bodyGetEditedFields.getColumn_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
         } else {
-            return GenerateDocument.getNotFoundObject();
+            return EditDocument.getNotFoundObject(
+                    bodyGetEditedFields.getId_file(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getColumn_value(),
+                    bodyGetEditedFields.getId_transaction(),
+                    bodyGetEditedFields.getTable_name()
+            );
         }
     }
 }

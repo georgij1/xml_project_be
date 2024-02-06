@@ -33,6 +33,7 @@ import static com.xml_project_be.xml_project.file.xml_file.reader.GetDesigner.ge
 import static com.xml_project_be.xml_project.file.xml_file.reader.GetDocuments.getDocuments;
 import static com.xml_project_be.xml_project.file.xml_file.reader.GetDocuments.getDocumentsFE;
 import static com.xml_project_be.xml_project.file.xml_file.reader.GetExaminationObject.getExaminationObject;
+import static com.xml_project_be.xml_project.file.xml_file.reader.GetExaminationObject.getExaminationObjectFE;
 import static com.xml_project_be.xml_project.file.xml_file.reader.GetExpertOrganization.getExpertOrganization;
 import static com.xml_project_be.xml_project.file.xml_file.reader.GetExpertOrganization.getExpertOrganizationFE;
 import static com.xml_project_be.xml_project.file.xml_file.reader.GetExpertProjectDocuments.getExpertProjectDocuments;
@@ -59,6 +60,8 @@ import static java.nio.file.Paths.get;
 public class GenerateDocument {
     static DocumentBuilder builder;
     static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    static String absolutePathMainFileTable = "C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\reader\\configs\\";
+    static String absolutePathTablesDir = "C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\reader\\configs\\tables\\";
 
     @SneakyThrows
     public static ResponseEntity<?> getExpertOrganization_object(
@@ -71,7 +74,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
         ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\ExpertOrganization.json");
+        File file_1 = new File(absolutePathTablesDir+"ExpertOrganization.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -94,7 +97,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getApprover_HashMap = new HashMap<>();
         ArrayList<Object> getApprover_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Approver.json");
+        File file_1 = new File(absolutePathTablesDir+"Approver.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -117,7 +120,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getObject_HashMap = new HashMap<>();
         ArrayList<Object> getObject_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Object.json");
+        File file_1 = new File(absolutePathTablesDir+"Object.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -140,7 +143,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
         ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\CadastralNumber.json");
+        File file_1 = new File(absolutePathTablesDir+"CadastralNumber.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -163,7 +166,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getDocuments_HashMap = new HashMap<>();
         ArrayList<Object> getDocuments_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Documents.json");
+        File file_1 = new File(absolutePathTablesDir+"Documents.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
@@ -185,7 +188,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getPreviousConclusions_HashMap = new HashMap<>();
         ArrayList<Object> getPreviousConclusions_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\PreviousConclusions.json");
+        File file_1 = new File(absolutePathTablesDir+"PreviousConclusions.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -208,7 +211,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getPreviousSimpleConclusions_HashMap = new HashMap<>();
         ArrayList<Object> getPreviousSimpleConclusions_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\PreviousSimpleConclusions.json");
+        File file_1 = new File(absolutePathTablesDir+"PreviousSimpleConclusions.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -231,7 +234,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getDeclarant_HashMap = new HashMap<>();
         ArrayList<Object> getDeclarant_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Declarant.json");
+        File file_1 = new File(absolutePathTablesDir+"Declarant.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -254,7 +257,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getProjectDocumentsDeveloper_HashMap = new HashMap<>();
         ArrayList<Object> getProjectDocumentsDeveloper_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\ProjectDocumentsDeveloper.json");
+        File file_1 = new File(absolutePathTablesDir+"ProjectDocumentsDeveloper.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -277,7 +280,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getFinance_HashMap = new HashMap<>();
         ArrayList<Object> getFinance_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Finance.json");
+        File file_1 = new File(absolutePathTablesDir+"Finance.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -300,7 +303,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getClimateConditions_HashMap = new HashMap<>();
         ArrayList<Object> getClimateConditions_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\ClimateConditions.json");
+        File file_1 = new File(absolutePathTablesDir+"ClimateConditions.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
@@ -322,7 +325,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getClimateConditions_HashMap = new HashMap<>();
         ArrayList<Object> getClimateConditions_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\ClimateConditionsNote.json");
+        File file_1 = new File(absolutePathTablesDir+"ClimateConditionsNote.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -345,7 +348,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getExpertProjectDocuments_HashMap = new HashMap<>();
         ArrayList<Object> getExpertProjectDocuments_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\ExpertProjectDocuments.json");
+        File file_1 = new File(absolutePathTablesDir+"ExpertProjectDocuments.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -368,7 +371,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getExperts_HashMap = new HashMap<>();
         ArrayList<Object> getExperts_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Experts.json");
+        File file_1 = new File(absolutePathTablesDir+"Experts.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -391,7 +394,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getDesigner_HashMap = new HashMap<>();
         ArrayList<Object> getDesigner_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Designer.json");
+        File file_1 = new File(absolutePathTablesDir+"Designer.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -414,7 +417,7 @@ public class GenerateDocument {
         doc.appendChild(rootElement);
         HashMap<Object, Object> getSummary_HashMap = new HashMap<>();
         ArrayList<Object> getSummary_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\Summary.json");
+        File file_1 = new File(absolutePathTablesDir+"Summary.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -427,10 +430,33 @@ public class GenerateDocument {
     }
 
     @SneakyThrows
+    public static ResponseEntity<?> getExaminationObject_object(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ) {
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExaminationObject_HashMap = new HashMap<>();
+        ArrayList<Object> getExaminationObject_arrayList = new ArrayList<>();
+        File file_1 = new File(absolutePathTablesDir+"ExaminationObject.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("table").get("columns").size());
+        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
+        getExaminationObject_HashMap.put("table", tableObject_.getTable());
+        getExaminationObject_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
+        getExaminationObject_HashMap.put("value_columns", getExaminationObjectFE(IdFile, NameCompany, jdbcTemplate));
+        getExaminationObject_arrayList.add(getExaminationObject_HashMap);
+        return ResponseEntity.ok().body(getExaminationObject_arrayList);
+    }
+
+    @SneakyThrows
     public static ResponseEntity<?> getNotFoundObject() {
         HashMap<Object, Object> getNotFound_HashMap = new HashMap<>();
         ArrayList<Object> getNotFound_arrayList = new ArrayList<>();
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tables\\NotFound.json");
+        File file_1 = new File(absolutePathTablesDir+"NotFound.json");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
         System.out.println(rootNode.get("table").get("columns").size());
@@ -456,7 +482,7 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        File file_1 = new File("C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\configs\\tableXML.json");
+        File file_1 = new File(absolutePathMainFileTable+"tableXML.json");
         ObjectMapper objectMapper = new ObjectMapper();
         TablesObject tablesObject = objectMapper.readValue(file_1, new TypeReference<>() {});
         rootElement.setAttribute("ConclusionGUID", "d1ca32e2-a8f0-4776-a499-1d946c6f6064");
