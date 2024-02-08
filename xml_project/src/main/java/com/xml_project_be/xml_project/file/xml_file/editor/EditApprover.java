@@ -9,16 +9,18 @@ public class EditApprover {
             JdbcTemplate jdbcTemplate,
             String column_name,
             String column_value,
-            UUID id_transaction
+            UUID id_transaction,
+            String NameCompany,
+            Integer IdFile
     ) {
         if (column_name.equals("family_name_value")) {
-            jdbcTemplate.update("update xml_project.public.approver_object_xml set family_name_value = ? where xml_project.public.expert_organization_object_xml.id_transaction = ?", column_value, id_transaction);
+            jdbcTemplate.update("update xml_project.public.approver_object_xml set family_name_value = ? where xml_project.public.approver_object_xml.id_transaction = ?", column_value, id_transaction);
         } else if (column_name.equals("first_name_value")) {
-            jdbcTemplate.update("update xml_project.public.approver_object_xml set first_name_value = ? where xml_project.public.expert_organization_object_xml.id_transaction = ?", column_value, id_transaction);
+            jdbcTemplate.update("update xml_project.public.approver_object_xml set first_name_value = ? where xml_project.public.approver_object_xml.id_transaction = ?", column_value, id_transaction);
         } else if (column_name.equals("second_name_value")) {
-            jdbcTemplate.update("update xml_project.public.approver_object_xml set second_name_value = ? where xml_project.public.expert_organization_object_xml.id_transaction = ?", column_value, id_transaction);
+            jdbcTemplate.update("update xml_project.public.approver_object_xml set second_name_value = ? where xml_project.public.approver_object_xml.id_transaction = ?", column_value, id_transaction);
         } else if (column_name.equals("position_value")) {
-            jdbcTemplate.update("update xml_project.public.approver_object_xml set position_value = ? where xml_project.public.expert_organization_object_xml.id_transaction = ?", column_value, id_transaction);
+            jdbcTemplate.update("update xml_project.public.approver_object_xml set position_value = ? where xml_project.public.approver_object_xml.id_transaction = ?", column_value, id_transaction);
         } else if (column_name.equals("id_transaction")) {
             jdbcTemplate.update("insert into " +
                             "xml_project.public.approver_object_xml(" +
@@ -32,8 +34,8 @@ public class EditApprover {
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    column_value,
+                    NameCompany,
+                    IdFile,
                     UUID.randomUUID()
             );
         } else {
@@ -49,8 +51,8 @@ public class EditApprover {
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    column_value,
+                    NameCompany,
+                    IdFile,
                     UUID.randomUUID()
             );
         }

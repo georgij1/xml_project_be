@@ -9,7 +9,9 @@ public class EditExaminationObject {
             JdbcTemplate jdbcTemplate,
             String column_name,
             String column_value,
-            UUID id_transaction
+            UUID id_transaction,
+            String NameCompany,
+            Integer IdFile
     ) {
         if (column_name.equals("examination_form_value")) {
             jdbcTemplate.update("update xml_project.public.expert_organization_object_xml set org_full_name_value = ? where xml_project.public.expert_organization_object_xml.id_transaction = ?", column_value, id_transaction);
@@ -56,8 +58,8 @@ public class EditExaminationObject {
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    column_value,
+                    NameCompany,
+                    IdFile,
                     UUID.randomUUID()
             );
         }
@@ -79,8 +81,8 @@ public class EditExaminationObject {
                     "Такой колонки не существует",
                     "Такой колонки не существует",
                     "Такой колонки не существует",
-                    "Такой колонки не существует",
-                    column_value,
+                    NameCompany,
+                    IdFile,
                     UUID.randomUUID()
             );
         }

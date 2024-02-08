@@ -17,9 +17,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditExpertOrganization.setExpertOrganization(jdbcTemplate, column_name, column_value, id_transaction);
+        EditExpertOrganization.setExpertOrganization(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -29,22 +31,25 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditApprover.setApprover(jdbcTemplate, column_name, column_value, id_transaction);
+        EditApprover.setApprover(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
-    // start here
     @SneakyThrows
     public static ResponseEntity<?> getObject_object(
             JdbcTemplate jdbcTemplate,
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditObject.setObject(jdbcTemplate, column_name, column_value, id_transaction);
+        EditObject.setObject(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -54,9 +59,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditCadastralNumber.setCadastralNumber(jdbcTemplate, column_name, column_value, id_transaction);
+        EditCadastralNumber.setCadastralNumber(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -66,9 +73,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditDocuments.setDocuments(jdbcTemplate, column_name, column_value, id_transaction);
+        EditDocuments.setDocuments(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -78,9 +87,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditPreviousConclusions.setPreviousConclusions(jdbcTemplate, column_name, column_value, id_transaction);
+        EditPreviousConclusions.setPreviousConclusions(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -90,9 +101,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditPreviousSimpleConclusions.setPreviousSimpleConclusions(jdbcTemplate, column_name, column_value, id_transaction);
+        EditPreviousSimpleConclusions.setPreviousSimpleConclusions(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -102,9 +115,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditDeclarant.setDeclarant(jdbcTemplate, column_name, column_value, id_transaction);
+        EditDeclarant.setDeclarant(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -114,9 +129,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditProjectDocumentsDeveloper.setProjectDocumentsDeveloper(jdbcTemplate, column_name, column_value, id_transaction);
+        EditProjectDocumentsDeveloper.setProjectDocumentsDeveloper(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -126,9 +143,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditFinance.setFinance(jdbcTemplate, column_name, column_value, id_transaction);
+        EditFinance.setFinance(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -138,9 +157,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditClimateConditions.setClimateConditions(jdbcTemplate, column_name, column_value, id_transaction);
+        EditClimateConditions.setClimateConditions(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -150,9 +171,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditClimateConditionsNote.setClimateConditionsNote(jdbcTemplate, column_name, column_value, id_transaction);
+        EditClimateConditionsNote.setClimateConditionsNote(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -162,9 +185,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditExpertProjectDocuments.setExpertProjectDocuments(jdbcTemplate, column_name, column_value, id_transaction);
+        EditExpertProjectDocuments.setExpertProjectDocuments(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -174,9 +199,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditExperts.setExperts(jdbcTemplate, column_name, column_value, id_transaction);
+        EditExperts.setExperts(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -186,9 +213,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditDesigner.setDesigner(jdbcTemplate, column_name, column_value, id_transaction);
+        EditDesigner.setDesigner(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -198,9 +227,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditSummary.setSummary(jdbcTemplate, column_name, column_value, id_transaction);
+        EditSummary.setSummary(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 
@@ -210,9 +241,11 @@ public class EditDocument {
             String column_name,
             String column_value,
             UUID id_transaction,
-            String TableName
+            String TableName,
+            String NameCompany,
+            Integer IdFile
     ) {
-        EditExaminationObject.setExaminationObject(jdbcTemplate, column_name, column_value, id_transaction);
+        EditExaminationObject.setExaminationObject(jdbcTemplate, column_name, column_value, id_transaction, NameCompany, IdFile);
         return ResponseEntity.ok().body(stringSuccessRequestMessage_part_1 + TableName + stringSuccessRequestMessage_part_2);
     }
 

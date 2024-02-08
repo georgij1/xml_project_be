@@ -9,54 +9,42 @@ public class EditFinance {
             JdbcTemplate jdbcTemplate,
             String column_name,
             String column_value,
-            UUID id_transaction
+            UUID id_transaction,
+            String NameCompany,
+            Integer IdFile
     ) {
-        if (column_name.equals("examination_form_value")) {
-            jdbcTemplate.update("update xml_project.public.expert_organization_object_xml set org_full_name_value = ? where xml_project.public.expert_organization_object_xml.id_transaction = ?", column_value, id_transaction);
+        if (column_name.equals("finance_type")) {
+            jdbcTemplate.update("update xml_project.public.finance_object_xml set finance_type = ? where xml_project.public.finance_object_xml.id_transaction = ?", column_value, id_transaction);
+        }
+
+        else if (column_name.equals("finance_size")) {
+            jdbcTemplate.update("update xml_project.public.finance_object_xml set finance_size = ? where xml_project.public.finance_object_xml.id_transaction = ?", column_value, id_transaction);
         }
 
         else if (column_name.equals("id_transaction")) {
             jdbcTemplate.update("insert into " +
-                            "xml_project.public.expert_organization_object_xml(" +
-                            "org_full_name_value, org_ogrn_value, org_inn_value, " +
-                            "org_kpp_value, region_value, city_value, street_value, " +
-                            "building_value, room_value, name_company, id_file, " +
+                            "xml_project.public.finance_object_xml(" +
+                            "finance_type, finance_size, name_company, id_file, " +
                             "id_transaction) VALUES " +
-                            "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                            "(?, ?, ?, ?, ?)",
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    column_value,
+                    NameCompany,
+                    IdFile,
                     UUID.randomUUID()
             );
         }
 
         else {
             jdbcTemplate.update("insert into " +
-                            "xml_project.public.expert_organization_object_xml(" +
-                            "org_full_name_value, org_ogrn_value, org_inn_value, " +
-                            "org_kpp_value, region_value, city_value, street_value, " +
-                            "building_value, room_value, name_company, id_file, " +
+                            "xml_project.public.finance_object_xml(" +
+                            "finance_type, finance_size, name_company, id_file, " +
                             "id_transaction) VALUES " +
-                            "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                            "(?, ?, ?, ?, ?)",
                     "Такой колонки не существует",
                     "Такой колонки не существует",
-                    "Такой колонки не существует",
-                    "Такой колонки не существует",
-                    "Такой колонки не существует",
-                    "Такой колонки не существует",
-                    "Такой колонки не существует",
-                    "Такой колонки не существует",
-                    "Такой колонки не существует",
-                    "Такой колонки не существует",
-                    column_value,
+                    NameCompany,
+                    IdFile,
                     UUID.randomUUID()
             );
         }

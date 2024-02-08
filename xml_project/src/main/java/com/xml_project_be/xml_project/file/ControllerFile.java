@@ -163,7 +163,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("Approver")) {
             return EditDocument.getApprover_object(
@@ -171,7 +173,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("ExaminationObject")) {
             return EditDocument.getExaminationObject_object(
@@ -179,7 +183,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("Documents")) {
             return EditDocument.getDocuments_object(
@@ -187,7 +193,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("PreviousConclusions")) {
             return EditDocument.getPreviousConclusions_object(
@@ -195,7 +203,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("PreviousSimpleConclusions")) {
             return EditDocument.getPreviousSimpleConclusions_object(
@@ -203,7 +213,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("Object")) {
             return EditDocument.getObject_object(
@@ -211,7 +223,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("Declarant")) {
             return EditDocument.getDeclarant_object(
@@ -219,7 +233,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("ProjectDocumentsDeveloper")) {
             return EditDocument.getProjectDocumentsDeveloper_object(
@@ -227,7 +243,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("Finance")) {
             return EditDocument.getFinance_object(
@@ -235,7 +253,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("ClimateConditions")) {
             return EditDocument.getClimateConditions_object(
@@ -243,7 +263,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("ClimateConditionsNote")) {
             return EditDocument.getClimateConditionsNote_object(
@@ -251,7 +273,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("ExpertProjectDocuments")) {
             return EditDocument.getExpertProjectDocuments_object(
@@ -259,7 +283,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("CadastralNumber")) {
             return EditDocument.getCadastralNumber_object(
@@ -267,7 +293,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("Experts")) {
             return EditDocument.getExperts_object(
@@ -275,7 +303,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("Designer")) {
             return EditDocument.getDesigner_object(
@@ -283,7 +313,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else if (bodyGetEditedFields.getTable_name().equals("Summary")) {
             return EditDocument.getSummary_object(
@@ -291,7 +323,9 @@ public class ControllerFile {
                     bodyGetEditedFields.getColumn_name(),
                     bodyGetEditedFields.getColumn_value(),
                     bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name()
+                    bodyGetEditedFields.getTable_name(),
+                    bodyGetEditedFields.getCompany_name(),
+                    bodyGetEditedFields.getId_file()
             );
         } else {
             return EditDocument.getNotFoundObject(
