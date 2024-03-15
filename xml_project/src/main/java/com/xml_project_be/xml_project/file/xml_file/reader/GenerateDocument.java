@@ -60,396 +60,1246 @@ import static java.nio.file.Paths.get;
 public class GenerateDocument {
     static DocumentBuilder builder;
     static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-    static String absolutePathMainFileTable = "C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\reader\\configs\\";
-    static String absolutePathTablesDir = "C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\reader\\configs\\tables\\";
+    static String structureData_StructureXMLFile_json = "C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\structure_data\\StructureXMLFile.json";
+    static String structureData_Appendix_1_json = "C:\\Users\\Panov\\OneDrive\\Рабочий стол\\xml_project_be\\xml_project\\src\\main\\java\\com\\xml_project_be\\xml_project\\file\\xml_file\\structure_data\\Appendix_1.json";
 
     @SneakyThrows
-    public static ResponseEntity<?> getExpertOrganization_object(
+    public static ResponseEntity<?> getDescription_of_the_root_element(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
         HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
         ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"ExpertOrganization.json");
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getExpertOrganization_HashMap.put("table", tableObject_.getTable());
-        getExpertOrganization_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getExpertOrganization_HashMap.put("value_columns", getExpertOrganizationFE(IdFile, NameCompany, jdbcTemplate));
+        System.out.println(rootNode.get("description_of_the_root_element"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_root_element"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_root_elementFE(IdFile, NameCompany, jdbcTemplate));
         getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
         return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getApprover_object(
+    public static ResponseEntity<?> getDescription_of_complex_field_types(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getApprover_HashMap = new HashMap<>();
-        ArrayList<Object> getApprover_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"Approver.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getApprover_HashMap.put("table", tableObject_.getTable());
-        getApprover_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getApprover_HashMap.put("value_columns", getApproverFE(IdFile, NameCompany, jdbcTemplate));
-        getApprover_arrayList.add(getApprover_HashMap);
-        return ResponseEntity.ok().body(getApprover_arrayList);
+        System.out.println(rootNode.get("description_of_complex_field_types"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_complex_field_types"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_complex_field_typesFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getObject_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tPostAddress_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getObject_HashMap = new HashMap<>();
-        ArrayList<Object> getObject_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"Object.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getObject_HashMap.put("table", tableObject_.getTable());
-        getObject_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getObject_HashMap.put("value_columns", getObjectFE(IdFile, NameCompany, jdbcTemplate));
-        getObject_arrayList.add(getObject_HashMap);
-        return ResponseEntity.ok().body(getObject_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tPostAddress_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tPostAddress_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tPostAddress_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getCadastralNumber_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tOrganization_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getCadastralNumber_HashMap = new HashMap<>();
-        ArrayList<Object> getCadastralNumber_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"CadastralNumber.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getCadastralNumber_HashMap.put("table", tableObject_.getTable());
-        getCadastralNumber_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getCadastralNumber_HashMap.put("value_columns", getCadastralNumberFE(IdFile, NameCompany, jdbcTemplate));
-        getCadastralNumber_arrayList.add(getCadastralNumber_HashMap);
-        return ResponseEntity.ok().body(getCadastralNumber_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tOrganization_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tOrganization_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tOrganization_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getDocuments_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tIP_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getDocuments_HashMap = new HashMap<>();
-        ArrayList<Object> getDocuments_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"Documents.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getDocuments_HashMap.put("table", tableObject_.getTable());
-        getDocuments_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getDocuments_HashMap.put("value_columns", getDocumentsFE(IdFile, NameCompany, jdbcTemplate));
-        getDocuments_arrayList.add(getDocuments_HashMap);
-        return ResponseEntity.ok().body(getDocuments_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tIP_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tIP_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tIP_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getPreviousConclusions_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tPerson_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getPreviousConclusions_HashMap = new HashMap<>();
-        ArrayList<Object> getPreviousConclusions_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"PreviousConclusions.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getPreviousConclusions_HashMap.put("table", tableObject_.getTable());
-        getPreviousConclusions_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getPreviousConclusions_HashMap.put("value_columns", getPreviousConclusionsFE(IdFile, NameCompany, jdbcTemplate));
-        getPreviousConclusions_arrayList.add(getPreviousConclusions_HashMap);
-        return ResponseEntity.ok().body(getPreviousConclusions_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tPerson_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tPerson_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tPerson_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getPreviousSimpleConclusions_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tWorkPerson_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getPreviousSimpleConclusions_HashMap = new HashMap<>();
-        ArrayList<Object> getPreviousSimpleConclusions_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"PreviousSimpleConclusions.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getPreviousSimpleConclusions_HashMap.put("table", tableObject_.getTable());
-        getPreviousSimpleConclusions_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getPreviousSimpleConclusions_HashMap.put("value_columns", getPreviousSimpleConclusionsFE(IdFile, NameCompany, jdbcTemplate));
-        getPreviousSimpleConclusions_arrayList.add(getPreviousSimpleConclusions_HashMap);
-        return ResponseEntity.ok().body(getPreviousSimpleConclusions_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tWorkPerson_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tWorkPerson_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tWorkPerson_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getDeclarant_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tExaminationObject_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getDeclarant_HashMap = new HashMap<>();
-        ArrayList<Object> getDeclarant_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"Declarant.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getDeclarant_HashMap.put("table", tableObject_.getTable());
-        getDeclarant_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getDeclarant_HashMap.put("value_columns", getDeclarantFE(IdFile, NameCompany, jdbcTemplate));
-        getDeclarant_arrayList.add(getDeclarant_HashMap);
-        return ResponseEntity.ok().body(getDeclarant_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tWorkPerson_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tExaminationObject_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tExaminationObject_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getProjectDocumentsDeveloper_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tDocuments_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getProjectDocumentsDeveloper_HashMap = new HashMap<>();
-        ArrayList<Object> getProjectDocumentsDeveloper_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"ProjectDocumentsDeveloper.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getProjectDocumentsDeveloper_HashMap.put("table", tableObject_.getTable());
-        getProjectDocumentsDeveloper_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getProjectDocumentsDeveloper_HashMap.put("value_columns", getProjectDocumentsDeveloperFE(IdFile, NameCompany, jdbcTemplate));
-        getProjectDocumentsDeveloper_arrayList.add(getProjectDocumentsDeveloper_HashMap);
-        return ResponseEntity.ok().body(getProjectDocumentsDeveloper_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tDocuments_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tDocuments_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tDocuments_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getFinance_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tDocument_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getFinance_HashMap = new HashMap<>();
-        ArrayList<Object> getFinance_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"Finance.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getFinance_HashMap.put("table", tableObject_.getTable());
-        getFinance_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getFinance_HashMap.put("value_columns", getFinanceFE(IdFile, NameCompany, jdbcTemplate));
-        getFinance_arrayList.add(getFinance_HashMap);
-        return ResponseEntity.ok().body(getFinance_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tDocument_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tDocument_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tDocument_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getClimateConditions_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tFile_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getClimateConditions_HashMap = new HashMap<>();
-        ArrayList<Object> getClimateConditions_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"ClimateConditions.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getClimateConditions_HashMap.put("table", tableObject_.getTable());
-        getClimateConditions_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getClimateConditions_HashMap.put("value_columns", getClimateConditionsFE(IdFile, NameCompany, jdbcTemplate));
-        getClimateConditions_arrayList.add(getClimateConditions_HashMap);
-        return ResponseEntity.ok().body(getClimateConditions_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tFile_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tFile_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tFile_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getClimateConditionsNote_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tSignFile_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getClimateConditions_HashMap = new HashMap<>();
-        ArrayList<Object> getClimateConditions_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"ClimateConditionsNote.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getClimateConditions_HashMap.put("table", tableObject_.getTable());
-        getClimateConditions_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getClimateConditions_HashMap.put("value_columns", getClimateConditionsNoteFE(IdFile, NameCompany, jdbcTemplate));
-        getClimateConditions_arrayList.add(getClimateConditions_HashMap);
-        return ResponseEntity.ok().body(getClimateConditions_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tSignFile_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tSignFile_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tSignFile_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getExpertProjectDocuments_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tPreviousSimpleConclusions_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getExpertProjectDocuments_HashMap = new HashMap<>();
-        ArrayList<Object> getExpertProjectDocuments_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"ExpertProjectDocuments.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getExpertProjectDocuments_HashMap.put("table", tableObject_.getTable());
-        getExpertProjectDocuments_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getExpertProjectDocuments_HashMap.put("value_columns", getExpertProjectDocumentsFE(IdFile, NameCompany, jdbcTemplate));
-        getExpertProjectDocuments_arrayList.add(getExpertProjectDocuments_HashMap);
-        return ResponseEntity.ok().body(getExpertProjectDocuments_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tPreviousSimpleConclusions_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tPreviousSimpleConclusions_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tPreviousSimpleConclusions_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getExperts_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tConclusionNumber_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getExperts_HashMap = new HashMap<>();
-        ArrayList<Object> getExperts_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"Experts.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getExperts_HashMap.put("table", tableObject_.getTable());
-        getExperts_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getExperts_HashMap.put("value_columns", getExpertsFE(IdFile, NameCompany, jdbcTemplate));
-        getExperts_arrayList.add(getExperts_HashMap);
-        return ResponseEntity.ok().body(getExperts_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tConclusionNumber_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tConclusionNumber_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tConclusionNumber_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getDesigner_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tPreviousConclusion_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getDesigner_HashMap = new HashMap<>();
-        ArrayList<Object> getDesigner_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"Designer.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getDesigner_HashMap.put("table", tableObject_.getTable());
-        getDesigner_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getDesigner_HashMap.put("value_columns", getDesignerFE(IdFile, NameCompany, jdbcTemplate));
-        getDesigner_arrayList.add(getDesigner_HashMap);
-        return ResponseEntity.ok().body(getDesigner_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tPreviousConclusion_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tPreviousConclusion_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tPreviousConclusion_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getSummary_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tPreviousSimpleConclusion_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getSummary_HashMap = new HashMap<>();
-        ArrayList<Object> getSummary_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"Summary.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getSummary_HashMap.put("table", tableObject_.getTable());
-        getSummary_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getSummary_HashMap.put("value_columns", getSummaryFE(IdFile, NameCompany, jdbcTemplate));
-        getSummary_arrayList.add(getSummary_HashMap);
-        return ResponseEntity.ok().body(getSummary_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tPreviousSimpleConclusion_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tPreviousSimpleConclusion_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tPreviousSimpleConclusion_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> getExaminationObject_object(
+    public static ResponseEntity<?> getDescription_of_the_complex_tObject_type(
             Integer IdFile,
             String NameCompany,
             JdbcTemplate jdbcTemplate
-    ) {
+    ){
         org.w3c.dom.Document doc = builder.newDocument();
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        HashMap<Object, Object> getExaminationObject_HashMap = new HashMap<>();
-        ArrayList<Object> getExaminationObject_arrayList = new ArrayList<>();
-        File file_1 = new File(absolutePathTablesDir+"ExaminationObject.json");
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(file_1);
-        System.out.println(rootNode.get("table").get("columns").size());
-        TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
-        getExaminationObject_HashMap.put("table", tableObject_.getTable());
-        getExaminationObject_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
-        getExaminationObject_HashMap.put("value_columns", getExaminationObjectFE(IdFile, NameCompany, jdbcTemplate));
-        getExaminationObject_arrayList.add(getExaminationObject_HashMap);
-        return ResponseEntity.ok().body(getExaminationObject_arrayList);
+        System.out.println(rootNode.get("description_of_the_complex_tObject_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tObject_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tObject_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tObjectPart_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tObjectPart_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tObjectPart_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tObjectPart_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tTEI_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tTEI_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tTEI_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tTEI_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tDeclarant_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tDeclarant_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tDeclarant_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tDeclarant_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tTechnicalCustomer_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tTechnicalCustomer_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tTechnicalCustomer_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tTechnicalCustomer_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tFinance_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tFinance_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tFinance_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tFinance_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tClimateConditions_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tClimateConditions_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tClimateConditions_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tClimateConditions_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tEstimatedCost_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tEstimatedCost_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tEstimatedCost_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tEstimatedCost_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tComplexEstimatedCost_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tComplexEstimatedCost_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tComplexEstimatedCost_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tComplexEstimatedCost_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tDesigner_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tDesigner_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tDesigner_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tDesigner_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tEEPDUse_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tEEPDUse_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tEEPDUse_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tEEPDUse_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tEngineeringSurveyAddress_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tEngineeringSurveyAddress_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tEngineeringSurveyAddress_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tEngineeringSurveyAddress_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tExperts_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tExperts_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tExperts_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tExperts_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tExpert_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tExpert_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tExpert_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tExpert_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tExpertEngineeringSurveys_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tExpertEngineeringSurveys_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tExpertEngineeringSurveys_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tExpertEngineeringSurveys_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tEngineeringSurveyMismatches_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tEngineeringSurveyMismatches_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tEngineeringSurveyMismatches_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tEngineeringSurveyMismatches_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tExpertProjectDocuments_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tExpertProjectDocuments_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tExpertProjectDocuments_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tExpertProjectDocuments_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tExpertProjectDocuments_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tExpertProjectDocuments_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tExpertProjectDocuments_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tExpertProjectDocuments_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tProjectDocumentsMismatches_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tProjectDocumentsMismatches_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tProjectDocumentsMismatches_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tProjectDocumentsMismatches_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tExpertEstimate_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tExpertEstimate_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tExpertEstimate_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tExpertEstimate_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tEstimateMismatches_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tEstimateMismatches_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tEstimateMismatches_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tEstimateMismatches_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tSummary_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tSummary_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tSummary_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tSummary_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tMismatch_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tMismatch_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tMismatch_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tMismatch_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tMismatchExtended_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tMismatch_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tMismatchExtended_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tMismatchExtended_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getDescription_of_the_complex_tSeismicActivityCalculatedValue_type(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("description_of_the_complex_tSeismicActivityCalculatedValue_type"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("description_of_the_complex_tSeismicActivityCalculatedValue_type"));
+        getExpertOrganization_HashMap.put("value_columns", description_of_the_complex_tSeismicActivityCalculatedValue_typeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getForm_examination_tExaminationForm(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("form_examination_tExaminationForm"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("form_examination_tExaminationForm"));
+        getExpertOrganization_HashMap.put("value_columns", form_examination_tExaminationFormFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getResult_examination_tExaminationResult(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("result_examination_tExaminationResult"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("result_examination_tExaminationResult"));
+        getExpertOrganization_HashMap.put("value_columns", result_examination_tExaminationResultFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getView_examination_tExaminationStage(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("view_examination_tExaminationStage"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("view_examination_tExaminationStage"));
+        getExpertOrganization_HashMap.put("value_columns", view_examination_tExaminationStageFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getView_object_examination_tExaminationObjectType(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("view_object_examination_tExaminationObjectType"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("view_object_examination_tExaminationObjectType"));
+        getExpertOrganization_HashMap.put("value_columns", view_object_examination_tExaminationObjectTypeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getView_work_tConstractionType(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("view_work_tConstractionType"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("view_work_tConstractionType"));
+        getExpertOrganization_HashMap.put("value_columns", view_work_tConstractionTypeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getView_work_examination_tDocumentType(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("view_work_examination_tDocumentType"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("view_work_examination_tDocumentType"));
+        getExpertOrganization_HashMap.put("value_columns", view_work_examination_tDocumentTypeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getView_work_capital_construction_tObjectType(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("view_work_capital_construction_tObjectType"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("view_work_capital_construction_tObjectType"));
+        getExpertOrganization_HashMap.put("value_columns", view_work_capital_construction_tObjectTypeFE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getСodes_of_the_subjects_of_the_russian_federation_tRegionsRF(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("codes_of_the_subjects_of_the_russian_federation_tRegionsRF"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("codes_of_the_subjects_of_the_russian_federation_tRegionsRF"));
+        getExpertOrganization_HashMap.put("value_columns", codes_of_the_subjects_of_the_russian_federation_tRegionsRF_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getView_finance_storage_tFinanceType(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("view_finance_storage_tFinanceType"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("view_finance_storage_tFinanceType"));
+        getExpertOrganization_HashMap.put("value_columns", view_finance_storage_tFinanceType_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getBudget_level_tBudgetType(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("budget_level_tBudgetType"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("budget_level_tBudgetType"));
+        getExpertOrganization_HashMap.put("value_columns", budget_level_tBudgetType_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getThe_direction_of_the_expert_activity_tExpertType(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("the_direction_of_the_expert_activity_tExpertType"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("the_direction_of_the_expert_activity_tExpertType"));
+        getExpertOrganization_HashMap.put("value_columns", the_direction_of_the_expert_activity_tExpertType_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getTypes_of_engineering_surveys_tEngineeringSurveyType(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("types_of_engineering_surveys_tEngineeringSurveyType"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("types_of_engineering_surveys_tEngineeringSurveyType"));
+        getExpertOrganization_HashMap.put("value_columns", types_of_engineering_surveys_tEngineeringSurveyType_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getClimatic_region_subdistrict_tClimateDistrict(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("climatic_region_subdistrict_tClimateDistrict"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("climatic_region_subdistrict_tClimateDistrict"));
+        getExpertOrganization_HashMap.put("value_columns", climatic_region_subdistrict_tClimateDistrict_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getCategory_of_complexity_of_engineering_and_geological_conditions_tGeologicalCondition(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("category_of_complexity_of_engineering_and_geological_conditions_tGeologicalCondition"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("category_of_complexity_of_engineering_and_geological_conditions_tGeologicalCondition"));
+        getExpertOrganization_HashMap.put("value_columns", category_of_complexity_of_engineering_and_geological_conditions_tGeologicalCondition_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getThe_wind_district_tWindDistrict(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("the_wind_district_tWindDistrict"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("the_wind_district_tWindDistrict"));
+        getExpertOrganization_HashMap.put("value_columns", the_wind_district_tWindDistrict_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getThe_snow_district_tSnowDistrict(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("the_snow_district_tSnowDistrict"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("the_snow_district_tSnowDistrict"));
+        getExpertOrganization_HashMap.put("value_columns", the_snow_district_tSnowDistrict_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getIntensity_of_seismic_impacts_tSeismicActivity(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("intensity_of_seismic_impacts_tSeismicActivity"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("intensity_of_seismic_impacts_tSeismicActivity"));
+        getExpertOrganization_HashMap.put("value_columns", intensity_of_seismic_impacts_tSeismicActivity_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
+    }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getThe_subject_of_the_examination_tExaminationType(
+            Integer IdFile,
+            String NameCompany,
+            JdbcTemplate jdbcTemplate
+    ){
+        org.w3c.dom.Document doc = builder.newDocument();
+        Element rootElement = doc.createElement("Conclusion");
+        doc.appendChild(rootElement);
+        HashMap<Object, Object> getExpertOrganization_HashMap = new HashMap<>();
+        ArrayList<Object> getExpertOrganization_arrayList = new ArrayList<>();
+        File file_1 = new File(structureData_StructureXMLFile_json);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(file_1);
+        System.out.println(rootNode.get("the_subject_of_the_examination_tExaminationType"));
+        getExpertOrganization_HashMap.put("table", rootNode.get("the_subject_of_the_examination_tExaminationType"));
+        getExpertOrganization_HashMap.put("value_columns", the_subject_of_the_examination_tExaminationType_FE(IdFile, NameCompany, jdbcTemplate));
+        getExpertOrganization_arrayList.add(getExpertOrganization_HashMap);
+        return ResponseEntity.ok().body(getExpertOrganization_arrayList);
     }
 
     @SneakyThrows
@@ -474,15 +1324,22 @@ public class GenerateDocument {
             String NameCompany,
             JdbcTemplate jdbcTemplate
     ) {
-        File file_dir = new File("/home/georgii/Загрузки/uploads/" + NameCompany + "/xml");
-        String DEST_XML = get("/home/georgii/Загрузки/uploads/" + NameCompany + "/xml/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")) + ".xml";
+        // Paths to files
+        File file_dir = new File("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "\\xml");
+        String DEST_XML = get("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "\\xml\\" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")) + ".xml";
+        String DEST_WORD = String.valueOf(get("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "\\" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")));
+        File file_1 = new File(absolutePathMainFileTable+"tableXML.json");
+
+        // check create dir
         CheckMKDir.check_dir_exist(file_dir);
-        String DEST_WORD = String.valueOf(get("/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")));
+
+        // builder for document
         builder = factory.newDocumentBuilder();
         org.w3c.dom.Document doc = builder.newDocument();
+
+        // create elements
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        File file_1 = new File(absolutePathMainFileTable+"tableXML.json");
         ObjectMapper objectMapper = new ObjectMapper();
         TablesObject tablesObject = objectMapper.readValue(file_1, new TypeReference<>() {});
         rootElement.setAttribute("ConclusionGUID", "d1ca32e2-a8f0-4776-a499-1d946c6f6064");
@@ -524,8 +1381,7 @@ public class GenerateDocument {
         reader.close();
         JsonNode rootNode = objectMapper.readTree(file_1);
         int objectCount = rootNode.get("tables").size();
-        String FileName = jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name").toString();
-        domainBeanPdf.setName_file(Collections.singletonList((FileName.replace(".docx", "")) + ".xml"));
+        domainBeanPdf.setName_file(Collections.singletonList("conclusion_" + UUID.randomUUID() + ".xml"));
         domainBeanPdf.setContent_file(Collections.singletonList(arrayList1.toArray()));
         domainBeanPdf.setTables(tablesObject.getTables());
         domainBeanPdf.setCount_tables(objectCount);

@@ -66,9 +66,17 @@ public class GetApprover {
             Approver.appendChild(getOrgElementsValueTXT(doc, "FirstName", "Файл не найден"));
             Approver.appendChild(getOrgElementsValueTXT(doc, "SecondName", "Файл не найден"));
             Approver.appendChild(getOrgElementsValueTXT(doc, "Position", "Файл не найден"));
-            if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select * from xml_project.public.approver_object_xml where family_name_value=? and second_name_value=? and position_value=? and id_file=? and name_company=?)", Boolean.class, "Файл не найден", "Файл не найден", "Файл не найден", IDFile, NameCompany))) {
-                jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
-                                "first_name_value, second_name_value, position_value, name_company, id_file, id_transaction) " +
+            if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select " +
+                    "exists(select * from xml_project.public.approver_object_xml " +
+                    "where family_name_value=? and second_name_value=? and " +
+                    "position_value=? and id_file=? and name_company=?)",
+                    Boolean.class, "Файл не найден", "Файл не найден",
+                    "Файл не найден", IDFile, NameCompany
+            ))) {
+                jdbcTemplate.update("insert into " +
+                                "xml_project.public.approver_object_xml(family_name_value, " +
+                                "first_name_value, second_name_value, position_value, " +
+                                "name_company, id_file, id_transaction) " +
                                 "values (?, ?, ?, ?, ?, ?, ?)",
                         "Файл не найден", "Файл не найден", "Файл не найден", "Файл не найден",
                         IDFile, NameCompany, UUID.randomUUID());
@@ -92,7 +100,8 @@ public class GetApprover {
                 if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select * from xml_project.public.approver_object_xml where family_name_value=? and first_name_value=? and second_name_value=? and position_value=? and id_file=? and name_company=?)", Boolean.class, Arrays.stream(infoPersonsArr).toList().get(0),
                         Arrays.stream(infoPersonsArr).toList().get(0), Arrays.stream(infoPersonsArr).toList().get(0), position, IDFile, NameCompany))) {
                     jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
-                                    "first_name_value, second_name_value, position_value, name_company, id_file, id_transaction) values (?, ?, ?, ?, ?, ?, ?)",
+                                    "first_name_value, second_name_value, " +
+                                    "position_value, name_company, id_file, id_transaction) values (?, ?, ?, ?, ?, ?, ?)",
                             Arrays.stream(infoPersonsArr).toList().get(0),
                             Arrays.stream(infoPersonsArr).toList().get(0), Arrays.stream(infoPersonsArr).toList().get(0), position, NameCompany, IDFile, UUID.randomUUID());
                 }
@@ -104,7 +113,8 @@ public class GetApprover {
                 if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select * from xml_project.public.approver_object_xml where family_name_value=? and second_name_value=? and position_value=? and id_file=? and name_company=?)", Boolean.class, "Документ word является пустым",
                         "Документ word является пустым", "Документ word является пустым", "Документ word является пустым", IDFile, NameCompany))) {
                     jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
-                                    "first_name_value, second_name_value, position_value, name_company, id_file, id_transaction) values (?, ?, ?, ?, ?, ?, ?)",
+                                    "first_name_value, second_name_value, " +
+                                    "position_value, name_company, id_file, id_transaction) values (?, ?, ?, ?, ?, ?, ?)",
                             "Документ word является пустым",
                             "Документ word является пустым", "Документ word является пустым", "Документ word является пустым", NameCompany, IDFile, UUID.randomUUID());
                 }

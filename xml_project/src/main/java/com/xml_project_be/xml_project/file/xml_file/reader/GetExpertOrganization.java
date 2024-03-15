@@ -84,7 +84,8 @@ public class GetExpertOrganization {
                     "Такой файл не найден", "Такой файл не найден",
                     "Такой файл не найден", "Такой файл не найден",
                     "Такой файл не найден", "Такой файл не найден",
-                    "Такой файл не найден", "Такой файл не найден", IdFile, NameCompany))) {
+                    "Такой файл не найден", "Такой файл не найден",
+                    "Такой файл не найден", IdFile, NameCompany))) {
                 jdbcTemplate.update("insert into " +
                                 "xml_project.public.expert_organization_object_xml(" +
                                 "org_full_name_value, org_ogrn_value, org_inn_value, " +
@@ -572,7 +573,8 @@ public class GetExpertOrganization {
                                 "Значение не заданно", "Значение не заданно",
                                 "Значение не заданно", "Значение не заданно",
                                 "Значение не заданно", "г. " + substring.trim(),
-                                "Значение не заданно", "Значение не заданно", IdFile, NameCompany))) {
+                                "Значение не заданно", "Значение не заданно",
+                                "Значение не заданно", IdFile, NameCompany))) {
                             jdbcTemplate.update("insert into " +
                                             "xml_project.public.expert_organization_object_xml(" +
                                             "org_full_name_value, org_ogrn_value, org_inn_value, " +
@@ -606,7 +608,8 @@ public class GetExpertOrganization {
                                     "Значение не заданно", "Значение не заданно",
                                     "Значение не заданно", "Значение не заданно",
                                     "Значение не заданно", "Значение не заданно",
-                                    substring_1.trim(), "Значение не заданно", IdFile, NameCompany))) {
+                                    substring_1.trim(), "Значение не заданно",
+                                    "Значение не заданно", IdFile, NameCompany))) {
                                 jdbcTemplate.update("insert into " +
                                                 "xml_project.public.expert_organization_object_xml(" +
                                                 "org_full_name_value, org_ogrn_value, org_inn_value, " +
@@ -639,7 +642,7 @@ public class GetExpertOrganization {
                                         "Значение не заданно", "Значение не заданно",
                                         "Значение не заданно", "Значение не заданно",
                                         "Значение не заданно", "Значение не заданно",
-                                        substring_2.trim(), "Значение не заданно", IdFile, NameCompany))) {
+                                        "Значение не заданно", substring_2.trim(), "Значение не заданно", IdFile, NameCompany))) {
                                     jdbcTemplate.update("insert into " +
                                                     "xml_project.public.expert_organization_object_xml(" +
                                                     "org_full_name_value, org_ogrn_value, org_inn_value, " +
@@ -673,7 +676,8 @@ public class GetExpertOrganization {
                                             "Значение не заданно", "Значение не заданно",
                                             "Значение не заданно", "Значение не заданно",
                                             "Значение не заданно", "Значение не заданно",
-                                            "Значение не заданно", substring_3.trim(), IdFile, NameCompany))) {
+                                            "Значение не заданно", "Значение не заданно",
+                                            substring_3.trim(), IdFile, NameCompany))) {
                                         jdbcTemplate.update("insert into " +
                                                         "xml_project.public.expert_organization_object_xml(" +
                                                         "org_full_name_value, org_ogrn_value, org_inn_value, " +

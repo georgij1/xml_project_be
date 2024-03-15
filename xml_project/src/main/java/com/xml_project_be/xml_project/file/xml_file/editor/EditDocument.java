@@ -261,4 +261,69 @@ public class EditDocument {
                 "IdFile - " + IdFile + ", NameCompany - " + NameCompany + ", column_value - "
                 + column_value + ", id_transaction - " + id_transaction + ", tableName - " + tableName);
     }
+
+    @SneakyThrows
+    public static ResponseEntity<?> getCreateRow(
+            JdbcTemplate jdbcTemplate,
+            String column_name,
+            String column_value,
+            String TableName,
+            String NameCompany,
+            Integer IdFile
+    ) {
+        if (TableName.equals("ExpertOrganization")) {
+            if (column_name.equals("org_full_name_value")) {
+                jdbcTemplate.update("insert into xml_project.public.expert_organization_object_xml(" +
+                        "org_full_name_value, " +
+                        "org_ogrn_value, " +
+                        "org_inn_value, " +
+                        "org_kpp_value, " +
+                        "region_value, " +
+                        "city_value, " +
+                        "street_value, " +
+                        "building_value, " +
+                        "room_value, " +
+                        "name_company, " +
+                        "id_file, " +
+                        "id_transaction" +
+                        ") VALUES (" +
+                        "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" +
+                        ")", column_value, "Вы ещё не заполнили это поле", "Вы ещё не заполнили это поле",
+                        "Вы ещё не заполнили это поле", "Вы ещё не заполнили это поле", "Вы ещё не заполнили это поле",
+                        "Вы ещё не заполнили это поле", "Вы ещё не заполнили это поле", "Вы ещё не заполнили это поле",
+                        NameCompany, IdFile, UUID.randomUUID()
+                );
+            }
+
+            else {
+                jdbcTemplate.update("insert into xml_project.public.expert_organization_object_xml(" +
+                    "org_full_name_value, " +
+                    "org_ogrn_value, " +
+                    "org_inn_value, " +
+                    "org_kpp_value, " +
+                    "region_value, " +
+                    "city_value, " +
+                    "street_value, " +
+                    "building_value, " +
+                    "room_value, " +
+                    "name_company, " +
+                    "id_file, " +
+                    "id_transaction" +
+                    ") VALUES (" +
+                    "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" +
+                    ")",
+                        "Имя такой колонки не найдено",
+                        "Вы ещё не заполнили это поле", "Вы ещё не заполнили это поле",
+                    "Вы ещё не заполнили это поле", "Вы ещё не заполнили это поле", "Вы ещё не заполнили это поле",
+                    "Вы ещё не заполнили это поле", "Вы ещё не заполнили это поле", "Вы ещё не заполнили это поле",
+                    NameCompany, IdFile, UUID.randomUUID()
+                );
+            }
+            return ResponseEntity.ok().body("Запись успешно сохранена");
+        }
+
+        else {
+            return ResponseEntity.ok().body("Таблицы с таким именем нет");
+        }
+    }
 }
