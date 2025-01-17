@@ -25,10 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.UUID;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+// import io.swagger.annotations.Api;
+// import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Example API", tags = "Пример API")
+// @Api(value = "Example API", tags = "Пример API")
 @RestController
 @RequestMapping("/file")
 @AllArgsConstructor
@@ -39,7 +39,7 @@ public class ControllerFile {
     public static final String DIRECTORY = "C:\\Users\\Panov\\Downloads\\uploads\\";
 
     // Контроллер для загрузки файла
-    @ApiOperation(value = "Получить пример", notes = "Возвращает пример сообщения")
+    // @ApiOperation(value = "Получить пример", notes = "Возвращает пример сообщения")
     @PostMapping("/upload")
     @SneakyThrows
     public ResponseEntity<List<String>> uploadFiles(
