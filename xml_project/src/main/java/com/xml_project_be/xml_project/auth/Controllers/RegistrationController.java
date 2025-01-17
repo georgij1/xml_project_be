@@ -26,38 +26,40 @@ public class RegistrationController {
             @RequestBody RegistrationForm registrationForm,
             HttpServletResponse response
     ) {
-        System.out.println("registration_user");
-        if (
-            (
-                Objects.equals(registrationForm.getPassword(), "😩🍆💦💦💦")
-            ) &&
-            (
-                Objects.equals(registrationForm.getRepeatPassword(), "😩🍆💦💦💦")
-            )
-        ) {
-            response.sendError(400);
-        }
+        // System.out.println("registration_user");
+        // if (
+        //     (
+        //         Objects.equals(registrationForm.getPassword(), "😩🍆💦💦💦")
+        //     ) &&
+        //     (
+        //         Objects.equals(registrationForm.getRepeatPassword(), "😩🍆💦💦💦")
+        //     )
+        // ) {
+        //     response.sendError(400);
+        // }
 
-        else if ((registrationForm.getLogin().length() > 0 && registrationForm.getPassword().length() >= 8 && registrationForm.getRepeatPassword().length() >= 8)) {
-            if ((Objects.equals(registrationForm.getPassword(), registrationForm.getRepeatPassword()))) {
-                userRepo.create (
-                    registrationForm,
-                    jdbcTemplate
-                );
-                response.setStatus(HttpServletResponse.SC_SEE_OTHER);
-                return "redirect on login";
-            }
+        // else if ((registrationForm.getLogin().length() > 0 && registrationForm.getPassword().length() >= 8 && registrationForm.getRepeatPassword().length() >= 8)) {
+        //     // // if ((Objects.equals(registrationForm.getPassword(), registrationForm.getRepeatPassword()))) {
+        //     // //     userRepo.create (
+        //     // //         registrationForm,
+        //     // //         jdbcTemplate
+        //     // //     );
+        //     // //     response.setStatus(HttpServletResponse.SC_SEE_OTHER);
+        //     // //     return "redirect on login";
+        //     // // }
 
-            else {
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-                    return "redirect on /auth/registration";
-                }
-            }
+        //     // else {
+        //     //         response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+        //     //         return "redirect on /auth/registration";
+        //     //     }
+        //     // }
 
-            else {
-                return "redirect on /auth/ErrorsPage/password_not_correct";
-            }
+        //     // else {
+        //     //     return "redirect on /auth/ErrorsPage/password_not_correct";
+        //     // }
 
-            return "redirect on /auth/registration";
+        //     return "redirect on /auth/registration";
+        // }
+        return "";
     }
 }

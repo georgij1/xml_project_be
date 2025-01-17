@@ -23,14 +23,14 @@ public class ReadWordDocx {
         Integer IDFile
     ) {
         ArrayList<String> arrayListContentFile = new ArrayList<>();
-        DomainBeanFile domainBeanNameFile = new DomainBeanFile();
-        domainBeanNameFile.setNameFile(jdbcTemplate.queryForList("select file_name from files where id_file=?", IDFile).get(0).get("file_name").toString());
-        arrayListContentFile.add(String.valueOf((domainBeanNameFile.getNameFile())));
+        // DomainBeanFile domainBeanNameFile = new DomainBeanFile();
+        // domainBeanNameFile.setNameFile(jdbcTemplate.queryForList("select file_name from files where id_file=?", IDFile).get(0).get("file_name").toString());
+        // arrayListContentFile.add(String.valueOf((domainBeanNameFile.getNameFile())));
 
         String filePath = "/home/georgii/Загрузки/uploads/" + NameCompany + "/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IDFile).get(0).get("file_name");
         File file = new File(filePath);
-        Document document = new Document();
-        document.loadFromFile(filePath);
+        // Document document = new Document();
+        // document.loadFromFile(filePath);
         if (!file.exists()) {
             System.out.println("File not found: " + filePath);
             arrayListContentFile.add("File not found: " + filePath);
@@ -58,11 +58,11 @@ public class ReadWordDocx {
     ) {
         ArrayList<String[]> arrayListContentFile = new ArrayList<>();
         DomainBeanFile domainBeanNameFile = new DomainBeanFile();
-        domainBeanNameFile.setNameFile(jdbcTemplate.queryForList("select file_name from files where id_file=?", IDFile).get(0).get("file_name").toString());
+        // domainBeanNameFile.setNameFile(jdbcTemplate.queryForList("select file_name from files where id_file=?", IDFile).get(0).get("file_name").toString());
         String filePath = "C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "\\" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IDFile).get(0).get("file_name");
         File file = new File(filePath);
-        Document document = new Document();
-        document.loadFromFile(filePath);
+        // Document document = new Document();
+        // document.loadFromFile(filePath);
         if (!file.exists()) {
             System.out.println("File not found: " + filePath);
             arrayListContentFile.add(new String[]{"File not found: " + filePath});

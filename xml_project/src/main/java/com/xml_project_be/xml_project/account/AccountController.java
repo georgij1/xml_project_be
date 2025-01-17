@@ -18,10 +18,10 @@ public class AccountController {
             @RequestBody formChangeData formChangeData
     ) {
         System.out.println(formChangeData);
-        jdbcTemplate.update("update users set username=? where username=?", formChangeData.getNewLogin(), formChangeData.getOldLogin());
-        jdbcTemplate.update("update users set info_person=? where username=?", formChangeData.getInfoPerson(), formChangeData.getNewLogin());
-        jdbcTemplate.update("update company set name_company=? where name_company=?", formChangeData.getNewNameCompany(), formChangeData.getOldNameCompany());
-        jdbcTemplate.update("update files set name_company=? where name_company=?", formChangeData.getNewNameCompany(), formChangeData.getOldNameCompany());
+        // jdbcTemplate.update("update users set username=? where username=?", formChangeData.getNewLogin(), formChangeData.getOldLogin());
+        // jdbcTemplate.update("update users set info_person=? where username=?", formChangeData.getInfoPerson(), formChangeData.getNewLogin());
+        // jdbcTemplate.update("update company set name_company=? where name_company=?", formChangeData.getNewNameCompany(), formChangeData.getOldNameCompany());
+        // jdbcTemplate.update("update files set name_company=? where name_company=?", formChangeData.getNewNameCompany(), formChangeData.getOldNameCompany());
         return formChangeData;
     }
 }
