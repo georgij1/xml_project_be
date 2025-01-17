@@ -4,10 +4,11 @@ import com.xml_project_be.xml_project.auth.auth_forms.RegistrationForm;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import com.xml_project_be.xml_project.auth.User.SHA256PasswordEncoder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-// import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -28,18 +29,18 @@ public class UserRepo {
             JdbcTemplate jdbcTemplate
     ) {
         try {
-            // if (registrationForm.getLogin().length() > 0) {
-            //     // jdbcTemplate.update(
-            //     //         "insert into public.users(username, password_hash) values (?, ?)",
-            //     //         registrationForm.getLogin(),
-            //     //         BCrypt.hashpw(registrationForm.getPassword(), BCrypt.gensalt())
-            //     // );
-            //     System.out.println("регистрация");
-            // }
+            if (registrationForm.getLogin().length() > 0) {
+                jdbcTemplate.update(
+                        "insert into public.users(username, password_hash) values (?, ?)",
+                        registrationForm.getLogin(),
+                        SHA256PasswordEncoder.encodePassword(registrationForm.getPassword())
+                );
+                System.out.println("регистрация");
+            }
 
-            // else {
-            //     System.out.println("Ошибка в регистрации");
-            // }
+            else {
+                System.out.println("Ошибка в регистрации");
+            }
         } catch (DataAccessException exception) {
             return false;
         }
@@ -53,12 +54,10 @@ public class UserRepo {
             @NotNull String password,
             JdbcTemplate jdbcTemplate
     ) {
-        System.out.println("valid password " + username + " " + password);
         var hashed = jdbcTemplate.queryForObject (
                 "select password_hash from users where username=?",
                 String.class, username
         );
-        // return BCrypt.checkpw(password, Objects.requireNonNull(hashed));
-        return Boolean.TRUE;
+        return SHA256PasswordEncoder.matches(password, hashed);
     }
 }

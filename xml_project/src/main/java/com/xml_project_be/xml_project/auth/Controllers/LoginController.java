@@ -29,23 +29,22 @@ public class LoginController {
             HttpServletRequest request,
             UserRepo userRepo
     ) {
-        // if (
-        //     loginForm.getLogin() == null
-        //     && loginForm.getPassword() == null
-        // ) {
-        //     return null_fields.null_login_fields();
-        // }
+        if (
+            loginForm.getLogin() == null
+            && loginForm.getPassword() == null
+        ) {
+            return null_fields.null_login_fields();
+        }
 
-        // else  {
-            // return login_cookies.cookies_login(
-            //         loginForm.getLogin(),
-            //         loginForm.getPassword(),
-            //         response,
-            //         request,
-            //         userRepo,
-            //         jdbcTemplate
-            // );
-        // }
-        return null_fields.null_login_fields();
+        else  {
+            return login_cookies.cookies_login(
+                    loginForm.getLogin(),
+                    loginForm.getPassword(),
+                    response,
+                    request,
+                    userRepo,
+                    jdbcTemplate
+            );
+        }
     }
 }
