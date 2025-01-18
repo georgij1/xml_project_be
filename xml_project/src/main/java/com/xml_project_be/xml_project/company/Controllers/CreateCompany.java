@@ -1,8 +1,7 @@
 package com.xml_project_be.xml_project.company.Controllers;
 
-import com.xml_project_be.xml_project.aop.CheckHeader;
-import com.xml_project_be.xml_project.company.Dao.AuthCompanyDao;
-import com.xml_project_be.xml_project.company.Dao.CreateCompanyDao;
+import com.xml_project_be.xml_project.company.Dto.AuthCompanyDto;
+import com.xml_project_be.xml_project.company.Dto.CreateCompanyDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -30,14 +29,10 @@ public class CreateCompany {
 
     @PostMapping("/auth")
     @ResponseBody
-    // @CheckHeader
-    public ResponseEntity<String> AuthCompany(@RequestBody AuthCompanyDao authCompany) throws IOException {
-        System.out.println(authCompany.getNameCompany());
-        System.out.println(authCompany.getPassword());
-
+    public ResponseEntity<String> AuthCompany(@RequestBody AuthCompanyDto authCompany) throws IOException {
         if (Boolean.TRUE.equals(jdbcTemplate.queryForObject
                 ("select exists(select * from company where name_company=?)",
-                Boolean.class, authCompany.getNameCompany())
+                Boolean.class, authCompany.getname_company())
         )) {
             if (Boolean.TRUE.equals(jdbcTemplate.queryForObject("select exists(select * from company where password_company=?)", Boolean.class, authCompany.getPassword()))) {
                 return new ResponseEntity<>("Success auth in company auth", HttpStatus.OK);
@@ -55,8 +50,7 @@ public class CreateCompany {
 
     @PostMapping("/create")
     @ResponseBody
-    // @CheckHeader
-    public String all_company(@RequestBody CreateCompanyDao createCompany) {
+    public String all_company(@RequestBody CreateCompanyDto createCompany) {
         create_dir_company(createCompany.getName_company());
         System.out.println(createCompany.getName_company());
         System.out.println(createCompany.getPassword_company());

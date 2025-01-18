@@ -3,7 +3,6 @@ package com.xml_project_be.xml_project.auth.Controllers;
 import com.xml_project_be.xml_project.auth.User.UserRepo;
 import com.xml_project_be.xml_project.auth.auth_forms.LoginForm;
 import com.xml_project_be.xml_project.auth.check_cookies.login_cookies;
-import com.xml_project_be.xml_project.auth.check_valid_fields.login.null_fields;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -33,7 +32,7 @@ public class LoginController {
             loginForm.getLogin() == null
             && loginForm.getPassword() == null
         ) {
-            return null_fields.null_login_fields();
+            return "all fields in LoginForm are null";
         }
 
         else  {

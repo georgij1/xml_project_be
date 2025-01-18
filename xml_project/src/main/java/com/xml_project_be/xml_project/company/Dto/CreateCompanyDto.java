@@ -1,9 +1,9 @@
-package com.xml_project_be.xml_project.company.Dao;
+package com.xml_project_be.xml_project.company.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-public class CreateCompanyDao {
+public class CreateCompanyDto {
     @JsonProperty("name_company")
     private String name_company;
     

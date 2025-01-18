@@ -1,8 +1,14 @@
 package com.xml_project_be.xml_project.file.xml_file.reader;
 
-import lombok.Data;
-
-@Data
 public class TableObject {
-    public Object table;
+    private Object table;
+
+    // Getter и Setter для table
+    public Object getTable() {
+        return table;
+    }
+
+    public void setTable(Object table) {
+        this.table = table;
+    }
 }
