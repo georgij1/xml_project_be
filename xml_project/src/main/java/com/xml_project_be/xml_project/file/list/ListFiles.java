@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class ListFiles {
     public static ResponseEntity<?> listFiles(JdbcTemplate jdbcTemplate, Form NameCompany) {
-        if (Boolean.TRUE.equals(jdbcTemplate.queryForObject("select exists(select name_company from files where name_company=?)", Boolean.class, NameCompany.getNameCompany()))) {
+        if (Boolean.TRUE.equals(jdbcTemplate.queryForObject("select exists(select name_company from files where name_company=?)", Boolean.class, NameCompany.getname_company()))) {
             return ResponseEntity.ok().body(
-                    jdbcTemplate.queryForList("select * from files where name_company=?", NameCompany.getNameCompany())
+                    jdbcTemplate.queryForList("select * from files where name_company=?", NameCompany.getname_company())
             );
         } 
 

@@ -26,7 +26,6 @@ public class BodyGetEditedFields {
     @Min(1)
     private Integer id_file;
 
-    // Getter и Setter для table_name
     public String getTable_name() {
         return table_name;
     }
@@ -35,7 +34,6 @@ public class BodyGetEditedFields {
         this.table_name = table_name;
     }
 
-    // Getter и Setter для column_value
     public String getColumn_value() {
         return column_value;
     }
@@ -44,7 +42,6 @@ public class BodyGetEditedFields {
         this.column_value = column_value;
     }
 
-    // Getter и Setter для column_name
     public String getColumn_name() {
         return column_name;
     }
@@ -53,7 +50,6 @@ public class BodyGetEditedFields {
         this.column_name = column_name;
     }
 
-    // Getter и Setter для company_name
     public String getCompany_name() {
         return company_name;
     }
@@ -62,7 +58,6 @@ public class BodyGetEditedFields {
         this.company_name = company_name;
     }
 
-    // Getter и Setter для id_transaction
     public UUID getId_transaction() {
         return id_transaction;
     }
@@ -71,7 +66,6 @@ public class BodyGetEditedFields {
         this.id_transaction = id_transaction;
     }
 
-    // Getter и Setter для id_file
     public Integer getId_file() {
         return id_file;
     }

@@ -32,8 +32,6 @@ public class EditApprover {
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
                     NameCompany,
                     IdFile,
                     UUID.randomUUID()
@@ -45,8 +43,6 @@ public class EditApprover {
                             "position_value, name_company, id_file, " +
                             "id_transaction) VALUES " +
                             "(?, ?, ?, ?, ?, ?, ?)",
-                    "У вас нет доступа на редактирование id_transaction",
-                    "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
                     "У вас нет доступа на редактирование id_transaction",
