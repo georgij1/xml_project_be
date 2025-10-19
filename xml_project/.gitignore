@@ -51,4 +51,4 @@ fabric.properties
 
 # *.iml
 # modules.xml
-.vscode/*
+../.vscode/settings.json
