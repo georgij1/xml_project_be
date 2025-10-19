@@ -52,3 +52,6 @@ fabric.properties
 
 # *.iml
 # modules.xml
+
+# another ignore
+.vscode/settings.json
