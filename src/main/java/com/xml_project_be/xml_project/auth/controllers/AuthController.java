@@ -1,10 +1,8 @@
 package com.xml_project_be.xml_project.auth.controllers;
 
-import com.xml_project_be.xml_project.auth.authForms.LoginForm;
-import com.xml_project_be.xml_project.auth.authForms.RegistrationForm;
-import com.xml_project_be.xml_project.auth.checkCookies.LoginCookies;
-import com.xml_project_be.xml_project.auth.user.UserRepo;
-
+import com.xml_project_be.xml_project.auth.dto.Auth;
+import com.xml_project_be.xml_project.auth.repositories.UserRepo;
+import com.xml_project_be.xml_project.auth.services.LoginService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -24,30 +22,17 @@ public class AuthController {
     @PostMapping("/login")
     @ResponseBody
     public ResponseEntity<?> login (
-            @RequestBody LoginForm loginForm,
+            @RequestBody Auth loginForm,
             HttpServletResponse response,
             HttpServletRequest request,
             UserRepo userRepo
     ) {
-        return LoginCookies.cookiesLogin(
-            loginForm.getLogin(),
-            loginForm.getPassword(),
-            response,
-            request,
-            userRepo,
-            jdbcTemplate
-        );
+        return LoginService.login(loginForm, userRepo, jdbcTemplate);
     }
 
     @PostMapping("/registration")
     @ResponseBody
-    public ResponseEntity<?> registrationUser (
-        @RequestBody RegistrationForm registrationForm,
-        HttpServletResponse response
-    ) {
-        return userRepo.create(
-            registrationForm,
-            jdbcTemplate
-        );
+    public ResponseEntity<?> registrationUser (@RequestBody Auth auth) {
+        return userRepo.create(auth, jdbcTemplate);
     }
 }

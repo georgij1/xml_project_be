@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import com.xml_project_be.xml_project.company.dto.AuthCompanyDto;
 import com.xml_project_be.xml_project.company.dto.CreateCompanyDto;
-
 import java.io.File;
 import java.io.IOException;
 import org.springframework.http.ResponseEntity;
@@ -51,11 +49,7 @@ public class ControllerCompany {
             )
         );
         
-        if (isNameCompany && isPasswordCompany) {
-            return new ResponseEntity<>("Success auth in company", HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>("Name is exists, but password is not correct", HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>("", isNameCompany && isPasswordCompany ? HttpStatus.OK : HttpStatus.FORBIDDEN);
     }
 
     @PostMapping("/create")
@@ -63,7 +57,7 @@ public class ControllerCompany {
     public ResponseEntity<?> all_company(@RequestBody CreateCompanyDto createCompany) {
         createDirCompany(createCompany.getNameCompany());
         
-        jdbcTemplate.update(
+        var isUpdate = jdbcTemplate.update(
             "insert into xml_project.public.company(" +
             "name_company, password_company, desc_company, owner_company) " +
             "VALUES (?, ?, ?, ?)", createCompany.getNameCompany(),
@@ -71,6 +65,6 @@ public class ControllerCompany {
             createCompany.getOwnerCompany()
         );
 
-        return new ResponseEntity<>("success create company", HttpStatus.OK);
+        return new ResponseEntity<>("success create company", isUpdate==0 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 }
