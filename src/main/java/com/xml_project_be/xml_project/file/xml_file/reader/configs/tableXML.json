@@ -1,0 +1,153 @@
+{
+  "tables": {
+    "table_1": {
+      "name": "ExpertOrganization",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "1) Мы сначала ищем существует ли такой файл. ",
+        "item_2": "2) Потом если файл найден то мы проверяем если в нём контент включая если есть в параграфе контент.",
+        "item_3": "3) Потом мы ищем если в первом параграфе запятая.",
+        "item_4": "4) В этом параграфе мы получаем FullName. ",
+        "item_5": "5) Чтобы найти в этой строке FullName. ",
+        "item_6": "6) Для этого в этой строке должно быть ИНН. ",
+        "item_7": "7) Если мы не найдём значение мы вам покажем то что значение не найдено. ",
+        "item_8": "8) Дальше для того, чтобы найти ИНН вы в строке у вас в начале абзаце должно быть ИНН, а в конце должно быть ОГРН. ",
+        "item_9": "9) Дальше в этом самом абзаце мы ищем Регион Для того, чтобы найти ОГРН в абзаце должно быть , ОГРН и , КПП Для того, чтобы найти КПП в абзаце должно быть , КПП и : Для того, чтобы найти Город в абзаце должно быть г. и , ул. Если контент будет пустой вы получите сообщение то что он пустой"
+      },
+      "settings_length": "9"
+    },
+    "table_2": {
+      "name": "Approver",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "1) Мы сначала ищем существует ли такой файл.",
+        "item_2": "2) Потом если файл найден то мы проверяем если в нём контент включая если есть в параграфе контент."
+      },
+      "settings_length": "2"
+    },
+    "table_3": {
+      "name": "ExaminationObject",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "1) Мы сначала ищем существует ли такой файл. "
+      },
+      "settings_length": "1"
+    },
+    "table_4": {
+      "name": "Documents",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_5": {
+      "name": "PreviousConclusions",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_6": {
+      "name": "PreviousSimpleConclusions",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_7": {
+      "name": "Object",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_8": {
+      "name": "Declarant",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_9": {
+      "name": "ProjectDocumentsDeveloper",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_10": {
+      "name": "Finance",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_11": {
+      "name": "ClimateConditions",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_12": {
+      "name": "ClimateConditionsNote",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_13": {
+      "name": "CadastralNumber",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "1) Мы сначала ищем существует ли такой файл.",
+        "item_2": "2) Потом если файл найден то мы проверяем если в нём контент включая если есть в параграфе контент.",
+        "item_3": "3) Потом мы проверяем есть ли запятая в этой строке.",
+        "item_4": "4) В начале этого абзаца должно быть указанно Кадастровый <<номер земельного участка: >>, а в конце <<.>>"
+      },
+      "settings_length": "4"
+    },
+    "table_14": {
+      "name": "ExpertProjectDocuments",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_15": {
+      "name": "Experts",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "1) Мы сначала ищем существует ли такой файл.",
+        "item_2": "2) Потом если файл найден то мы проверяем если в нём контент включая если есть в параграфе контент."
+      },
+      "settings_length": "2"
+    },
+    "table_16": {
+      "name": "Designer",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    },
+    "table_17": {
+      "name": "Summary",
+      "content": "Пустой",
+      "settings": {
+        "item_1": "Настроек нет"
+      },
+      "settings_length": "1"
+    }
+  }
+}

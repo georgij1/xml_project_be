@@ -1,0 +1,62 @@
+{
+  "table": {
+    "TableName": "Documents",
+    "columns": {
+      "column_1": {
+        "name": "Document",
+        "value": "Данных нет"
+      },
+      "column_2": {
+        "name": "DocType",
+        "value": "Данных нет"
+      },
+      "column_3": {
+        "name": "DocName",
+        "value": "Данных нет"
+      },
+      "column_4": {
+        "name": "DocNumber",
+        "value": "Данных нет"
+      },
+      "column_5": {
+        "name": "DocDate",
+        "value": "Данных нет"
+      },
+      "column_6": {
+        "name": "DocIssueAuthor",
+        "value": "Данных нет"
+      },
+      "column_7": {
+        "name": "File",
+        "value": "Данных нет"
+      },
+      "column_8": {
+        "name": "FileName",
+        "value": "Данных нет"
+      },
+      "column_9": {
+        "name": "FileFormat",
+        "value": "Данных нет"
+      },
+      "column_10": {
+        "name": "FileChecksum",
+        "value": "Данных нет"
+      },
+      "column_11": {
+        "name": "FileName (1)",
+        "value": "Данных нет"
+      },
+      "column_12": {
+        "name": "FileFormat (1)",
+        "value": "Данных нет"
+      },
+      "column_13": {
+        "name": "FileChecksum (1)",
+        "value": "Данных нет"
+      },
+      "column_14": {
+        "name": "IdTransaction"
+      }
+    }
+  }
+}
