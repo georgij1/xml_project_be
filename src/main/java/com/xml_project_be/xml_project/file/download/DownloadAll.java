@@ -7,6 +7,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
+import com.xml_project_be.xml_project.file.dto.ReadFileDTO;
+
 import java.io.File;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -15,19 +18,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class DownloadAll {
-    private static final String DIRECTORY = System.getProperty("user.home") + File.separator + "xmlApp" + File.separator + "uploads";
+    private static String path = System.getProperty("user.home") + File.separator + "xmlApp" + File.separator + "uploads";
 
     @SneakyThrows
     public static ResponseEntity<Resource> downloadAll(
-        String filename, 
-        String companyName
+        ReadFileDTO readFileDTO
     ) {
+        var companyName = readFileDTO.getNameCompany();
+        var fileId = readFileDTO.getFileID();
+
         Path companyDir = Paths.get(
-            DIRECTORY, 
+            path, 
             companyName
-        ).toAbsolutePath().normalize();
+        )
+            .toAbsolutePath()
+            .normalize();
         
-        Path filePath = companyDir.resolve(filename).normalize();
+        Path filePath = companyDir.resolve(fileId.toString()).normalize();
         
         if (
             !filePath.startsWith(companyDir)
@@ -57,12 +64,12 @@ public class DownloadAll {
             filePath
         );
         String encodedFilename = URLEncoder.encode(
-            filename, 
+            fileId.toString(), 
             StandardCharsets.UTF_8
         ).replaceAll("\\+", "%20");
         
         HttpHeaders headers = new HttpHeaders();
-        headers.add("File-Name", filename);
+        headers.add("File-Name", fileId.toString());
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + encodedFilename + "\"");
         
         return ResponseEntity.ok()

@@ -2,49 +2,38 @@ package com.xml_project_be.xml_project.file;
 
 import com.xml_project_be.xml_project.file.delete.Delete;
 import com.xml_project_be.xml_project.file.download.DownloadAll;
-import com.xml_project_be.xml_project.file.form.Form;
+import com.xml_project_be.xml_project.file.dto.BodyGetEditedFieldsDTO;
+import com.xml_project_be.xml_project.file.dto.CreateRowDTO;
+import com.xml_project_be.xml_project.file.dto.GetTableDTO;
+import com.xml_project_be.xml_project.file.dto.ListFilesDTO;
+import com.xml_project_be.xml_project.file.dto.ReadFileDTO;
+import com.xml_project_be.xml_project.file.dto.ReadFileSplitWordDTO;
+import com.xml_project_be.xml_project.file.dto.UploadFilesDTO;
 import com.xml_project_be.xml_project.file.list.ListFiles;
 import com.xml_project_be.xml_project.file.pdf_file.ReadPdf;
 import com.xml_project_be.xml_project.file.upload.UploadFiles;
 import com.xml_project_be.xml_project.file.word_file.ReadWordDocx;
-import com.xml_project_be.xml_project.file.xml_file.editor.BodyGetEditedFields;
-import com.xml_project_be.xml_project.file.xml_file.editor.CreateRow;
 import com.xml_project_be.xml_project.file.xml_file.editor.EditDocument;
 import com.xml_project_be.xml_project.file.xml_file.reader.GenerateDocument;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import java.util.List;
 
 @RestController
 @RequestMapping("/file")
 @AllArgsConstructor
 public class ControllerFile {
     JdbcTemplate jdbcTemplate;
-    HttpServletResponse response;
-    HttpServletRequest request;
 
     @PostMapping("/upload")
     @SneakyThrows
-    public ResponseEntity<List<String>> uploadFiles(
-        @RequestParam("files") List<MultipartFile> multipartFiles,
-        @RequestParam("NameCompany") String NameCompany,
-        @RequestParam("Author") String Author,
-        @RequestParam("TimeStamp") String TimeStamp,
-        @RequestParam("TypeFile") String TypeFile
+    public ResponseEntity<?> uploadFiles(
+        @RequestBody UploadFilesDTO uploadFiles
     ) {
         return UploadFiles.uploadFilesDoc(
-            response, 
-            multipartFiles, 
-            NameCompany, 
-            Author, 
-            TimeStamp, 
-            TypeFile, 
+            uploadFiles, 
             jdbcTemplate
         );
     }
@@ -53,83 +42,71 @@ public class ControllerFile {
     @CrossOrigin("*")
     @SneakyThrows
     public ResponseEntity<?> listFiles(
-        @RequestBody Form nameCompany
+        @RequestBody ListFilesDTO listFilesDTO
     ) {
         return ListFiles.listFiles(
             jdbcTemplate, 
-            nameCompany
+            listFilesDTO
         );
     }
 
-    @GetMapping("/read/{NameCompany}/{FileName}")
+    @GetMapping("/read")
     @CrossOrigin("*")
     @ResponseBody
     @SneakyThrows
     public ResponseEntity<?> readFile(
-        @PathVariable("FileName") Integer FileID,
-        @PathVariable("NameCompany") String NameCompany
+        @RequestBody ReadFileDTO readFileDTO
     ) {
         return ReadWordDocx.readWordDocx(
-            NameCompany, 
-            jdbcTemplate, 
-            FileID
+            readFileDTO,
+            jdbcTemplate
         );
     }
 
-    @GetMapping("/read/split_words/{NameCompany}/{FileName}")
+    @GetMapping("/read/split_words")
     @CrossOrigin("*")
     @SneakyThrows
     public ResponseEntity<?> readFileSplitWord(
-            @PathVariable("FileName") Integer FileID,
-            @PathVariable("NameCompany") String NameCompany
+        @RequestBody ReadFileSplitWordDTO readFileSplitWordDTO
     ) {
         return ReadWordDocx.readWordDocxSplitWords(
-            NameCompany, 
-            jdbcTemplate, 
-            FileID
+            readFileSplitWordDTO, 
+            jdbcTemplate
         );
     }
 
-    @GetMapping("/read/XML/{NameCompany}/{FileName}")
+    @GetMapping("/read/XML")
     @CrossOrigin("*")
     @ResponseBody
     @SneakyThrows
     public ResponseEntity<?> readXMLFile(
-        @PathVariable("FileName") Integer IdFile,
-        @PathVariable("NameCompany") String NameCompany
+        @RequestBody ReadFileDTO readFileDTO
     ) {
         return GenerateDocument.generateDocument(
-            IdFile, 
-            NameCompany, 
+            readFileDTO,
             jdbcTemplate
         );
     }
 
-    @GetMapping("/read/PDF/{NameCompany}/{FileName}")
+    @GetMapping("/read/PDF")
     @CrossOrigin("*")
     @ResponseBody
     @SneakyThrows
     public ResponseEntity<?> readPDFFile(
-        @PathVariable("FileName") Integer IdFile,
-        @PathVariable("NameCompany") String NameCompany
+        @RequestBody ReadFileDTO readFileDTO
     ) {
         return ReadPdf.readPdf(
-            IdFile, 
-            NameCompany, 
+            readFileDTO, 
             jdbcTemplate
         );
     }
 
-    @GetMapping("/download/{NameCompany}/{filename}")
+    @GetMapping("/download/all")
     @SneakyThrows
     public ResponseEntity<?> downloadFiles(
-        @PathVariable("filename") String filename,
-        @PathVariable("NameCompany") String NameCompany
+        @RequestBody ReadFileDTO readFileDTO
     ) {
-        return DownloadAll.downloadAll(
-            filename, 
-            NameCompany
-        );
+        return DownloadAll.downloadAll(readFileDTO);
     }
 
     @DeleteMapping("/delete/file/{NameCompany}/{NameFile}")
@@ -137,13 +114,11 @@ public class ControllerFile {
     @CrossOrigin("*")
     @SneakyThrows
     public ResponseEntity<?> deleteFile(
-        @PathVariable("NameCompany") String NameCompany,
-        @PathVariable("NameFile") Integer IdFile
+        @RequestBody ReadFileDTO readFileDTO
     ) {
         return Delete.delete(
-            NameCompany, 
-            jdbcTemplate, 
-            IdFile
+            readFileDTO,
+            jdbcTemplate
         );
     }
 
@@ -152,9 +127,7 @@ public class ControllerFile {
     @CrossOrigin("*")
     @SneakyThrows
     public ResponseEntity<?> getTable(
-            @PathVariable("NameTable") String nameObjectXML,
-            @PathVariable("NameCompany") String NameCompany,
-            @PathVariable("NameFile") Integer IdFile
+        @RequestBody GetTableDTO getTableDTO
     ) {
         // if (nameObjectXML.equals("ExpertOrganization")) {
         //     return GenerateDocument.getExpertOrga(IdFile, NameCompany, jdbcTemplate);
@@ -215,16 +188,16 @@ public class ControllerFile {
     @ResponseBody
     @CrossOrigin("*")
     @SneakyThrows
-    public ResponseEntity<?> editTable(@RequestBody BodyGetEditedFields bodyGetEditedFields) {
+    public ResponseEntity<?> editTable(@RequestBody BodyGetEditedFieldsDTO bodyGetEditedFields) {
         if (bodyGetEditedFields.getTable_name().equals("ExpertOrganization")) {
             return EditDocument.setExpertOrganization_object(
-                    jdbcTemplate,
-                    bodyGetEditedFields.getColumn_name(),
-                    bodyGetEditedFields.getColumn_value(),
-                    bodyGetEditedFields.getId_transaction(),
-                    bodyGetEditedFields.getTable_name(),
-                    bodyGetEditedFields.getCompany_name(),
-                    bodyGetEditedFields.getId_file()
+                jdbcTemplate,
+                bodyGetEditedFields.getColumn_name(),
+                bodyGetEditedFields.getColumn_value(),
+                bodyGetEditedFields.getId_transaction(),
+                bodyGetEditedFields.getTable_name(),
+                bodyGetEditedFields.getCompany_name(),
+                bodyGetEditedFields.getId_file()
             );
         } 
         else if (bodyGetEditedFields.getTable_name().equals("Approver")) {
@@ -419,7 +392,7 @@ public class ControllerFile {
     @CrossOrigin("*")
     @SneakyThrows
     public ResponseEntity<?> createTableRow(
-        @RequestBody CreateRow createRow
+        @RequestBody CreateRowDTO createRow
     ) {
         return EditDocument.getCreateRow(
             jdbcTemplate,

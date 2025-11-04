@@ -4,6 +4,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xml_project_be.xml_project.file.dir.CheckMKDir;
+import com.xml_project_be.xml_project.file.dto.ObjectTableXmlDTO;
+import com.xml_project_be.xml_project.file.dto.ReadFileDTO;
+import com.xml_project_be.xml_project.file.dto.TableObjectDTO;
+import com.xml_project_be.xml_project.file.dto.TablesObjectDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.SneakyThrows;
@@ -1214,7 +1219,7 @@ public class GenerateDocument {
         ObjectMapper objectMapper = new ObjectMapper();
        JsonNode rootNode = objectMapper.readTree(file_1);
        System.out.println(rootNode.get("table").get("columns").size());
-       TableObject tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
+       TableObjectDTO tableObject_ = objectMapper.readValue(file_1, new TypeReference<>() {});
        getNotFound_HashMap.put("table", tableObject_.getTable());
        getNotFound_HashMap.put("count_column_table", rootNode.get("table").get("columns").size());
         getNotFound_HashMap.put("value_columns", getNotFoundFE());
@@ -1223,72 +1228,219 @@ public class GenerateDocument {
     }
 
     @SneakyThrows
-    public static ResponseEntity<?> generateDocument(
-            Integer IdFile,
-            String NameCompany,
-            JdbcTemplate jdbcTemplate
+    private static String getPathFile(
+        String nameCompany,
+        Object getFileName,
+        String formatFile
     ) {
-        File file_dir = new File("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "\\xml");
-        String DEST_XML = get("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "\\xml\\" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")) + ".xml";
-        String DEST_WORD = String.valueOf(get("C:\\Users\\Panov\\Downloads\\uploads\\" + NameCompany + "\\" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name")));
-        File file_1 = new File(file_dir+"tableXML.json");
+        return get("C:\\Users\\Panov\\Downloads\\uploads\\" + nameCompany + "\\xml\\" + getFileName) + formatFile;
+    }
 
-        // check create dir
-        CheckMKDir.check_dir_exist(file_dir);
+    @SneakyThrows
+    public static ResponseEntity<?> generateDocument(
+        ReadFileDTO readFileDTO,
+        JdbcTemplate jdbcTemplate
+    ) {
+        var nameCompany = readFileDTO.getNameCompany();
+        var fileId = readFileDTO.getFileID();
+        var getFileName = jdbcTemplate.queryForList(
+            "select file_name from files where id_file=?", 
+            fileId
+        )
+        .get(0)
+        .get("file_name");
+        ArrayList<ObjectTableXmlDTO> arrayListObjectTables = new ArrayList<>();
+        ObjectTableXmlDTO domainBeanPdf = new ObjectTableXmlDTO();
+        ArrayList<String> arrayListLines = new ArrayList<>();
 
-        // builder for document
+        File fileDir = new File("C:\\Users\\Panov\\Downloads\\uploads\\" + nameCompany + "\\xml");
+
+        CheckMKDir.check_dir_exist(fileDir);
+
         builder = factory.newDocumentBuilder();
         org.w3c.dom.Document doc = builder.newDocument();
 
-        // create elements
+        var pathFileWithOutFormat = getPathFile(nameCompany, getFileName, "");
+        File tableXMLPath = new File(fileDir+"tableXML.json");
+
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
         ObjectMapper objectMapper = new ObjectMapper();
-        TablesObject tablesObject = objectMapper.readValue(file_1, new TypeReference<>() {});
+        TablesObjectDTO tablesObject = objectMapper.readValue(
+            tableXMLPath, 
+            new TypeReference<>() {}
+        );
         rootElement.setAttribute("ConclusionGUID", "d1ca32e2-a8f0-4776-a499-1d946c6f6064");
         rootElement.setAttribute("SchemaVersion", "01.00");
         rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
         rootElement.setAttribute("xsi:noNamespaceSchemaLocation", "conclusion.xsd");
-        rootElement.appendChild(getExpertOrganization(doc, DEST_WORD, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getApprover(doc, DEST_WORD, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getExaminationObject(doc, DEST_WORD, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getDocuments(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getPreviousConclusions(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getPreviousSimpleConclusions(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getCadastralNumber(doc, DEST_WORD, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getObject(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getDeclarant(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getProjectDocumentsDeveloper(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getFinance(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getClimateConditions(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getClimateConditionsNote(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getDesigner(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getExpertProjectDocuments(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getSummary(doc, NameCompany, IdFile, jdbcTemplate));
-        rootElement.appendChild(getExperts(doc, DEST_WORD, NameCompany, IdFile, jdbcTemplate));
+        rootElement.appendChild(
+            getExpertOrganization(
+                doc, 
+                pathFileWithOutFormat, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getApprover(
+                doc, 
+                pathFileWithOutFormat, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getExaminationObject(
+                doc, 
+                pathFileWithOutFormat, 
+                nameCompany, 
+                fileId,
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getDocuments(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getPreviousConclusions(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getPreviousSimpleConclusions(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getCadastralNumber(
+                doc, 
+                pathFileWithOutFormat, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getObject(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getDeclarant(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getProjectDocumentsDeveloper(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getFinance(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getClimateConditions(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getClimateConditionsNote(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getDesigner(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getExpertProjectDocuments(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getSummary(
+                doc, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
+        rootElement.appendChild(
+            getExperts(
+                doc, 
+                pathFileWithOutFormat, 
+                nameCompany, 
+                fileId, 
+                jdbcTemplate
+            )
+        );
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty(
+            OutputKeys.INDENT, 
+            "yes"
+        );
         DOMSource source = new DOMSource(doc);
-        StreamResult file = new StreamResult(new File((file_dir).toURI())+"/" + jdbcTemplate.queryForList("select file_name from files where id_file=?", IdFile).get(0).get("file_name") + ".xml");
-        transformer.transform(source, file);
-        ObjectTableXML domainBeanPdf = new ObjectTableXML();
-        ArrayList<ObjectTableXML> arrayList = new ArrayList<>();
-        File fileXML = new File(DEST_XML);
+        transformer.transform(source, new StreamResult(new File((fileDir).toURI()) + "/" + getFileName + ".xml"));
+
+        File fileXML = new File(pathFileWithOutFormat);
         BufferedReader reader = new BufferedReader(new FileReader(fileXML));
         String line;
-        ArrayList<String> arrayList1 = new ArrayList<>();
+
         while ((line = reader.readLine()) != null) {
-             arrayList1.add(line);
+            arrayListLines.add(line);
         }
         reader.close();
-        JsonNode rootNode = objectMapper.readTree(file_1);
+        JsonNode rootNode = objectMapper.readTree(tableXMLPath);
         int objectCount = rootNode.get("tables").size();
+
         domainBeanPdf.setName_file(Collections.singletonList("conclusion_" + UUID.randomUUID() + ".xml"));
-        domainBeanPdf.setContent_file(Collections.singletonList(arrayList1.toArray()));
+        domainBeanPdf.setContent_file(Collections.singletonList(arrayListLines.toArray()));
         domainBeanPdf.setTables(tablesObject.getTables());
         domainBeanPdf.setCount_tables(objectCount);
-        arrayList.add(domainBeanPdf);
-        return ResponseEntity.ok().body(arrayList);
+        
+        arrayListObjectTables.add(domainBeanPdf);
+        return ResponseEntity.ok().body(arrayListObjectTables);
     }
 }

@@ -1,9 +1,9 @@
-package com.xml_project_be.xml_project.file.createJson;
+package com.xml_project_be.xml_project.file.dto;
 
 import lombok.Data;
 
 @Data
-public class DomainBean {
+public class DomainBeanDTO {
     private String idFile;
     private String fileName;
     private String timeStamp;
