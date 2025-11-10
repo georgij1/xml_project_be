@@ -1,6 +1,6 @@
 package com.xml_project_be.xml_project.file.xml_file.reader;
 
-import com.spire.doc.collections.ParagraphCollection;
+// import com.spire.doc.collections.ParagraphCollection;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -60,90 +60,90 @@ public class GetCadastralNumber {
                         "Файл не найден", NameCompany, IdFile, UUID.randomUUID());
             }
         } else {
-            com.spire.doc.Document document = new com.spire.doc.Document();
-            document.loadFromFile(DEST_WORD);
-            if (document.getSections().getCount() > 0 && document.getSections().get(0).getParagraphs().getCount() > 0) {
-                ParagraphCollection firstParagraph = document.getSections().get(0).getParagraphs();
-                String CadastralNumber = firstParagraph.get(0).getText();
-                int commaIndex = CadastralNumber.indexOf(',');
-                if (commaIndex != -1) {
-                    String startWordCadastralNumber = "Кадастровый номер земельного участка: ";
-                    String endWordOrgCadastralNumber = ".";
-                    int startIndex = CadastralNumber.indexOf(startWordCadastralNumber);
-                    if (startIndex != -1) {
-                        int endIndex = CadastralNumber.indexOf(endWordOrgCadastralNumber, startIndex);
-                        if (endIndex != -1) {
-                            String substring = CadastralNumber.substring(startIndex + startWordCadastralNumber.length(), endIndex);
-                            node.appendChild(doc.createTextNode(substring.trim()));
-                            if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
-                                            "select * from xml_project.public.cadastral_number_object_xml " +
-                                            "where cadastral_number_value=? and " +
-                                            "name_company=? and " +
-                                            "id_file=?)", Boolean.class,
-                                    substring.trim(), NameCompany, IdFile))
-                            ) {
-                                jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                                                "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                                        substring.trim(), NameCompany, IdFile, UUID.randomUUID());
-                            }
-                        }
-                        else {
-                            node.appendChild(doc.createTextNode("Мы не нашли точку в этой строке"));
-                            if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
-                                            "select * from xml_project.public.cadastral_number_object_xml " +
-                                            "where cadastral_number_value=? and " +
-                                            "name_company=? and " +
-                                            "id_file=?)", Boolean.class,
-                                    "Мы не нашли точку в этой строке", NameCompany, IdFile))
-                            ) {
-                                jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                                                "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                                        "Мы не нашли точку в этой строке", NameCompany, IdFile, UUID.randomUUID());
-                            }
-                        }
-                    }
-                    else {
-                        node.appendChild(doc.createTextNode("Кадастровый номер земельного участка: - мы не нашли данные в этой строке"));
-                        if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
-                                        "select * from xml_project.public.cadastral_number_object_xml " +
-                                        "where cadastral_number_value=? and " +
-                                        "name_company=? and " +
-                                        "id_file=?)", Boolean.class,
-                                "Кадастровый номер земельного участка: - мы не нашли данные в этой строке", NameCompany, IdFile))
-                        ) {
-                            jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                                            "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                                    "Кадастровый номер земельного участка: - мы не нашли данные в этой строке",
-                                    NameCompany, IdFile, UUID.randomUUID());
-                        }
-                    }
-                }
-                else {
-                    if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
-                                    "select * from xml_project.public.cadastral_number_object_xml " +
-                                    "where cadastral_number_value=? and " +
-                                    "name_company=? and " +
-                                    "id_file=?)", Boolean.class,
-                            "Мы не нашли запятую в строке", NameCompany, IdFile))
-                    ) {
-                        jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                                        "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                                "Мы не нашли запятую в строке", NameCompany, IdFile, UUID.randomUUID());
-                    }
-                }
-            } else {
-                if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
-                                "select * from xml_project.public.cadastral_number_object_xml " +
-                                "where cadastral_number_value=? and " +
-                                "name_company=? and " +
-                                "id_file=?)", Boolean.class,
-                        "абзацы не найдены в файле", NameCompany, IdFile))
-                ) {
-                    jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
-                                    "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
-                            "абзацы не найдены в файле", NameCompany, IdFile, UUID.randomUUID());
-                }
-            }
+            // com.spire.doc.Document document = new com.spire.doc.Document();
+            // document.loadFromFile(DEST_WORD);
+            // if (document.getSections().getCount() > 0 && document.getSections().get(0).getParagraphs().getCount() > 0) {
+            //     ParagraphCollection firstParagraph = document.getSections().get(0).getParagraphs();
+            //     String CadastralNumber = firstParagraph.get(0).getText();
+            //     int commaIndex = CadastralNumber.indexOf(',');
+            //     if (commaIndex != -1) {
+            //         String startWordCadastralNumber = "Кадастровый номер земельного участка: ";
+            //         String endWordOrgCadastralNumber = ".";
+            //         int startIndex = CadastralNumber.indexOf(startWordCadastralNumber);
+            //         if (startIndex != -1) {
+            //             int endIndex = CadastralNumber.indexOf(endWordOrgCadastralNumber, startIndex);
+            //             if (endIndex != -1) {
+            //                 String substring = CadastralNumber.substring(startIndex + startWordCadastralNumber.length(), endIndex);
+            //                 node.appendChild(doc.createTextNode(substring.trim()));
+            //                 if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+            //                                 "select * from xml_project.public.cadastral_number_object_xml " +
+            //                                 "where cadastral_number_value=? and " +
+            //                                 "name_company=? and " +
+            //                                 "id_file=?)", Boolean.class,
+            //                         substring.trim(), NameCompany, IdFile))
+            //                 ) {
+            //                     jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+            //                                     "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+            //                             substring.trim(), NameCompany, IdFile, UUID.randomUUID());
+            //                 }
+            //             }
+            //             else {
+            //                 node.appendChild(doc.createTextNode("Мы не нашли точку в этой строке"));
+            //                 if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+            //                                 "select * from xml_project.public.cadastral_number_object_xml " +
+            //                                 "where cadastral_number_value=? and " +
+            //                                 "name_company=? and " +
+            //                                 "id_file=?)", Boolean.class,
+            //                         "Мы не нашли точку в этой строке", NameCompany, IdFile))
+            //                 ) {
+            //                     jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+            //                                     "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+            //                             "Мы не нашли точку в этой строке", NameCompany, IdFile, UUID.randomUUID());
+            //                 }
+            //             }
+            //         }
+            //         else {
+            //             node.appendChild(doc.createTextNode("Кадастровый номер земельного участка: - мы не нашли данные в этой строке"));
+            //             if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+            //                             "select * from xml_project.public.cadastral_number_object_xml " +
+            //                             "where cadastral_number_value=? and " +
+            //                             "name_company=? and " +
+            //                             "id_file=?)", Boolean.class,
+            //                     "Кадастровый номер земельного участка: - мы не нашли данные в этой строке", NameCompany, IdFile))
+            //             ) {
+            //                 jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+            //                                 "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+            //                         "Кадастровый номер земельного участка: - мы не нашли данные в этой строке",
+            //                         NameCompany, IdFile, UUID.randomUUID());
+            //             }
+            //         }
+            //     }
+            //     else {
+            //         if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+            //                         "select * from xml_project.public.cadastral_number_object_xml " +
+            //                         "where cadastral_number_value=? and " +
+            //                         "name_company=? and " +
+            //                         "id_file=?)", Boolean.class,
+            //                 "Мы не нашли запятую в строке", NameCompany, IdFile))
+            //         ) {
+            //             jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+            //                             "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+            //                     "Мы не нашли запятую в строке", NameCompany, IdFile, UUID.randomUUID());
+            //         }
+            //     }
+            // } else {
+            //     if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
+            //                     "select * from xml_project.public.cadastral_number_object_xml " +
+            //                     "where cadastral_number_value=? and " +
+            //                     "name_company=? and " +
+            //                     "id_file=?)", Boolean.class,
+            //             "абзацы не найдены в файле", NameCompany, IdFile))
+            //     ) {
+            //         jdbcTemplate.update("insert into xml_project.public.cadastral_number_object_xml(" +
+            //                         "cadastral_number_value, name_company, id_file, id_transaction) VALUES (?, ?, ?, ?)",
+            //                 "абзацы не найдены в файле", NameCompany, IdFile, UUID.randomUUID());
+            //     }
+            // }
         }
         return node;
     }

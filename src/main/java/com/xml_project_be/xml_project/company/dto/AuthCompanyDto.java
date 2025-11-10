@@ -1,4 +1,4 @@
-package com.xml_project_be.xml_project.company.dto;
+package com.xml_project_be.xml_project.company.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

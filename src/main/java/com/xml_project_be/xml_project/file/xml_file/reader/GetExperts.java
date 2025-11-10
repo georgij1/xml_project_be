@@ -60,8 +60,8 @@ public class GetExperts {
     ) {
         Element node = doc.createElement("Experts");
         File file = new File(DEST_WORD);
-        com.spire.doc.Document document = new com.spire.doc.Document();
-        document.loadFromFile(DEST_WORD);
+        // com.spire.doc.Document document = new com.spire.doc.Document();
+        // document.loadFromFile(DEST_WORD);
         if (!file.exists()) {
             if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(" +
                             "select * from xml_project.public.experts_object_xml " +
@@ -90,10 +90,10 @@ public class GetExperts {
             }
             return node;
         } else {
-            if (document.getSections().getCount() > 0 && document.getSections().get(0).getParagraphs().getCount() > 0) {
-                String GetTextFile = String.valueOf(document.getChildObjects().get(0).getDocument().getText());
-                System.out.println(GetTextFile);
-            } else return node;
+            // if (document.getSections().getCount() > 0 && document.getSections().get(0).getParagraphs().getCount() > 0) {
+            //     String GetTextFile = String.valueOf(document.getChildObjects().get(0).getDocument().getText());
+            //     System.out.println(GetTextFile);
+            // } else return node;
             node.appendChild(doc.createElement("Expert")).appendChild(doc.createElement("FamilyName")).appendChild(doc.createTextNode("Матвеев"));
             node.getElementsByTagName("Expert").item(0).appendChild(doc.createElement("FirstName")).appendChild(doc.createTextNode("Алексей"));
             node.getElementsByTagName("Expert").item(0).appendChild(doc.createElement("SecondName")).appendChild(doc.createTextNode("Александрович"));

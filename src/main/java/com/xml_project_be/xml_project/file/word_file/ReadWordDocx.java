@@ -1,6 +1,6 @@
 package com.xml_project_be.xml_project.file.word_file;
 
-import com.spire.doc.Document;
+// import com.spire.doc.Document;
 import com.xml_project_be.xml_project.file.dto.ReadFileDTO;
 import com.xml_project_be.xml_project.file.dto.ReadFileSplitWordDTO;
 import lombok.SneakyThrows;
@@ -40,8 +40,8 @@ public class ReadWordDocx {
         
         File file = new File(filePath);
         
-        Document document = new Document();
-        document.loadFromFile(filePath);
+        // Document document = new Document();
+        // document.loadFromFile(filePath);
         
         XWPFDocument doc = new XWPFDocument(Files.newInputStream(Paths.get(filePath)));
 
@@ -84,8 +84,8 @@ public class ReadWordDocx {
         String filePath = Paths.get(basePath, "Downloads", "uploads", nameCompany, getFileName.toString()).toString();
         
         File file = new File(filePath);
-        Document document = new Document();
-        document.loadFromFile(filePath);
+        // Document document = new Document();
+        // document.loadFromFile(filePath);
         
         XWPFDocument doc = new XWPFDocument(Files.newInputStream(Paths.get(filePath)));
 

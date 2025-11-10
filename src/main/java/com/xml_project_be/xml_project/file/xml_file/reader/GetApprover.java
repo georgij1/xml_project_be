@@ -1,14 +1,14 @@
 package com.xml_project_be.xml_project.file.xml_file.reader;
 
-import com.spire.doc.Document;
-import com.spire.doc.collections.ParagraphCollection;
+// import com.spire.doc.Document;
+// import com.spire.doc.collections.ParagraphCollection;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -82,43 +82,43 @@ public class GetApprover {
                         IDFile, NameCompany, UUID.randomUUID());
             }
         } else {
-            Document document = new Document();
-            document.loadFromFile(DEST_WORD);
-            if (document.getSections().getCount() > 0 && document.getSections().get(0).getParagraphs().getCount() > 0) {
-                ParagraphCollection firstParagraph = document.getSections().get(0).getParagraphs();
-                String position = firstParagraph.get(0).getText();
-                System.out.println("position - " + position);
-                String person = firstParagraph.get(16).getText();
-                String[] infoPersonsArr = person.split(" ");
-                System.out.println("FamilyName - " + Arrays.stream(infoPersonsArr).toList().get(0));
-                System.out.println("FirstName - " + Arrays.stream(infoPersonsArr).toList().get(0));
-                System.out.println("SecondName - " + Arrays.stream(infoPersonsArr).toList().get(0));
-                Approver.appendChild(getOrgElementsValueTXT(doc, "FamilyName", Arrays.stream(infoPersonsArr).toList().get(0)));
-                Approver.appendChild(getOrgElementsValueTXT(doc, "FirstName", Arrays.stream(infoPersonsArr).toList().get(0)));
-                Approver.appendChild(getOrgElementsValueTXT(doc, "SecondName", Arrays.stream(infoPersonsArr).toList().get(0)));
-                Approver.appendChild(getOrgElementsValueTXT(doc, "Position", position));
-                if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select * from xml_project.public.approver_object_xml where family_name_value=? and first_name_value=? and second_name_value=? and position_value=? and id_file=? and name_company=?)", Boolean.class, Arrays.stream(infoPersonsArr).toList().get(0),
-                        Arrays.stream(infoPersonsArr).toList().get(0), Arrays.stream(infoPersonsArr).toList().get(0), position, IDFile, NameCompany))) {
-                    jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
-                                    "first_name_value, second_name_value, " +
-                                    "position_value, name_company, id_file, id_transaction) values (?, ?, ?, ?, ?, ?, ?)",
-                            Arrays.stream(infoPersonsArr).toList().get(0),
-                            Arrays.stream(infoPersonsArr).toList().get(0), Arrays.stream(infoPersonsArr).toList().get(0), position, NameCompany, IDFile, UUID.randomUUID());
-                }
-            } else {
-                Approver.appendChild(getOrgElementsValueTXT(doc, "FamilyName", "Документ word является пустым"));
-                Approver.appendChild(getOrgElementsValueTXT(doc, "FirstName", "Документ word является пустым"));
-                Approver.appendChild(getOrgElementsValueTXT(doc, "SecondName", "Документ word является пустым"));
-                Approver.appendChild(getOrgElementsValueTXT(doc, "Position", "Документ word является пустым"));
-                if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select * from xml_project.public.approver_object_xml where family_name_value=? and second_name_value=? and position_value=? and id_file=? and name_company=?)", Boolean.class, "Документ word является пустым",
-                        "Документ word является пустым", "Документ word является пустым", "Документ word является пустым", IDFile, NameCompany))) {
-                    jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
-                                    "first_name_value, second_name_value, " +
-                                    "position_value, name_company, id_file, id_transaction) values (?, ?, ?, ?, ?, ?, ?)",
-                            "Документ word является пустым",
-                            "Документ word является пустым", "Документ word является пустым", "Документ word является пустым", NameCompany, IDFile, UUID.randomUUID());
-                }
-            }
+            // Document document = new Document();
+            // document.loadFromFile(DEST_WORD);
+            // if (document.getSections().getCount() > 0 && document.getSections().get(0).getParagraphs().getCount() > 0) {
+            //     ParagraphCollection firstParagraph = document.getSections().get(0).getParagraphs();
+            //     String position = firstParagraph.get(0).getText();
+            //     System.out.println("position - " + position);
+            //     String person = firstParagraph.get(16).getText();
+            //     String[] infoPersonsArr = person.split(" ");
+            //     System.out.println("FamilyName - " + Arrays.stream(infoPersonsArr).toList().get(0));
+            //     System.out.println("FirstName - " + Arrays.stream(infoPersonsArr).toList().get(0));
+            //     System.out.println("SecondName - " + Arrays.stream(infoPersonsArr).toList().get(0));
+            //     Approver.appendChild(getOrgElementsValueTXT(doc, "FamilyName", Arrays.stream(infoPersonsArr).toList().get(0)));
+            //     Approver.appendChild(getOrgElementsValueTXT(doc, "FirstName", Arrays.stream(infoPersonsArr).toList().get(0)));
+            //     Approver.appendChild(getOrgElementsValueTXT(doc, "SecondName", Arrays.stream(infoPersonsArr).toList().get(0)));
+            //     Approver.appendChild(getOrgElementsValueTXT(doc, "Position", position));
+            //     if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select * from xml_project.public.approver_object_xml where family_name_value=? and first_name_value=? and second_name_value=? and position_value=? and id_file=? and name_company=?)", Boolean.class, Arrays.stream(infoPersonsArr).toList().get(0),
+            //             Arrays.stream(infoPersonsArr).toList().get(0), Arrays.stream(infoPersonsArr).toList().get(0), position, IDFile, NameCompany))) {
+            //         jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
+            //                         "first_name_value, second_name_value, " +
+            //                         "position_value, name_company, id_file, id_transaction) values (?, ?, ?, ?, ?, ?, ?)",
+            //                 Arrays.stream(infoPersonsArr).toList().get(0),
+            //                 Arrays.stream(infoPersonsArr).toList().get(0), Arrays.stream(infoPersonsArr).toList().get(0), position, NameCompany, IDFile, UUID.randomUUID());
+            //     }
+            // } else {
+            //     Approver.appendChild(getOrgElementsValueTXT(doc, "FamilyName", "Документ word является пустым"));
+            //     Approver.appendChild(getOrgElementsValueTXT(doc, "FirstName", "Документ word является пустым"));
+            //     Approver.appendChild(getOrgElementsValueTXT(doc, "SecondName", "Документ word является пустым"));
+            //     Approver.appendChild(getOrgElementsValueTXT(doc, "Position", "Документ word является пустым"));
+            //     if (Boolean.FALSE.equals(jdbcTemplate.queryForObject("select exists(select * from xml_project.public.approver_object_xml where family_name_value=? and second_name_value=? and position_value=? and id_file=? and name_company=?)", Boolean.class, "Документ word является пустым",
+            //             "Документ word является пустым", "Документ word является пустым", "Документ word является пустым", IDFile, NameCompany))) {
+            //         jdbcTemplate.update("insert into xml_project.public.approver_object_xml(family_name_value, " +
+            //                         "first_name_value, second_name_value, " +
+            //                         "position_value, name_company, id_file, id_transaction) values (?, ?, ?, ?, ?, ?, ?)",
+            //                 "Документ word является пустым",
+            //                 "Документ word является пустым", "Документ word является пустым", "Документ word является пустым", NameCompany, IDFile, UUID.randomUUID());
+            //     }
+            // }
         }
         return Approver;
     }

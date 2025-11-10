@@ -1,4 +1,4 @@
-package com.xml_project_be.xml_project.auth.controllers;
+package com.xml_project_be.xml_project.auth.Controllers;
 
 import com.xml_project_be.xml_project.auth.dto.Auth;
 import com.xml_project_be.xml_project.auth.repositories.UserRepo;

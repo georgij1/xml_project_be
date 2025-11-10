@@ -1,11 +1,11 @@
-package com.xml_project_be.xml_project.company.controllers;
+package com.xml_project_be.xml_project.company.Controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import com.xml_project_be.xml_project.company.dto.AuthCompanyDto;
-import com.xml_project_be.xml_project.company.dto.CreateCompanyDto;
+import com.xml_project_be.xml_project.company.Dto.AuthCompanyDto;
+import com.xml_project_be.xml_project.company.Dto.CreateCompanyDto;
 import java.io.File;
 import java.io.IOException;
 import org.springframework.http.ResponseEntity;

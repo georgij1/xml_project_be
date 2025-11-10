@@ -1,4 +1,4 @@
-create table if not exists designer_object_xml(
+create table if not exists xml_project.designer_object_xml(
     ip_value text,
     family_name_value text,
     first_name_value text,

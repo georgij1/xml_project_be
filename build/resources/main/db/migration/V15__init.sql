@@ -1,4 +1,4 @@
-create table if not exists finance_object_xml(
+create table if not exists xml_project.finance_object_xml(
     finance_type text,
     finance_size text,
     name_company text,

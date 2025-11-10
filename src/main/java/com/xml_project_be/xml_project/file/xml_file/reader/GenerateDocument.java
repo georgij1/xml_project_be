@@ -7,7 +7,7 @@ import com.xml_project_be.xml_project.file.dir.CheckMKDir;
 import com.xml_project_be.xml_project.file.dto.ObjectTableXmlDTO;
 import com.xml_project_be.xml_project.file.dto.ReadFileDTO;
 import com.xml_project_be.xml_project.file.dto.TableObjectDTO;
-import com.xml_project_be.xml_project.file.dto.TablesObjectDTO;
+// import com.xml_project_be.xml_project.file.dto.TablesObjectDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -1261,15 +1261,15 @@ public class GenerateDocument {
         org.w3c.dom.Document doc = builder.newDocument();
 
         var pathFileWithOutFormat = getPathFile(nameCompany, getFileName, "");
-        File tableXMLPath = new File(fileDir+"tableXML.json");
+        // File tableXMLPath = new File(fileDir+"tableXML.json");
 
         Element rootElement = doc.createElement("Conclusion");
         doc.appendChild(rootElement);
-        ObjectMapper objectMapper = new ObjectMapper();
-        TablesObjectDTO tablesObject = objectMapper.readValue(
-            tableXMLPath, 
-            new TypeReference<>() {}
-        );
+        // ObjectMapper objectMapper = new ObjectMapper();
+        // TablesObjectDTO tablesObject = objectMapper.readValue(
+        //     tableXMLPath, 
+        //     new TypeReference<>() {}
+        // );
         rootElement.setAttribute("ConclusionGUID", "d1ca32e2-a8f0-4776-a499-1d946c6f6064");
         rootElement.setAttribute("SchemaVersion", "01.00");
         rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
@@ -1432,13 +1432,13 @@ public class GenerateDocument {
             arrayListLines.add(line);
         }
         reader.close();
-        JsonNode rootNode = objectMapper.readTree(tableXMLPath);
-        int objectCount = rootNode.get("tables").size();
+        // JsonNode rootNode = objectMapper.readTree(tableXMLPath);
+        // int objectCount = rootNode.get("tables").size();
 
-        domainBeanPdf.setName_file(Collections.singletonList("conclusion_" + UUID.randomUUID() + ".xml"));
-        domainBeanPdf.setContent_file(Collections.singletonList(arrayListLines.toArray()));
-        domainBeanPdf.setTables(tablesObject.getTables());
-        domainBeanPdf.setCount_tables(objectCount);
+        // domainBeanPdf.setName_file(Collections.singletonList("conclusion_" + UUID.randomUUID() + ".xml"));
+        // domainBeanPdf.setContent_file(Collections.singletonList(arrayListLines.toArray()));
+        // domainBeanPdf.setTables(tablesObject.getTables());
+        // domainBeanPdf.setCount_tables(objectCount);
         
         arrayListObjectTables.add(domainBeanPdf);
         return ResponseEntity.ok().body(arrayListObjectTables);

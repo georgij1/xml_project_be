@@ -1,7 +1,7 @@
 package com.xml_project_be.xml_project.file.pdf_file;
 
-import com.aspose.pdf.Page;
-import com.aspose.pdf.TextFragment;
+// import com.aspose.pdf.Page;
+// import com.aspose.pdf.TextFragment;
 import com.xml_project_be.xml_project.file.dir.CheckMKDir;
 import com.xml_project_be.xml_project.file.dto.DomainBeanPdfDTO;
 import com.xml_project_be.xml_project.file.dto.ReadFileDTO;
@@ -31,17 +31,17 @@ public class ReadPdf {
 
         CheckMKDir.check_dir_exist(file);
         
-        String pathWithOutFormatDir = String.valueOf(
-            get(
-                "/home/georgii/Загрузки/uploads/"
-                +
-                nameCompany
-                +
-                "/"
-                +
-                getFileName
-            )
-        );
+        // String pathWithOutFormatDir = String.valueOf(
+        //     get(
+        //         "/home/georgii/Загрузки/uploads/"
+        //         +
+        //         nameCompany
+        //         +
+        //         "/"
+        //         +
+        //         getFileName
+        //     )
+        // );
         
         String pathFormatDirPdf = String.valueOf(
             get(
@@ -57,16 +57,16 @@ public class ReadPdf {
 
         com.aspose.pdf.Document documentPdf = new com.aspose.pdf.Document();
 
-        Page pagePdf = documentPdf.getPages().add();
+        // Page pagePdf = documentPdf.getPages().add();
         
         DomainBeanPdfDTO domainBeanPdf = new DomainBeanPdfDTO();
 
-        com.spire.doc.Document documentWord = new com.spire.doc.Document();
-        documentWord.loadFromFile(pathWithOutFormatDir);
+        // com.spire.doc.Document documentWord = new com.spire.doc.Document();
+        // documentWord.loadFromFile(pathWithOutFormatDir);
 
-        String contentWord = documentWord.getText();
+        // String contentWord = documentWord.getText();
         
-        pagePdf.getParagraphs().add(new TextFragment(contentWord));
+        // pagePdf.getParagraphs().add(new TextFragment(contentWord));
 
         File filePathPdf = new File(pathFormatDirPdf+".pdf");
         
@@ -75,11 +75,11 @@ public class ReadPdf {
         }
         
         documentPdf.close();
-        documentWord.close();
+        // documentWord.close();
         
         domainBeanPdf.setNameFile(Collections.singletonList(getFileName.toString()));
 
-        domainBeanPdf.setContentFile(Collections.singletonList(contentWord));
+        // domainBeanPdf.setContentFile(Collections.singletonList(contentWord));
         
         arrayListPdf.add(domainBeanPdf);
         

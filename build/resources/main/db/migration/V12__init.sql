@@ -1,4 +1,4 @@
-create table if not exists examination_object_object_xml(
+create table if not exists xml_project.examination_object_object_xml(
     examination_form_value text,
     examination_result_value text,
     examination_object_type_value text,
