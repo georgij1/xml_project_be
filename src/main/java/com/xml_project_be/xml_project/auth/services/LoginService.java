@@ -20,6 +20,8 @@ public class LoginService {
     ) {
         var statePassqordValid = userRepo.validPassword(auth.getLogin(), auth.getPassword(), jdbcTemplate);
 
+        System.out.println(statePassqordValid);
+
         if (statePassqordValid) {
             Algorithm algorithm = Algorithm.HMAC512(secret);
 

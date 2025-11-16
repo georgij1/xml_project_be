@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,8 @@ import com.xml_project_be.xml_project.auth.dto.Auth;
 @RequestMapping
 @CrossOrigin("*")
 public class UserRepo {
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(UserRepo.class);
+
     public static String encodePassword(String rawPassword) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -31,6 +34,8 @@ public class UserRepo {
         } 
         
         catch (NoSuchAlgorithmException e) {
+            logger.info(e.toString());
+
             throw new RuntimeException("Ошибка хэширования", e);
         }
     }
@@ -41,7 +46,7 @@ public class UserRepo {
     ) {
         try {
             jdbcTemplate.update(
-                "insert into public.users(username, password_hash) values (?, ?)",
+                "insert into xml_project.users(username, password_hash) values (?, ?)",
                 auth.getLogin(),
                 encodePassword(auth.getPassword())
             );
@@ -50,6 +55,8 @@ public class UserRepo {
         }
         
         catch (DataAccessException exception) {
+            logger.info(exception.toString());
+
             return new ResponseEntity<>("Ошибка: "+exception, HttpStatus.BAD_REQUEST);
         }
     }
@@ -61,7 +68,7 @@ public class UserRepo {
     ) {
         try {
             var hashed = jdbcTemplate.queryForObject (
-                "select password_hash from users where username=?",
+                "select password_hash from xml_project.users where username=?",
                 String.class, username
             );
 
@@ -69,6 +76,8 @@ public class UserRepo {
         }
 
         catch (DataAccessException exception) {
+            logger.error(exception.toString());
+
             return false;
         }
     }
@@ -78,16 +87,18 @@ public class UserRepo {
         JdbcTemplate jdbcTemplate
     ) {
         try {
-            var hashed = jdbcTemplate.queryForObject(
+            var userId = jdbcTemplate.queryForObject(
                 "select id from users where username=?",
                 String.class, 
                 username
             );
 
-            return hashed;
+            return userId;
         }
 
         catch (DataAccessException exception) {
+            logger.error(exception.toString());
+
             return "0";
         }        
     }
