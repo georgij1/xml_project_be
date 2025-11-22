@@ -3,8 +3,6 @@ package com.xml_project_be.xml_project.auth.controllers;
 import com.xml_project_be.xml_project.auth.dto.Auth;
 import com.xml_project_be.xml_project.auth.repositories.UserRepo;
 import com.xml_project_be.xml_project.auth.services.LoginService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -22,10 +20,7 @@ public class AuthController {
     @PostMapping("/login")
     @ResponseBody
     public ResponseEntity<?> login (
-            @RequestBody Auth loginForm,
-            HttpServletResponse response,
-            HttpServletRequest request,
-            UserRepo userRepo
+        @RequestBody Auth loginForm
     ) {
         return LoginService.login(loginForm, userRepo, jdbcTemplate);
     }
