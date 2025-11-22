@@ -33,7 +33,7 @@ dependencies {
 	implementation 'org.beigesoft:beige-pdfwriter:1.0.3'
 	implementation 'com.luhuiguo:aspose-pdf:23.1'
 	implementation 'org.wso2.orbit.org.apache.poi:poi-ooxml:3.17.0.wso2v1'
-	implementation 'com.groupdocs:groupdocs-viewer:17.5.0'
+	//implementation 'com.groupdocs:groupdocs-viewer:17.5.0'
 	implementation 'org.apache.pdfbox:pdfbox:3.0.0-alpha2'
 	implementation 'net.eusashead.hateoas:spring-halbuilder-page:1.0.0.RELEASE'
 	implementation 'net.eusashead.hateoas:spring-responseentitybuilder:1.1.0.RELEASE'
@@ -69,7 +69,7 @@ dependencies {
 	implementation 'org.apache.tika:tika-parsers:1.28.3'
 }
 
-repositories {
+/*repositories {
 	mavenCentral()
 	maven {
 		name "GroupDocs Java API"
@@ -80,3 +80,4 @@ repositories {
 		url "https://repo.e-iceblue.com/nexus/content/groups/public"
 	}
 }
+*/
