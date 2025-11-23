@@ -1,4 +1,4 @@
-create table if not exists documents_object_xml(
+create table if not exists xml_project.documents_object_xml(
     document_value text,
     doc_type_value text,
     doc_name_value text,

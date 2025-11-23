@@ -1,33 +1,33 @@
 package com.xml_project_be.xml_project.auth.controllers;
 
 import com.xml_project_be.xml_project.auth.dto.Auth;
-import com.xml_project_be.xml_project.auth.repositories.UserRepo;
 import com.xml_project_be.xml_project.auth.services.LoginService;
-import lombok.AllArgsConstructor;
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.xml_project_be.xml_project.auth.services.RegistrationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 @Controller
 @CrossOrigin("*")
 @RequestMapping("/api/user/auth")
-@AllArgsConstructor
 public class AuthController {
-    public JdbcTemplate jdbcTemplate;
-    private UserRepo userRepo;
+    @Autowired
+    private LoginService loginService;
+    @Autowired
+    private RegistrationService registrationService;
 
     @PostMapping("/login")
     @ResponseBody
     public ResponseEntity<?> login (
         @RequestBody Auth loginForm
     ) {
-        return LoginService.login(loginForm, userRepo, jdbcTemplate);
+        return loginService.login(loginForm);
     }
 
     @PostMapping("/registration")
     @ResponseBody
     public ResponseEntity<?> registrationUser (@RequestBody Auth auth) {
-        return userRepo.create(auth, jdbcTemplate);
+        return registrationService.create(auth);
     }
 }

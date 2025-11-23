@@ -1,4 +1,4 @@
-create table if not exists project_documents_developer_object_xml(
+create table if not exists xml_project.project_documents_developer_object_xml(
     organization_value text,
     org_full_name_value text,
     org_ogrn_value text,
