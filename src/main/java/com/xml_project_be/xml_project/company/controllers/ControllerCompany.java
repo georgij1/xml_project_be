@@ -1,70 +1,31 @@
 package com.xml_project_be.xml_project.company.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.xml_project_be.xml_project.company.dto.AuthCompanyDto;
 import com.xml_project_be.xml_project.company.dto.CreateCompanyDto;
-import java.io.File;
-import java.io.IOException;
+import com.xml_project_be.xml_project.company.service.CompanyServicve;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 @AllArgsConstructor
 @CrossOrigin("*")
 @RequestMapping("api/company")
 public class ControllerCompany {
-    JdbcTemplate jdbcTemplate;
-
-    public static Boolean createDirCompany(String company) {
-        String basePath = System.getProperty("user.home") + File.separator + "xmlApp" + File.separator + "uploads";
-        File file = new File(basePath + File.separator + company);
-        
-        if (!file.exists()) {
-            boolean created = file.mkdirs();
-            return created;
-        }
-
-        return false;
-    }
+    @Autowired
+    private CompanyServicve companyServicve;
 
     @PostMapping("/auth")
     @ResponseBody
-    public ResponseEntity<?> authCompany(@RequestBody AuthCompanyDto authCompany) throws IOException {
-        var isNameCompany = Boolean.TRUE.equals(
-            jdbcTemplate.queryForObject(
-                "select exists(select * from xml_project.xml_project.company where name_company=?)",
-                Boolean.class, 
-                authCompany.getNameCompany()
-            )
-        );
-
-        var isPasswordCompany = Boolean.TRUE.equals(
-            jdbcTemplate.queryForObject(
-                "select exists(select * from xml_project.xml_project.company where password_company=?)", 
-                Boolean.class, 
-                authCompany.getPasswordCompany()
-            )
-        );
-        
-        return new ResponseEntity<>("", isNameCompany && isPasswordCompany ? HttpStatus.OK : HttpStatus.FORBIDDEN);
+    public ResponseEntity<?> authCompany(@RequestBody AuthCompanyDto authCompany) {
+        return companyServicve.authCompany(authCompany);
     }
 
     @PostMapping("/create")
     @ResponseBody
     public ResponseEntity<?> all_company(@RequestBody CreateCompanyDto createCompany) {
-        createDirCompany(createCompany.getNameCompany());
-        
-        var isCreate = jdbcTemplate.update(
-            "insert into xml_project.xml_project.company(" +
-            "name_company, password_company, desc_company, owner_company) " +
-            "VALUES (?, ?, ?, ?)", createCompany.getNameCompany(),
-            createCompany.getPasswordCompany(), createCompany.getDescCompany(),
-            createCompany.getOwnerCompany()
-        );
-
-        return new ResponseEntity<>(isCreate==1 ? "success create company" : "error in create company", isCreate==1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+        return companyServicve.registerCompany(createCompany);
     }
 }
