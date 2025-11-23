@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import com.xml_project_be.xml_project.company.dto.AuthCompanyDto;
 import com.xml_project_be.xml_project.company.dto.CreateCompanyDto;
+import com.xml_project_be.xml_project.company.dto.UpdateCompanyDto;
 
 @Service
 public class CompanyServicve {
@@ -47,7 +48,7 @@ public class CompanyServicve {
         return new ResponseEntity<>("", isNameCompany && isPasswordCompany ? HttpStatus.OK : HttpStatus.FORBIDDEN);
     }
 
-    public ResponseEntity<?> registerCompany(CreateCompanyDto createCompany) {
+    public ResponseEntity<?> createCompany(CreateCompanyDto createCompany) {
                 createDirCompany(createCompany.getNameCompany());
         
         var isCreate = jdbcTemplate.update(
@@ -59,5 +60,36 @@ public class CompanyServicve {
         );
 
         return new ResponseEntity<>(isCreate==1 ? "success create company" : "error in create company", isCreate==1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<?> getAllCompany() {
+        var isCreate = jdbcTemplate.queryForList("select * from xml_project.xml_project.company");
+        return new ResponseEntity<>(isCreate, isCreate.size() > 0 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity <?> getCompanyById(Integer id) {
+        var isCreate = jdbcTemplate.queryForList("select * from xml_project.xml_project.company where id=?", id);
+        return new ResponseEntity<>(isCreate, isCreate.size() > 0 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<?> deleteCompany(Integer id) {
+        var isCreate = jdbcTemplate.update("DELETE FROM xml_project.xml_project.company WHERE id = ?", id);
+        return new ResponseEntity<>(isCreate==1 ? "success is delete" : "error delete", isCreate==1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<?> updateCompany(Integer id, UpdateCompanyDto updateCompanyDto) {
+        var isUpdated = jdbcTemplate.update(
+            "UPDATE xml_project.xml_project.company SET name_company = ?, password_company = ?, desc_company = ?, owner_company = ? WHERE id = ?",
+            updateCompanyDto.getNameCompany(),
+            updateCompanyDto.getPasswordCompany(),
+            updateCompanyDto.getDescCompany(),
+            updateCompanyDto.getOwnerCompany(),
+            id
+        );
+        
+        return new ResponseEntity<>(
+            isUpdated == 1 ? "success update" : "error update", 
+            isUpdated == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST
+        );
     }
 }
