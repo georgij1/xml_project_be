@@ -1,32 +1,26 @@
 package com.xml_project_be.xml_project.auth.repositories;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.xml_project_be.xml_project.auth.dto.Auth;
 
-@Service
-@AllArgsConstructor
 @Repository
-@Controller
-@RequestMapping
-@CrossOrigin("*")
 public class UserRepo {
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(UserRepo.class);
 
-    public static String encodePassword(String rawPassword) {
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    public String encodePassword(String rawPassword) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedHash = digest.digest(rawPassword.getBytes());
@@ -41,8 +35,7 @@ public class UserRepo {
     }
 
     public ResponseEntity<?> create(
-        Auth auth,
-        JdbcTemplate jdbcTemplate
+        Auth auth
     ) {
         try {
             jdbcTemplate.update(
@@ -63,8 +56,7 @@ public class UserRepo {
 
     public boolean validPassword (
         @NotNull String username,
-        @NotNull String password,
-        JdbcTemplate jdbcTemplate
+        @NotNull String password
     ) {
         try {
             var hashed = jdbcTemplate.queryForObject (
@@ -83,8 +75,7 @@ public class UserRepo {
     }
 
     public String getUserId(
-        @NotNull String username,
-        JdbcTemplate jdbcTemplate
+        @NotNull String username
     ) {
         try {
             var userId = jdbcTemplate.queryForObject(

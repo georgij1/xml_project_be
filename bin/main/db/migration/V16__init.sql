@@ -1,4 +1,4 @@
-create table if not exists object_object_xml(
+create table if not exists xml_project.object_object_xml(
     name_value text,
     type_value text,
     functions_value text,

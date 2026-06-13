@@ -1,4 +1,4 @@
-create table if not exists previous_conclusions(
+create table if not exists xml_project.previous_conclusions(
     previous_conclusion_value text,
     date_value text,
     number_value text,

@@ -4,9 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class AuthCompanyDto {
+public class UpdateCompanyDto {
     @JsonProperty("nameCompany")
     private String nameCompany;
     @JsonProperty("passwordCompany")
     private String passwordCompany;
+    @JsonProperty("descCompany")
+    private String descCompany;    
+    @JsonProperty("ownerCompany")
+    private String ownerCompany;
 }

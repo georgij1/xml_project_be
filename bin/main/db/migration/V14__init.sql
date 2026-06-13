@@ -1,4 +1,4 @@
-create table if not exists experts_object_xml(
+create table if not exists xml_project.experts_object_xml(
     expert_value text,
     family_name_value text,
     first_name_value text,
